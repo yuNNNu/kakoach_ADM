@@ -25,4 +25,6 @@ yarn-error.log*
 # m
 
 src/*svg
-/public
+/public/*.ico
+/public/*.png
+/public/*.json
