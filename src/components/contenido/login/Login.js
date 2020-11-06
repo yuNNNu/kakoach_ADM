@@ -1,6 +1,39 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 export default function Login(){
+
+	/*=============================================
+				HOOK PARA INICIAR SESION
+	=============================================*/
+	
+	const [administradores, iniciarSesion] = useState({
+		usuario: "",
+		password: ""
+	});
+
+	/*=============================================
+	CAPTURAMOS CAMBIOS DEL FORMULARIO PARA EJECUTAR LA FUNCION DEL HOOK
+	=============================================*/
+	
+	const cambiaForm = e => {
+		iniciarSesion({
+			...administradores,
+			[e.target.name] : e.target.value
+		})
+	}
+
+	/*=============================================
+	EJECUTAMOS EL SUBMIT 
+	=============================================*/
+	
+	const login = e => {
+		e.preventDefault();
+		console.log("administradores", administradores);
+	}
+
+	/*=============================================
+				RETORNAMOS LA VISTA
+	=============================================*/
 
 	return(
 
@@ -10,17 +43,16 @@ export default function Login(){
 					<b>CMS</b>
 				</div>
 
-				<div className="card pr-3 pl-3 pb-3">
+				<div className="card">
 					<div className="card-body login-card-body">
-						<p className="login-box0msg">
+						<p className="login-box-msg">
 							Llena los campos para iniciar sesión
 						</p>
-					</div>
-					<form>
+
+						<form onChange={cambiaForm} onSubmit={login}>
 						<div className="input-group mb-3">
 							<input type="text" className="form-control"
-							placeholder="Usuario"
-							name="usuario"/>
+							placeholder="Usuario" name="usuario"/>
 
 							<div className="input-group-append">
 								<div className="input-group-text">
@@ -46,6 +78,7 @@ export default function Login(){
 							Ingresar
 						</button>
 					</form>
+					</div>		
 				</div>
 			</div>
 		</div>
