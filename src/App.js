@@ -9,6 +9,7 @@ import Slide from './components/contenido/slide/Slide';
 import Galeria from './components/contenido/galeria/Galeria';
 import Articulos from './components/contenido/articulos/Articulos';
 import Usuarios from './components/contenido/usuarios/Usuarios';
+import Error404 from './components/contenido/error404/Error404';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         		<Route exact path="/galeria" component={Galeria}/>
         		<Route exact path="/articulos" component={Articulos}/>
         		<Route exact path="/usuarios" component={Usuarios}/>
+        		<Route component={Error404}/>
         	</Switch>
 
         </BrowserRouter>
