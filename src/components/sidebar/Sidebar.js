@@ -96,7 +96,7 @@ export default function Sidebar(){
 
 								<li className="nav-item">
 
-									<a href="/users" className="nav-link">
+									<a href="/usuarios" className="nav-link">
 										<i className="nav-icon fas fa-users"></i>
 										<p>
 										Usuarios
