@@ -1,9 +1,16 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
+
+// Componente Login
+import Login from './components/contenido/login/Login';
+
+// Componentes fijos
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
 import Footer from './components/footer/Footer';
 
+
+// Componentes Dinamicos
 import Administradores from './components/contenido/administradores/Administradores';
 import Slide from './components/contenido/slide/Slide';
 import Galeria from './components/contenido/galeria/Galeria';
@@ -12,6 +19,15 @@ import Usuarios from './components/contenido/usuarios/Usuarios';
 import Error404 from './components/contenido/error404/Error404';
 
 function App() {
+
+  const auth = false;
+
+  if(!auth){
+    return(
+      <Login/>
+    );
+  }
+
   return (
    <div className="sidebar-mini">
 
