@@ -1,6 +1,18 @@
 import React from 'react'
  export default function Header(){
 
+ 	/*=============================================
+ 	=            CIERRE DE SESION            =
+ 	=============================================*/
+ 	
+ 	const cerrarSesion = () => {
+		
+		localStorage.removeItem("ACCESS_TOKEN");  		
+  		localStorage.removeItem("ID");
+  		localStorage.removeItem("USUARIO");
+
+ 	}
+
  	return(
  		<nav className="main-header navbar navbar-expand navbar-white navbar-light">
  			<ul className="navbar-nav">
@@ -15,7 +27,7 @@ import React from 'react'
 
  			<ul className="navbar ml-auto">
  				<li className="nav-item">
- 					<a href="#/"
+ 					<a href="/" onClick={() => {cerrarSesion()}}
  						className="nav-link">
  						<i className="fas fa-sign-out-alt"></i>
  					</a>

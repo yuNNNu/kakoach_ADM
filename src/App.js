@@ -68,7 +68,7 @@ const getAccessToken = () => {
   console.log("metaToken", metaToken);
 
   if(!metaToken.data){
-    return false;
+    return false; 
   }
 
   if(tokenExpira(accessToken, metaToken) || metaToken.data._id !== id || metaToken.user !== user){
