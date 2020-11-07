@@ -59,15 +59,34 @@ const getAccessToken = () => {
   const id = localStorage.getItem("ID")
   const user = localStorage.getItem("USUARIO")
 
-  if(!accessToken || accessToken === "null")
+  if(!accessToken || accessToken === null
+    || !id || id === null ||
+    !user || user === null )
   return false;
 
   const metaToken = jwtDecode(accessToken);
   console.log("metaToken", metaToken);
 
-  if(metaToken.data._id !== id || metaToken.user !== user){
+  if(!metaToken.data){
+    return false;
+  }
+
+  if(tokenExpira(accessToken, metaToken) || metaToken.data._id !== id || metaToken.user !== user){
     return true;
   }else{
     return false;
   }
+}
+
+/*=============================================
+=            FUNCION PARA VERIFICAR EXPIRACION DE TOKEN            =
+=============================================*/
+
+const tokenExpira = (accessToken, metaToken) => {
+
+  const seconds = 60;
+  const{ exp } = metaToken;
+  const now = (Date.now()+seconds)/1000
+  return exp < now ;
+
 }
