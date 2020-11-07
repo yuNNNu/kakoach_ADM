@@ -1,5 +1,6 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 
 // Componente Login
 import Login from './components/contenido/login/Login';
@@ -18,9 +19,9 @@ import Articulos from './components/contenido/articulos/Articulos';
 import Usuarios from './components/contenido/usuarios/Usuarios';
 import Error404 from './components/contenido/error404/Error404';
 
-function App() {
+export default function App() {
 
-  const auth = false;
+  const auth = getAccessToken();
 
   if(!auth){
     return(
@@ -52,4 +53,21 @@ function App() {
   );
 }
 
-export default App;
+
+const getAccessToken = () => {
+  const accessToken = localStorage.getItem("ACCESS_TOKEN")
+  const id = localStorage.getItem("ID")
+  const user = localStorage.getItem("USUARIO")
+
+  if(!accessToken || accessToken === "null")
+  return false;
+
+  const metaToken = jwtDecode(accessToken);
+  console.log("metaToken", metaToken);
+
+  if(metaToken.data._id !== id || metaToken.user !== user){
+    return true;
+  }else{
+    return false;
+  }
+}

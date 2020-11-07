@@ -34,10 +34,11 @@ export default function Login(){
 		if(result.status !== 200){
 			$("button[type='submit']").before(`<div class="alert alert-danger">${result.mensaje}</div>`)
 		}else{
-			$("button[type='submit']").before(`<div class="alert alert-success">${result.token}</div>`)
-
-		}		
-		console.log("result", result);
+			localStorage.setItem("ACCESS_TOKEN", result.token)				
+			localStorage.setItem("ID", result.data._id)
+			localStorage.setItem("USUARIO", result.data.user)	
+			window.location.href = "/";	
+		}
 	}
 
 	/*=============================================
