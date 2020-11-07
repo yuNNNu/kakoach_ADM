@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-
+import {rutaAPI} from '../../../config/Config';
+import $ from "jquery";
 export default function Login(){
 
 	/*=============================================
@@ -7,7 +8,7 @@ export default function Login(){
 	=============================================*/
 	
 	const [administradores, iniciarSesion] = useState({
-		usuario: "",
+		user: "",
 		password: ""
 	});
 
@@ -26,9 +27,17 @@ export default function Login(){
 	EJECUTAMOS EL SUBMIT 
 	=============================================*/
 	
-	const login = e => {
+	const login = async e => {
+		$(".alert").remove();
 		e.preventDefault();
-		console.log("administradores", administradores);
+		const result = await loginAPI(administradores);
+		if(result.status !== 200){
+			$("button[type='submit']").before(`<div class="alert alert-danger">${result.mensaje}</div>`)
+		}else{
+			$("button[type='submit']").before(`<div class="alert alert-success">${result.token}</div>`)
+
+		}		
+		console.log("result", result);
 	}
 
 	/*=============================================
@@ -52,7 +61,7 @@ export default function Login(){
 						<form onChange={cambiaForm} onSubmit={login}>
 						<div className="input-group mb-3">
 							<input type="text" className="form-control"
-							placeholder="Usuario" name="usuario"/>
+							placeholder="Usuario" name="user"/>
 
 							<div className="input-group-append">
 								<div className="input-group-text">
@@ -83,5 +92,27 @@ export default function Login(){
 			</div>
 		</div>
 	);
+
+}
+
+const loginAPI = data => {
+
+	const url = `${rutaAPI}/login`
+
+	const params = {
+		method: 'POST',
+		body: JSON.stringify(data),
+		headers: {
+			"Content-Type": "application/json"
+		} 
+	}
+
+	return fetch(url, params).then(response => {
+		return response.json();
+	}).then(result => {
+		return result;
+	}).catch(err => {
+		return err;
+	})
 
 }
