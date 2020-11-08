@@ -1,6 +1,17 @@
 import React from 'react'
 import {rutaAPI} from '../../../config/Config';
+import $ from 'jquery';
+import 'datatables.net';
+import 'datatables.net-bs4';
+import 'datatables.net-responsive';
 export default function Articulos(){
+
+	/*=============================================
+	=            EJECUTAMOS DATATABLE          =
+	=============================================*/
+	$(document).ready(function () {
+		$('.table').DataTable(); 
+	})
 
 	const portada = `${rutaAPI}/mostrar-img-articulo/lorem-ipsum-3+9615.jpg`;
 
@@ -31,7 +42,7 @@ export default function Articulos(){
 								</div>
 
 								<div className="card-body">
-				   					<table className="table" style={{"width": "100%"}}>
+				   					<table className="table table-striped dt-responsive" style={{"width": "100%"}}>
 
 				   						<thead>
 				   							<tr>
