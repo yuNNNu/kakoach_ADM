@@ -1,6 +1,9 @@
 import React from 'react'
+import {rutaAPI} from '../../../config/Config';
 
 export default function Galeria(){
+
+	const photo = `${rutaAPI}/mostrar-img-galeria/9760.jpg`
 
 	return(
 
@@ -23,21 +26,40 @@ export default function Galeria(){
 							<div className="card card-primary card-outline">
 								<div className="card-header">
 
-								<h5 className="m-0">Featured</h5>
+								<h5 className="m-0">
+									<button className="btn btn-primary">Crear nueva Galería</button>
+								</h5>
 								</div>
 
 								<div className="card-body">
-				   				<h6 className="card-title">
-				   				Special title tratment
-				   				</h6>
+				   					<table className="table" style={{"width": "100%"}}>
 
-				   				<p className="card-text">
-				   				With supporting text below as a natural lead-in additional content.
-				   				</p>
+				   						<thead>
+				   							<th>#</th>
+				   							<th width="320px">Foto</th>
+				   							<th>Acciones</th>
+				   						</thead>
+				   						<tbody>
 
-				   				<a href="http://google.com" className="btn btn-primary">
-				   				Go somewhere
-				   				</a>
+				   							<tr>
+				   								<td>1</td>
+				   								<td><img src={photo} className="img-fluid"/></td>
+				   								<td>
+				   									<div>
+				   										<button type="button" className="btn btn-warning rounded-circle mr-2">
+				   										   <i className="nav-icon fas fa-pencil-alt"></i>
+				   										</button>
+
+				   										<button type="button" className="btn btn-danger rounded-circle">
+				   										   <i className="nav-icon fas fa-trash"></i>
+				   										</button>
+				   									</div>
+				   								</td>
+				   							</tr>
+
+				   						</tbody>
+				   					</table>
+				   				
 
 				  			</div>
 								   
