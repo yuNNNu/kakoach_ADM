@@ -34,21 +34,22 @@ export default function Articulos(){
 				   					<table className="table" style={{"width": "100%"}}>
 
 				   						<thead>
-				   							<th>#</th>
-				   							<th>Portada</th>
-				   							<th>URL</th>
-				   							<th>Título</th>
-				   							<th>Intro</th>
-				   							<th>Contenido</th>
-				   							<th>Acciones</th>
-
+				   							<tr>
+				   								<th>#</th>
+					   							<th>Portada</th>
+					   							<th>URL</th>
+					   							<th>Título</th>
+					   							<th>Intro</th>
+					   							<th>Contenido</th>
+					   							<th>Acciones</th>
+				   							</tr>
 				   						</thead>
 				   						<tbody>
 
 				   							<tr>
 				   								<td>1</td>
 				   								<td>
-				   									<img src={portada} className="img-fluid"/>
+				   									<img src={portada} className="img-fluid" alt="photoarticle"/>
 				   								</td>
 				   								<td>
 				   									lorem-ipsum-1
@@ -60,7 +61,7 @@ export default function Articulos(){
 				   									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae accusamus voluptatum omnis non facere itaque aliquam temporibus, nisi pariatur facilis similique possimus eaque iure doloribus natus animi eos, suscipit eum!
 				   								</td>
 				   								<td>
-				   									<h2>Lorem Ipsum 3</h2><img src="http://localhost:4000/mostrar-img/7968.jpg" className="py-3 img-fluid"/><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam maxime id expedita commodi? Eius, accusantium neque placeat facere minus deserunt praesentium dolorem nulla nihil consectetur aliquid, quos quo quas reiciendis. Non dolorem, tempora rem obcaecati corporis. Nesciunt aliquid excepturi, sint odio. Vitae ipsum aliquid aperiam itaque repellat, maiores voluptatibus debitis dignissimos voluptas voluptates dolore, veritatis exercitationem dolorum eos, quae sunt.</div><br/><div>Voluptatum nobis delectus laborum corporis. Laborum asperiores voluptatum enim commodi nobis. Doloremque eligendi nisi amet maiores nihil iure dignissimos, labore iusto. Ut quas molestiae nihil reiciendis qui obcaecati totam facilis.</div><br/><div>Quo eum deleniti iure animi quod numquam autem, vitae fugiat, molestias cum repellat omnis, ea explicabo aspernatur. Earum asperiores quod, corrupti ipsa ullam aut eligendi dolor vero necessitatibus, architecto nostrum.</div><br/><div>Culpa similique necessitatibus velit perspiciatis quibusdam modi minima ab eligendi, nulla recusandae, maxime quis adipisci officia totam rem rerum ea voluptatem placeat ad amet cum corrupti! Sed, fugiat et nulla.</div>
+				   									<h2>Lorem Ipsum 3</h2><img src="http://localhost:4000/mostrar-img/7968.jpg" className="py-3 img-fluid" alt="photo3"/><div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam maxime id expedita commodi? Eius, accusantium neque placeat facere minus deserunt praesentium dolorem nulla nihil consectetur aliquid, quos quo quas reiciendis. Non dolorem, tempora rem obcaecati corporis. Nesciunt aliquid excepturi, sint odio. Vitae ipsum aliquid aperiam itaque repellat, maiores voluptatibus debitis dignissimos voluptas voluptates dolore, veritatis exercitationem dolorum eos, quae sunt.</div><br/><div>Voluptatum nobis delectus laborum corporis. Laborum asperiores voluptatum enim commodi nobis. Doloremque eligendi nisi amet maiores nihil iure dignissimos, labore iusto. Ut quas molestiae nihil reiciendis qui obcaecati totam facilis.</div><br/><div>Quo eum deleniti iure animi quod numquam autem, vitae fugiat, molestias cum repellat omnis, ea explicabo aspernatur. Earum asperiores quod, corrupti ipsa ullam aut eligendi dolor vero necessitatibus, architecto nostrum.</div><br/><div>Culpa similique necessitatibus velit perspiciatis quibusdam modi minima ab eligendi, nulla recusandae, maxime quis adipisci officia totam rem rerum ea voluptatem placeat ad amet cum corrupti! Sed, fugiat et nulla.</div>
 				   								</td>
 				   								<td>
 				   									<div>

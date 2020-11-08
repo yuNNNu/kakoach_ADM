@@ -35,10 +35,12 @@ export default function Slide(){
 				   					<table className="table" style={{"width": "100%"}}>
 
 				   						<thead>
-				   							<th>#</th>
-				   							<th width="420px">Imagen</th>
-				   							<th>Título</th>
-				   							<th>Descripcion</th>
+				   							<tr>
+				   								<th>#</th>
+				   								<th width="420px">Imagen</th>
+					   							<th>Título</th>
+					   							<th>Descripcion</th>
+				   							</tr>
 				   						</thead>
 				   						<tbody>
 

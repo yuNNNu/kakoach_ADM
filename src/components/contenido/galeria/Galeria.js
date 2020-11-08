@@ -35,15 +35,17 @@ export default function Galeria(){
 				   					<table className="table" style={{"width": "100%"}}>
 
 				   						<thead>
-				   							<th>#</th>
-				   							<th width="320px">Foto</th>
-				   							<th>Acciones</th>
+				   							<tr>
+				   								<th>#</th>
+					   							<th width="320px" alt="foto">Foto</th>
+					   							<th>Acciones</th> 
+				   							</tr>
 				   						</thead>
 				   						<tbody>
 
 				   							<tr>
 				   								<td>1</td>
-				   								<td><img src={photo} className="img-fluid"/></td>
+				   								<td><img src={photo} className="img-fluid" alt="photo1"/></td>
 				   								<td>
 				   									<div>
 				   										<button type="button" className="btn btn-warning rounded-circle mr-2">

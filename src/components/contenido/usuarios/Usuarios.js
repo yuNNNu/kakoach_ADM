@@ -32,9 +32,11 @@ export default function Usuarios(){
 				   					<table className="table" style={{"width": "100%"}}>
 
 				   						<thead>
-				   							<th>#</th>
-				   							<th>Usuario</th>
-				   							<th>Acciones</th>
+				   							<tr>
+				   								<th>#</th>
+					   							<th>Usuario</th>
+					   							<th>Acciones</th>
+				   							</tr>
 				   						</thead>
 				   						<tbody>
 

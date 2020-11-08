@@ -65,7 +65,6 @@ const getAccessToken = () => {
   return false;
 
   const metaToken = jwtDecode(accessToken);
-  console.log("metaToken", metaToken);
 
   if(!metaToken.data){
     return false; 
