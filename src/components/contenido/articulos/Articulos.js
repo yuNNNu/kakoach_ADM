@@ -57,8 +57,7 @@ export default function Articulos(){
 
               }
 
-		    },
-		    null]
+		    }]
 		}); 
 	})
 
