@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
-
+import './App.css';
 // Componente Login
 import Login from './components/contenido/login/Login';
 
