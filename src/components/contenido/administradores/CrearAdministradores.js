@@ -11,7 +11,7 @@ export default function CrearAdministradores(){
 	
 	const [administradores, crearAdministrador ] = useState({
 
-		usuario: "",
+		user: "",
 		password: ""
 
 	})
@@ -37,25 +37,26 @@ export default function CrearAdministradores(){
 
 	const submitPost = async e => {
 
+		$('.alert').remove();
 		e.preventDefault();		
 
-		const {usuario, password} = administradores;
+		const {user, password} = administradores;
 
 		/*=============================================
 		=                Validacion User              =
 		=============================================*/
 
-		if(usuario === ""){
-			$(".invalid-usuario").show();
-			$(".invalid-usuario").html("Utiliza un formato que coincida con el solicitado");
+		if(user === ""){
+			$(".invalid-user").show();
+			$(".invalid-user").html("Utiliza un formato que coincida con el solicitado");
 			return;
 		}
 
-		const expUsuario = /^(?=.*[A-Za-z]).{2,6}$/
+		const expuser = /^(?=.*[A-Za-z]).{2,6}$/
 
-		if(expUsuario.test(usuario)){
-			$(".invalid-usuario").show();
-			$(".invalid-usuario").html("Utiliza un formato que coincida con el solicitado");
+		if(!expuser.test(user)){
+			$(".invalid-user").show();
+			$(".invalid-user").html("Utiliza un formato que coincida con el solicitado");
 			return;
 		}
 
@@ -72,10 +73,27 @@ export default function CrearAdministradores(){
 
 		const expPassword = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/
 
-		if(expPassword.test(password)){
+		if(!expPassword.test(password)){
 			$(".invalid-password").show();
 			$(".invalid-password").html("Utiliza un formato que coincida con el solicitado");
 			return;
+		}
+
+		/*=============================================
+		=         SE EJECUTA EL SERVICIO POST         =
+		=============================================*/
+
+		const result = await postData(administradores);
+
+		if(result.status === 400){
+			$(".modal-footer").before(`<div class="alert alert-danger">${result.mensaje}</div>`);
+		}
+
+		if(result.status === 200){
+			$(".modal-footer").before(`<div class="alert alert-success">${result.mensaje}</div>`);
+			$('button[type="submit"]').remove();
+
+			setTimeout(()=>{window.location.href="/";},500)
 		}
 	}
 
@@ -100,7 +118,7 @@ export default function CrearAdministradores(){
 
 			      	<div className="form-group">
 
-			      		<label className="small text-secondary" htmlFor="usuario">*Mínimo 2 caracteres, máximo 6, sin números</label>
+			      		<label className="small text-secondary" htmlFor="user">*Mínimo 2 caracteres, máximo 6, sin números</label>
 
 			      		<div className="input-group mb-3">
 
@@ -109,11 +127,11 @@ export default function CrearAdministradores(){
 			      			</div>
 
 			      			<input 
-			      				id="usuario"
+			      				id="user"
 			      				type="text"
 			      				className="form-control text-lowercase"
-			      				name="usuario"
-			      				placeholder="Ingrese el Usuario*"
+			      				name="user"
+			      				placeholder="Ingrese el user*"
 			      				minLength="2"
 			      				maxLength="6"
 			      				pattern="(?=.*[A-Za-z]).{2,6}"
@@ -121,7 +139,7 @@ export default function CrearAdministradores(){
 
 			      			/>
 
-			      			<div className="invalid-feedback invalid-usuario"></div>
+			      			<div className="invalid-feedback invalid-user"></div>
 
 			      		</div>	
 
@@ -173,5 +191,32 @@ export default function CrearAdministradores(){
 		</div>
 
 	)
+
+}
+
+/*=============================================
+=       Peticion POST para Administradores    =
+=============================================*/
+
+const postData = data => {
+
+	const url = `${rutaAPI}/crear-admin`
+	const token = localStorage.getItem("ACCESS_TOKEN");
+	const params = {
+		method: "POST",
+		body: JSON.stringify(data),
+		headers: {
+			"Authorization": token,
+			"Content-type": "application/json"
+		}
+	}
+
+	return fetch(url, params).then(response => {
+		return response.json();
+	}).then(result => {
+		return result;
+	}).catch(err => {
+		return err;
+	})
 
 }
