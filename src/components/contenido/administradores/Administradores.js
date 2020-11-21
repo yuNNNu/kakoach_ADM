@@ -120,7 +120,7 @@ export default function Administradores(){
 								<div className="card-header">
 
 								<h5 className="m-0">
-									<button className="btn btn-primary" data-toggle="modal" data-target="#crearAdministradores">Crear nuevo administrador</button>
+									<button className="btn btn-primary" data-toggle="modal" data-target="#crearAdmin">Crear nuevo administrador</button>
 								</h5>
 								</div>
 
