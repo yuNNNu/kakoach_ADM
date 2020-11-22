@@ -5,7 +5,7 @@ import 'datatables.net-bs4';
 import 'datatables.net-responsive';
 import {rutaAPI} from '../../../config/Config';
 import CrearAdministradores from './CrearAdministradores';
-import EditarAdministradores from './EditarAdministradores';
+import EditarBorrarAdministradores from './EditarBorrarAdministradores';
 
 export default function Administradores(){
 
@@ -142,7 +142,7 @@ export default function Administradores(){
 
 			<CrearAdministradores/>
 
-			<EditarAdministradores/>
+			<EditarBorrarAdministradores/>
 
 		</div>
 

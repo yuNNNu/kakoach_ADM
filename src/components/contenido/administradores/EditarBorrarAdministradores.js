@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import $ from 'jquery';
+import Swal from 'sweetalert2'
 import { rutaAPI } from '../../../config/Config';
 
-export default function EditarAdministradores(){
+export default function EditarBorrarAdministradores(){
 
 
 	/*=============================================
@@ -140,6 +141,83 @@ export default function EditarAdministradores(){
 
 	})
 
+	/*=============================================
+	CAPTURAMOS DATOS PARA BORRAR
+	=============================================*/
+
+	$(document).on("click", ".borrarInput", function(e){
+
+		e.preventDefault();
+
+		let data = $(this).attr("data").split(',')[0];
+
+			Swal.fire({
+			  title: '¿Está seguro de eliminar este registro?',
+			  text: "Si no lo está... Puede cancelar esta acción!",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Sí, eliminar registro!'
+			}).then((result) => {
+			  if (result.value) {
+
+			  	const borrarAdministrador = async () => {
+
+					/*=============================================
+					EJECTUAMOS SERVICIO DELETE
+					=============================================*/
+
+					const result = await deleteData(data);
+
+					if(result.status === 400){
+
+						Swal.fire({
+
+					      type: "error",
+					      title: result.mensaje,
+					      showConfirmButton: true,
+					      confirmButtonText: "Cerrar"
+			            
+						}).then(function(result){
+							if(result.value){
+								window.location.href = "/";
+							}
+						})
+
+					}
+
+					if(result.status === 200){
+
+						Swal.fire({
+
+					      type: "success",
+					      title: result.mensaje,
+					      showConfirmButton: true,
+					      confirmButtonText: "Cerrar"
+			            
+						}).then(function(result){
+							if(result.value){
+								window.location.href = "/";
+							}
+						})
+					}
+
+				}
+
+				borrarAdministrador();
+
+			    
+			  }
+			})
+
+
+		
+
+
+    })
+
+
 
 
 	/*=============================================
@@ -251,6 +329,41 @@ const putData = data =>{
 
 		method: "PUT",
 		body:JSON.stringify(data),
+		headers: {
+
+			"Authorization": token,
+			"Content-Type": "application/json"
+		}
+
+	}
+
+	return fetch(url, params).then(response=>{
+
+		return response.json();
+
+	}).then(result=>{
+
+		return result;
+
+	}).catch(err=>{
+
+		return err;
+
+	})
+
+}
+
+/*=============================================
+PETICIÓN DELETE ADMINISTRADORES
+=============================================*/
+
+const deleteData = data =>{
+
+	const url = `${rutaAPI}/eliminar-admin/${data}`;
+	const token = localStorage.getItem("ACCESS_TOKEN");
+	const params = {
+
+		method: "DELETE",
 		headers: {
 
 			"Authorization": token,
