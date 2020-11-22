@@ -21,6 +21,7 @@ export default function Login(){
 			...administradores,
 			[e.target.name] : e.target.value
 		})
+
 	}
 
 	/*=============================================

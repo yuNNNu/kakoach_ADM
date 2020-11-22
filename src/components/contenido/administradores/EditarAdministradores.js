@@ -6,9 +6,9 @@ export default function EditarAdministradores(){
 
 
 	/*=============================================
-	=            HOOK PARA CAPTURAR DATOS         =
+	Hook para capturar datos
 	=============================================*/
-	
+
 	const [administradores, editarAdministrador ] = useState({
 
 		user: "",
@@ -18,7 +18,7 @@ export default function EditarAdministradores(){
 	})
 
 	/*=============================================
-	=                   Onchange                  =
+	OnChange
 	=============================================*/
 
 	const cambiaFormPost = e => {
@@ -33,88 +33,114 @@ export default function EditarAdministradores(){
 	}
 
 	/*=============================================
-	=                   Onsubmit                  =
+	OnSubmit
 	=============================================*/
 
 	const submitPost = async e => {
 
 		$('.alert').remove();
+
 		e.preventDefault();		
 
 		const {user, password} = administradores;
 
 		/*=============================================
-		=                Validacion User              =
+		Validamos que el campo user no venga vacío
 		=============================================*/
 
 		if(user === ""){
-			$(".invalid-user").show();
-			$(".invalid-user").html("Utiliza un formato que coincida con el solicitado");
-			return;
-		}
 
-		const expuser = /^(?=.*[A-Za-z]).{2,6}$/
-
-		if(!expuser.test(user)){
 			$(".invalid-user").show();
-			$(".invalid-user").html("Utiliza un formato que coincida con el solicitado");
+			$(".invalid-user").html("Completa este campo");
+
 			return;
+
 		}
 
 		/*=============================================
-		=                Validacion pass              =
+		Validamos Expresión regular
+		=============================================*/
+
+		const expuser = /^(?=.*[A-Za-z]).{2,6}$/;
+
+		if(!expuser.test(user)){
+
+			$(".invalid-user").show();
+			$(".invalid-user").html("Utiliza un formato que coincida con el solicitado");
+
+			return;
+
+		}
+
+
+		/*=============================================
+		Validamos Expresión regular
 		=============================================*/
 
 		if(password !== ""){
-			const expPassword = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/
+
+			const expPassword = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
 
 			if(!expPassword.test(password)){
+
 				$(".invalid-password").show();
 				$(".invalid-password").html("Utiliza un formato que coincida con el solicitado");
+
 				return;
+
 			}
+
 		}
 
-		
-
 		/*=============================================
-		=         SE EJECUTA EL SERVICIO PUT         =
+		EJECTUAMOS SERVICIO PUT
 		=============================================*/
 
 		const result = await putData(administradores);
 
 		if(result.status === 400){
-			$(".modal-footer").before(`<div class="alert alert-danger">${result.mensaje}</div>`);
+
+			$(".modal-footer").before(`<div class="alert alert-danger">${result.mensaje}</div>`)
+
 		}
 
 		if(result.status === 200){
-			$(".modal-footer").before(`<div class="alert alert-success">${result.mensaje}</div>`);
+
+			$(".modal-footer").before(`<div class="alert alert-success">${result.mensaje}</div>`)
+
 			$('button[type="submit"]').remove();
 
-			setTimeout(()=>{window.location.href="/";},500)
+			setTimeout(()=>{window.location.href= "/";},500)
+
 		}
+
 	}
 
-	// 	/*=============================================
-	// 	=        Capturamos datos para editar         =
-	// 	=============================================*/
+	/*=============================================
+	CAPTURAMOS DATOS PARA EDITAR
+	=============================================*/
 
 	$(document).on("click", ".editarInputs", function(e){
 
 		e.preventDefault();
 
 		let data = $(this).attr("data").split(',');
-		console.log("data", data);
+		
 		$("#editarUsuario").val(data[1]);
 
 		editarAdministrador({
-			'user': $("#editarUsuario").val(),
-			'password': $("#editarPassword").val(),
-			'id': data[0]
-			
+
+
+			'user' : $("#editarUsuario").val(),
+			'password' :  $("#editarPassword").val(),
+			'id' :  data[0]
+
 		})
 
+
 	})
+
+
 
 	/*=============================================
 	=       Retornamos vista del componente       =
@@ -213,24 +239,38 @@ export default function EditarAdministradores(){
 }
 
 
-const putData = data => {
+/*=============================================
+PETICIÓN PUT ADMINISTRADORES
+=============================================*/
+
+const putData = data =>{
 
 	const url = `${rutaAPI}/editar-admin/${data.id}`;
 	const token = localStorage.getItem("ACCESS_TOKEN");
 	const params = {
+
 		method: "PUT",
+		body:JSON.stringify(data),
 		headers: {
+
 			"Authorization": token,
-			"Content-type": "application/json"
+			"Content-Type": "application/json"
 		}
+
 	}
-	return fetch(url, params).then(response => {
+
+	return fetch(url, params).then(response=>{
 
 		return response.json();
 
 	}).then(result=>{
+
 		return result;
-	}).catch(err => {
+
+	}).catch(err=>{
+
 		return err;
+
 	})
+
 }
