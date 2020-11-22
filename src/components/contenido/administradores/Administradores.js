@@ -5,6 +5,7 @@ import 'datatables.net-bs4';
 import 'datatables.net-responsive';
 import {rutaAPI} from '../../../config/Config';
 import CrearAdministradores from './CrearAdministradores';
+import EditarAdministradores from './EditarAdministradores';
 
 export default function Administradores(){
 
@@ -19,7 +20,7 @@ export default function Administradores(){
 		=============================================*/
 
 		getAdministradores.data.forEach((admin, index) => {
-			dataTable[index] = [(index+1), admin.user, admin._id]
+			dataTable[index] = [(index+1), admin.user, [admin._id, admin.user]];
 		}) 
 		
 		/*=============================================
@@ -140,6 +141,8 @@ export default function Administradores(){
 			</div>
 
 			<CrearAdministradores/>
+
+			<EditarAdministradores/>
 
 		</div>
 
