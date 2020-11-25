@@ -10,7 +10,7 @@ export default function Usuarios(){
 	=            SE CREA EL DATASET       =
 	=============================================*/
 	const dataSet = [
-		[1, "Pichulaman","pichulon@taiclaro.cl", "5f9485e25f1b7e2288c59cf8"]
+		[1, "Yonofui","mail@taiclaro.cl", "5f9485e25f1b7e2288c59cf8"]
 	]
 	
 	/*=============================================

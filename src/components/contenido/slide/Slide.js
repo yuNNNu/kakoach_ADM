@@ -7,27 +7,41 @@ import 'datatables.net-responsive';
 
 export default function Slide(){
 
-	const Slide01 = `${rutaAPI}/mostrar-img/7968.jpg`;
 
-	/*=============================================
-	=            SE CREA EL DATASET       =
-	=============================================*/
-	const dataSet = [
-		[1, Slide01,"Lorem Ipsum 1", "Primera descripcion dinámica", "5f88aad37a38b92374460442"]
-	]
+	const dataSlide = async() => {
+		/*=============================================
+		=            CREAMOS EL DATASET               =
+		=============================================*/
+		
+		const getSlide = await getData();
+		console.log("getSlide", getSlide);
+		const dataSet = [];
+		
 
-	// =============================================
+		getSlide.data.forEach((slide, index) => {
+			dataSet[index] = [(index+1),
+			slide.imagen, slide.titulo, slide.descripcion, slide];
+		})
+
+		// =============================================
 	// =            EJECUTAMOS DATATABLE          =
 	// =============================================
 	$(document).ready(function () {
-		$('.table').DataTable({
+		let tablaSlide = $('.table').DataTable({
 			retrieve: true,
 			data: dataSet,
+			"columnDefs": [{
+				"searchable": true,
+				"orderable": true,
+				"targets": 0
+			}],
+
+			"order": [[0, "desc"]],
 			columns: [
 			{title: "#"},
 			{title: "Imagen",
 			render: function(data){
-				return `<img src=${Slide01} style="width:320px">`
+				return `<img src=${rutaAPI}/mostrar-img/${data} style="width:320px">`
 			}},
 			{title: "Título"},
 			{title: "Descripción"},
@@ -57,7 +71,19 @@ export default function Slide(){
 
 		    }]
 		}); 
+
+		tablaSlide.on("order.dt search.dt", function(){
+			tablaSlide.column(0, {search: "applied", order: "applied"}).nodes().each(function(cell, i){
+				cell.innerHTML = i=1;
+			})
+		}).draw();
 	 })
+
+	}
+
+	dataSlide();
+
+	
 
 	
 
@@ -135,5 +161,24 @@ export default function Slide(){
 
 }
 
-
+/*=============================================
+=                     GET                     =
+=============================================*/
 	
+const getData = () => {
+	const url = `${rutaAPI}/mostrar-slide`;
+	const params = {
+		method: "GET",
+		headers: {
+			"Content-type": "application/json"
+		}
+	}
+
+	return fetch(url, params).then(response => {
+		return response.json();
+	}).then(result => {
+		return  result;
+	}).then(err => {
+		return err;
+	})
+}
