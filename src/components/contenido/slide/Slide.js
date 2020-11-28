@@ -30,13 +30,16 @@ export default function Slide(){
 		let tablaSlide = $('.table').DataTable({
 			retrieve: true,
 			data: dataSet,
-			"columnDefs": [{
-				"searchable": true,
-				"orderable": true,
-				"targets": 0
-			}],
+			
+				"columnDefs":[{
 
-			"order": [[0, "desc"]],
+					"searchable":true,
+					"orderable":true,
+					"targets":0
+
+				}],
+
+				"order":[[0, "desc"]],
 			columns: [
 			{title: "#"},
 			{title: "Imagen",
@@ -73,10 +76,18 @@ export default function Slide(){
 		}); 
 
 		tablaSlide.on("order.dt search.dt", function(){
-			tablaSlide.column(0, {search: "applied", order: "applied"}).nodes().each(function(cell, i){
-				cell.innerHTML = i=1;
-			})
-		}).draw();
+
+
+				tablaSlide.column(0, {search:"applied", order:"applied"})
+				.nodes()
+				.each(function(cell, i){
+
+					cell.innerHTML = i+1
+
+				})
+			
+			}).draw();
+
 	 })
 
 	}
