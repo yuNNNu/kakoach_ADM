@@ -6,6 +6,7 @@ import 'datatables.net-bs4';
 import 'datatables.net-responsive';
 
 import CrearSlide from './CrearSlide';
+import EditarBorrarSlide from './EditarBorrarSlide.js';
 
 export default function Slide(){
 
@@ -22,7 +23,14 @@ export default function Slide(){
 
 		getSlide.data.forEach((slide, index) => {
 			dataSet[index] = [(index+1),
-			slide.imagen, slide.titulo, slide.descripcion, slide];
+							slide.imagen, 
+							slide.titulo, 
+							slide.descripcion, 
+							[slide._id+"_",
+							slide.imagen+"_",
+							slide.titulo+"_",
+							slide.descripcion,
+							]];
 		})
 
 		// =============================================
@@ -55,7 +63,7 @@ export default function Slide(){
 
               	return `
 					
-					<a href="#" class="editarInputs" data-toggle="modal" data-target="#editarAdmin" data="${data}">
+					<a href="#" class="editarInputs" data-toggle="modal" data-target="#editarSlide" data="${data}">
 
 						<svg style="color:black; background:orange; border-radius:100%; width:35px; line-height:35px; text-align:center; padding:8px"
 
@@ -95,10 +103,6 @@ export default function Slide(){
 	}
 
 	dataSlide();
-
-	
-
-	
 
 	return(
 
@@ -168,6 +172,8 @@ export default function Slide(){
 			</div>
 
 			<CrearSlide/>
+
+			<EditarBorrarSlide/>
 
 		</div>
 

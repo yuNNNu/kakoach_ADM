@@ -82,7 +82,11 @@ export default function CrearSlide(){
 			if(!expTitulo.test(titulo)){
 				$(".invalid-titulo").show();
 				$(".invalid-titulo").html("Utiliza un formato que coincida con el solicitado");
+
+				return;
 			}
+
+			return;
 		}
 
 		/*=============================================
