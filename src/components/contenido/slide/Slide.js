@@ -5,6 +5,8 @@ import 'datatables.net';
 import 'datatables.net-bs4';
 import 'datatables.net-responsive';
 
+import CrearSlide from './CrearSlide';
+
 export default function Slide(){
 
 
@@ -119,7 +121,7 @@ export default function Slide(){
 							<div className="card card-primary card-outline">
 								<div className="card-header">
 									<h5 className="m-0">
-										<button className="btn btn-primary">Crear nuevo Slide</button>
+										<button className="btn btn-primary limpiarForm" data-toggle="modal" data-target="#crearSlide">Crear nuevo Slide</button>
 									</h5>
 								</div>
 
@@ -164,6 +166,9 @@ export default function Slide(){
 					</div>	
 				</div>
 			</div>
+
+			<CrearSlide/>
+
 		</div>
 
 	);
