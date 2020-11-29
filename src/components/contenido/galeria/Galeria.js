@@ -5,6 +5,8 @@ import 'datatables.net';
 import 'datatables.net-bs4';
 import 'datatables.net-responsive';
 
+import CrearBorrarGaleria from './CrearBorrarGaleria';
+
 export default function Galeria(){
 
 	const dataGaleria = async() => {
@@ -94,7 +96,7 @@ export default function Galeria(){
 								<div className="card-header">
 
 								<h5 className="m-0">
-									<button className="btn btn-primary">Crear nueva Galería</button>
+									<button className="btn btn-primary limpiarForm" data-toggle="modal" data-target="#crearGaleria" >Crear nueva Galería</button>
 								</h5>
 								</div>
 
@@ -140,6 +142,8 @@ export default function Galeria(){
 				</div>
 
 			</div>
+
+			<CrearBorrarGaleria/>
 
 		</div>
 
