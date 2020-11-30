@@ -76,12 +76,41 @@ export default function CrearBorrarGaleria(){
 
 	const submitPost = async e => {
 
-		$('.alert').remove();
 
 		e.preventDefault();
 
-		console.log(galeria);
+		const {foto} = galeria;
 
+		for(let i = 0; i < foto.length; i++){
+
+			$('.alert').remove();
+
+			if(foto[i] === null){
+				$(".invalid-foto").show();
+				$(".invalid-foto").html("La foto no puede ir vacía")
+
+				return;
+			}
+			
+			/*=============================================
+			=         SE EJECUTA EL SERVICIO POST         =
+			=============================================*/
+
+			const result = await postData(foto[i]);
+
+			if(result.status === 400){
+				$(".modal-footer").before(`<div class="alert alert-danger">${result.mensaje}</div>`);
+			}
+
+			if(result.status === 200){
+				$(".modal-footer").before(`<div class="alert alert-success">${result.mensaje}</div>`);
+				$('button[type="submit"]').remove();
+
+				setTimeout(()=> {
+					window.location.href="/galeria";
+				},500)
+			}
+		}
 	}
 
 	$(document).on("click", ".limpiarForm", function(){
@@ -137,5 +166,35 @@ export default function CrearBorrarGaleria(){
 		</div>
 
 	)
+
+}
+
+
+/*=============================================
+=       Peticion POST para GALERIA    =
+=============================================*/
+
+const postData = data => {
+
+	const url = `${rutaAPI}/crear-galeria`;
+	const token = localStorage.getItem("ACCESS_TOKEN");
+
+	let formData = new FormData();
+	formData.append("archivo", data);
+	const params = {
+		method: "POST",
+		body: formData,
+		headers: {
+			"Authorization": token
+		}
+	}
+
+	return fetch(url, params).then(response => {
+		return response.json();
+	}).then(result => {
+		return result;
+	}).catch(err => {
+		return err;
+	})
 
 }
