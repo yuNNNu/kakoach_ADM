@@ -17,7 +17,6 @@ export default function Slide(){
 		=============================================*/
 		
 		const getSlide = await getData();
-		console.log("getSlide", getSlide);
 		const dataSet = [];
 		
 

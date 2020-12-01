@@ -111,11 +111,80 @@ export default function CrearBorrarGaleria(){
 				},500)
 			}
 		}
+
+
 	}
 
 	$(document).on("click", ".limpiarForm", function(){
 		$(".modal").find('form')[0].reset();
 		$(".vistaGaleria").html("");
+	})
+
+	// CAPTURAR DATOS PARA BORRAR
+
+	$(document).on("click", ".borrarInput", function(e){
+
+		e.preventDefault();
+		let data = $(this).attr("data");
+		
+		Swal.fire({
+		  title: '¿Está seguro de eliminar este registro?',
+		  text: "Si no lo está... Puede cancelar esta acción!",
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Sí, eliminar registro!'
+		}).then((result) => {
+		    if (result.value) {
+
+			  	const borrarGaleria = async () => {
+
+					/*=============================================
+					EJECTUAMOS SERVICIO DELETE
+					=============================================*/
+
+					const result = await deleteData(data);
+					console.log("a");
+
+					if(result.status === 400){
+
+						Swal.fire({
+
+					      type: "error",
+					      title: result.mensaje,
+					      showConfirmButton: true,
+					      confirmButtonText: "Cerrar"
+			            
+						}).then(function(result){
+							if(result.value){
+								window.location.href = "/galeria";
+							}
+						})
+
+					}
+
+					if(result.status === 200){
+
+						Swal.fire({
+
+					      type: "success",
+					      title: result.mensaje,
+					      showConfirmButton: true,
+					      confirmButtonText: "Cerrar"
+			            
+						}).then(function(result){
+							if(result.value){
+								window.location.href = "/galeria";
+							}
+						})
+					}
+
+				}
+
+				borrarGaleria();
+			}
+		})
 	})
 
 	return(
@@ -195,6 +264,41 @@ const postData = data => {
 		return result;
 	}).catch(err => {
 		return err;
+	})
+
+}
+
+/*=============================================
+PETICIÓN DELETE SLIDE
+=============================================*/
+
+const deleteData = data =>{
+
+	const url = `${rutaAPI}/eliminar-galeria/${data}`;
+	const token = localStorage.getItem("ACCESS_TOKEN");
+	const params = {
+
+		method: "DELETE",
+		headers: {
+
+			"Authorization": token,
+			"Content-Type": "application/json"
+		}
+
+	}
+
+	return fetch(url, params).then(response=>{
+
+		return response.json();
+
+	}).then(result=>{
+
+		return result;
+
+	}).catch(err=>{
+
+		return err;
+
 	})
 
 }
