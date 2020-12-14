@@ -4,7 +4,9 @@ import $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
 import 'datatables.net-responsive';
+
 import CrearArticulos from './CrearArticulos';
+
 export default function Articulos(){
 
 	const dataArticle = async() => {
@@ -35,9 +37,19 @@ export default function Articulos(){
 		// =            EJECUTAMOS DATATABLE          =
 		// =============================================
 		$(document).ready(function () {
-			$('.table').DataTable({
+			let tablaArticulos = $('.table').DataTable({
 				retrieve: true,
 				data: dataSet,
+
+				"columnDefs":[{
+
+					"searchable":true,
+					"orderable":true,
+					"targets":0
+
+				}],
+
+				"order":[[0, "desc"]],
 				columns: [
 				{title: "#"},
 				{title: "Portada",
@@ -74,6 +86,19 @@ export default function Articulos(){
 
 			    }]
 			}); 
+
+			tablaArticulos.on("order.dt search.dt", function(){
+
+
+				tablaArticulos.column(0, {search:"applied", order:"applied"})
+				.nodes()
+				.each(function(cell, i){
+
+					cell.innerHTML = i+1
+
+				})
+			
+			}).draw();
 		})
 	}	
 

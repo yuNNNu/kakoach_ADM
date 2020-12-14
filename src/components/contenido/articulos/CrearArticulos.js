@@ -3,6 +3,8 @@ import {rutaAPI} from '../../../config/Config';
 import $ from 'jquery';
 import notie from 'notie';
 import 'notie/dist/notie.css';
+import 'summernote/dist/summernote-lite.css';
+import 'summernote/dist/summernote-lite.js';
 
 export default function CrearSlide(){
 
@@ -85,8 +87,10 @@ export default function CrearSlide(){
 	const submitPost = async e => {
 		$('.alert').remove();
 		e.preventDefault();
-		console.log("articulo", articulo);
 		const {portada, url, intro, contenido, titulo} = articulo;
+		console.log("url", url);
+		console.log("intro", intro);
+		console.log("contenido", contenido);
 
 		/*=============================================
 		Validamos que el campo no venga vacío
@@ -218,6 +222,7 @@ export default function CrearSlide(){
 		// SE EJECUTA SERVICIO POST
 
 		const result = await postData(articulo);
+		console.log(result.status);
 		if(result.status === 400){
 			$(".modal-footer").before(`<div class="alert alert-danger">${result.mensaje}</div>`);
 		}
@@ -231,6 +236,14 @@ export default function CrearSlide(){
 			},500)
 		}
 	}
+
+	// SUMMERNOTE
+
+	$(document).ready(function(){
+		$("#contenido").summernote({
+			height:300
+		})
+	})
 
 	/* RETORNO DE LA VISTA */
 	return(
@@ -361,7 +374,7 @@ export default function CrearSlide(){
 
 								<label className="small text-secondary" htmlFor="contenido">Ingrese el contenido del artículo:</label>
 
-								<textarea className="form-control" id="contenido" name="contenido"></textarea>
+								<textarea className="form-control summernote" rows="5" id="contenido" name="contenido"></textarea>
 
 							</div>
 
