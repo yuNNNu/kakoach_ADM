@@ -7,7 +7,7 @@ export default function Sidebar(){
 	const usuario = localStorage.getItem("USUARIO");
 	return(
 
-		<aside className="main-sidebar sidebar-dark-primary elevation-4">
+		<aside className="main-sidebar sidebar-dark-primary elevation-4 ">
 
 			<a href="#/" className="brand-link">
 				<img alt="AdminLTE Logo"
@@ -46,13 +46,13 @@ export default function Sidebar(){
 								role="menu"
 								data-accordion="false"
 							>
-							<div class="sidenav-menu-heading">Users</div>
+							<div class="sidenav-menu-heading">General</div>
 								<li className="nav-item">
 
 									<a href="/" className="nav-link">
 										<i className="nav-icon fas fa-user-lock"></i>
 										<p>
-										Gestionar Logo
+										Gestor Logo
 										</p>
 
 									</a>
@@ -64,20 +64,32 @@ export default function Sidebar(){
 									<a href="/slide" className="nav-link">
 										<i className="nav-icon fas fa-sliders-h"></i>
 										<p>
-										Gestionar Img Principal 
+										Gestor Footer
 										</p>
 
 									</a>
 
-							</li>
-									<div class="sidenav-menu-heading">Inicio</div>
+								</li>
+
+								<li className="nav-item">
+
+									<a href="/slide" className="nav-link">
+										<i className="nav-icon fas fa-sliders-h"></i>
+										<p>
+										Gestor Social Media
+										</p>
+
+									</a>
+
+								</li>
+									<div className="sidenav-menu-heading">Inicio</div>
 
 								<li className="nav-item">
 
 									<a href="/galeria" className="nav-link">
 										<i className="nav-icon fas fa-images"></i>
 										<p>
-										Gestionar Plan Principal
+										Gestor Imagen Principal
 										</p>
 
 									</a>
@@ -89,26 +101,113 @@ export default function Sidebar(){
 									<a href="/articulos" className="nav-link">
 										<i className="nav-icon fas fa-file"></i>
 										<p>
-										Gestionar Planes Secundarios
+										Gestor Plan Primario
 										</p>
 
 									</a>
 
-							</li>
-								<div class="sidenav-menu-heading">Sobre Mi</div>
+							    </li>
+
+							    <li className="nav-item">
+
+									<a href="/articulos" className="nav-link">
+										<i className="nav-icon fas fa-file"></i>
+										<p>
+										Gestor Planes Secundarios
+										</p>
+
+									</a>
+
+							    </li>
+
+							    <li className="nav-item">
+
+									<a href="/articulos" className="nav-link">
+										<i className="nav-icon fas fa-file"></i>
+										<p>
+										Gestor Benefits
+										</p>
+
+									</a>
+
+							    </li>
+
+								<div className="sidenav-menu-heading">Planes</div>
 
 								<li className="nav-item">
 
 									<a href="/usuarios" className="nav-link">
 										<i className="nav-icon fas fa-users"></i>
 										<p>
-										Gestionar Beneficios
+										Gestor Img Principal
 										</p>
 
 									</a>
 
 								</li>
-									<div	div class="sidenav-menu-heading">Planes</div>
+
+
+								<li className="nav-item">
+
+									<a href="/usuarios" className="nav-link">
+										<i className="nav-icon fas fa-users"></i>
+										<p>
+										Gestor Categorías
+										</p>
+
+									</a>
+
+								</li>
+
+
+								<li className="nav-item">
+
+									<a href="/usuarios" className="nav-link">
+										<i className="nav-icon fas fa-users"></i>
+										<p>
+										Gestor Planes
+										</p>
+
+									</a>
+
+								</li>
+
+								<li className="nav-item">
+
+									<a href="/usuarios" className="nav-link">
+										<i className="nav-icon fas fa-users"></i>
+										<p>
+										Gestor Beneficios
+										</p>
+
+									</a>
+
+								</li>
+								<div	div className="sidenav-menu-heading">Planes</div>
+
+								<li className="nav-item">
+
+									<a href="/usuarios" className="nav-link">
+										<i className="nav-icon fas fa-users"></i>
+										<p>
+										Gestor Img Principal
+										</p>
+
+									</a>
+
+								</li>
+
+								<li className="nav-item">
+
+									<a href="/usuarios" className="nav-link">
+										<i className="nav-icon fas fa-users"></i>
+										<p>
+										Gestor Tarjetas
+										</p>
+
+									</a>
+
+								</li>
 							</ul>
 						</nav>
 
