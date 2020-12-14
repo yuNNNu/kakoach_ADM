@@ -99,7 +99,7 @@ export default function Login(){
 
 const loginAPI = data => {
 
-	const url = `${rutaAPI}/login`
+	const url = `${rutaAPI}/login-admin`
 
 	const params = {
 		method: 'POST',
