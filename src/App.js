@@ -19,6 +19,28 @@ import Articulos from './components/contenido/articulos/Articulos';
 import Usuarios from './components/contenido/usuarios/Usuarios';
 import Error404 from './components/contenido/error404/Error404';
 
+// componenetes nuevos 
+// PAGINA GENERAL
+import PlanPersonal from './components/contenido/inicio/plan-personal/Plan-personal'
+import FooterClient from './components/contenido/general/footer/Footer'
+import SocialMedia from './components/contenido/general/social-media/SocialMedia'
+
+
+// PAGINA INICIO
+import Benefits from './components/contenido/inicio/benefits/Benefit'
+import ImgPrincipal from './components/contenido/inicio/img-principal/ImgPrincipal'
+import Logo from './components/contenido/general/logo/Logo'
+
+// PAGINA PLANES
+import SlidePlanes from './components/contenido/planes/slide_principal/slide_principal';
+import Category from './components/contenido/planes/category/Category';
+import Planes from './components/contenido/planes/planes/Planes';
+import BenefitsPlan from './components/contenido/planes/benefits/BenefitsPlan';
+// PAGINA SOBRE MI
+import SlideSobreMi  from './components/contenido/sobre-mi/slide-sobre-mi/Slide_principal_sobre_mi';
+
+
+
 export default function App() {
 
   const auth = getAccessToken();
@@ -42,7 +64,18 @@ export default function App() {
         		<Route exact path="/slide" component={Slide}/>
         		<Route exact path="/galeria" component={Galeria}/>
         		<Route exact path="/articulos" component={Articulos}/>
-        		<Route exact path="/usuarios" component={Usuarios}/>
+            <Route exact path="/usuarios" component={Usuarios} />
+            <Route exact path="/inicio_benefits" component={Benefits} />
+            <Route exact path="/inicio_slide" component={ImgPrincipal} />
+            <Route exact path="/inicio_plan_personal" component={PlanPersonal} />
+            <Route exact path="/logo" component={Logo} />
+            <Route exact path="/footer" component={FooterClient} />
+            <Route exact path="/redes_sociales" component={SocialMedia} />
+            <Route exact path="/planes_slide" component={SlidePlanes} />
+            <Route exact path="/planes_categoria" component={Category} />
+            <Route exact path="/planes" component={Planes} />
+            <Route exact path="/planes_benefits" component={BenefitsPlan} />
+            <Route exact path="/sobre_mi_slide" component={SlideSobreMi}/>
         		<Route component={Error404}/>
         	</Switch>
 

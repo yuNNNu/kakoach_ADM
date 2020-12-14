@@ -49,7 +49,7 @@ export default function Sidebar(){
 							<div class="sidenav-menu-heading">General</div>
 								<li className="nav-item">
 
-									<a href="/" className="nav-link">
+									<a href="/logo" className="nav-link">
 										<i className="nav-icon fas fa-user-lock"></i>
 										<p>
 										Gestor Logo
@@ -61,7 +61,7 @@ export default function Sidebar(){
 
 								<li className="nav-item">
 
-									<a href="/slide" className="nav-link">
+									<a href="/footer" className="nav-link">
 										<i className="nav-icon fas fa-sliders-h"></i>
 										<p>
 										Gestor Footer
@@ -73,7 +73,7 @@ export default function Sidebar(){
 
 								<li className="nav-item">
 
-									<a href="/slide" className="nav-link">
+									<a href="/redes_sociales" className="nav-link">
 										<i className="nav-icon fas fa-sliders-h"></i>
 										<p>
 										Gestor Social Media
@@ -86,7 +86,7 @@ export default function Sidebar(){
 
 								<li className="nav-item">
 
-									<a href="/galeria" className="nav-link">
+									<a href="/inicio_slide" className="nav-link">
 										<i className="nav-icon fas fa-images"></i>
 										<p>
 										Gestor Imagen Principal
@@ -98,7 +98,7 @@ export default function Sidebar(){
 
 								<li className="nav-item">
 
-									<a href="/articulos" className="nav-link">
+									<a href="/inicio_plan_personal" className="nav-link">
 										<i className="nav-icon fas fa-file"></i>
 										<p>
 										Gestor Plan Primario
@@ -122,7 +122,7 @@ export default function Sidebar(){
 
 							    <li className="nav-item">
 
-									<a href="/articulos" className="nav-link">
+									<a href="/inicio_benefits" className="nav-link">
 										<i className="nav-icon fas fa-file"></i>
 										<p>
 										Gestor Benefits
@@ -136,7 +136,7 @@ export default function Sidebar(){
 
 								<li className="nav-item">
 
-									<a href="/usuarios" className="nav-link">
+									<a href="/planes_slide" className="nav-link">
 										<i className="nav-icon fas fa-users"></i>
 										<p>
 										Gestor Img Principal
@@ -149,7 +149,7 @@ export default function Sidebar(){
 
 								<li className="nav-item">
 
-									<a href="/usuarios" className="nav-link">
+									<a href="/planes_categoria" className="nav-link">
 										<i className="nav-icon fas fa-users"></i>
 										<p>
 										Gestor Categorías
@@ -162,7 +162,7 @@ export default function Sidebar(){
 
 								<li className="nav-item">
 
-									<a href="/usuarios" className="nav-link">
+									<a href="/planes" className="nav-link">
 										<i className="nav-icon fas fa-users"></i>
 										<p>
 										Gestor Planes
@@ -174,7 +174,7 @@ export default function Sidebar(){
 
 								<li className="nav-item">
 
-									<a href="/usuarios" className="nav-link">
+									<a href="/planes_benefits" className="nav-link">
 										<i className="nav-icon fas fa-users"></i>
 										<p>
 										Gestor Beneficios
@@ -183,11 +183,11 @@ export default function Sidebar(){
 									</a>
 
 								</li>
-								<div	div className="sidenav-menu-heading">Planes</div>
+								<div	div className="sidenav-menu-heading">Sobre mi</div>
 
 								<li className="nav-item">
 
-									<a href="/usuarios" className="nav-link">
+									<a href="/sobre_mi_slide" className="nav-link">
 										<i className="nav-icon fas fa-users"></i>
 										<p>
 										Gestor Img Principal
