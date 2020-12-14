@@ -46,7 +46,7 @@ export default function Sidebar(){
 								role="menu"
 								data-accordion="false"
 							>
-
+							<div class="sidenav-menu-heading">Users</div>
 								<li className="nav-item">
 
 									<a href="/" className="nav-link">
@@ -69,7 +69,8 @@ export default function Sidebar(){
 
 									</a>
 
-								</li>
+							</li>
+									<div class="sidenav-menu-heading">Inicio</div>
 
 								<li className="nav-item">
 
@@ -93,7 +94,8 @@ export default function Sidebar(){
 
 									</a>
 
-								</li>
+							</li>
+								<div class="sidenav-menu-heading">Sobre Mi</div>
 
 								<li className="nav-item">
 
@@ -106,7 +108,7 @@ export default function Sidebar(){
 									</a>
 
 								</li>
-
+									<div	div class="sidenav-menu-heading">Planes</div>
 							</ul>
 						</nav>
 
