@@ -52,7 +52,7 @@ export default function Sidebar(){
 									<a href="/" className="nav-link">
 										<i className="nav-icon fas fa-user-lock"></i>
 										<p>
-										Administradores
+										Gestionar Logo
 										</p>
 
 									</a>
@@ -64,7 +64,7 @@ export default function Sidebar(){
 									<a href="/slide" className="nav-link">
 										<i className="nav-icon fas fa-sliders-h"></i>
 										<p>
-										Gestor Slide
+										Gestionar Img Principal 
 										</p>
 
 									</a>
@@ -76,7 +76,7 @@ export default function Sidebar(){
 									<a href="/galeria" className="nav-link">
 										<i className="nav-icon fas fa-images"></i>
 										<p>
-										Gestor Galeria
+										Gestionar Plan Principal
 										</p>
 
 									</a>
@@ -88,7 +88,7 @@ export default function Sidebar(){
 									<a href="/articulos" className="nav-link">
 										<i className="nav-icon fas fa-file"></i>
 										<p>
-										Gestor Articulos
+										Gestionar Planes Secundarios
 										</p>
 
 									</a>
@@ -100,7 +100,7 @@ export default function Sidebar(){
 									<a href="/usuarios" className="nav-link">
 										<i className="nav-icon fas fa-users"></i>
 										<p>
-										Usuarios
+										Gestionar Beneficios
 										</p>
 
 									</a>
