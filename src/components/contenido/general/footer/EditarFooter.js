@@ -19,11 +19,12 @@ export default function EditarFooter(){
 	// ONCHANGE
 
 	const cambiarFormPut = e => {
-		
+		let arrDes = $("#editarDescripcion").val().split(',');
+		console.log("arr en onchange",arrDes)
 		editarFooter({
 			'id' : $("#editarID").val(),
 			'titulo': $("#editarTitulo").val(),
-			'descripcion': $("#editarDescripcion").val()
+			'descripcion': arrDes
 		})
 	}
 
@@ -91,15 +92,18 @@ export default function EditarFooter(){
 		e.preventDefault();
 
 		let data = $(this).attr("data").split('_,');
+		let arrDes = data[2].split(',');
+	
+	
 		$("#editarID").val(data[0]);
 		
 		$("#editarTitulo").val(data[1]);
 		$("#editarDescripcion").val(data[2]);
-		console.log("data[0]", data[0]);
+		
 		editarFooter({
 
 			'titulo' : $('#editarTitulo').val(),
-			'descripcion': $('#editarDescripcion').val(),
+			'descripcion': arrDes,
 			'id' : data[0]
 
 		})

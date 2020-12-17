@@ -108,7 +108,7 @@ export default function Benefits(){
 							<div className="card card-primary card-outline">
 								<div className="card-header">
 									<h5 className="m-0">
-										<button className="btn btn-primary limpiarForm" data-toggle="modal" data-target="">Crear nuevo benefit</button>
+										
 									</h5>
 								</div>
 
