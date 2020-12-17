@@ -4,6 +4,7 @@ import $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
 import 'datatables.net-responsive';
+import EditarFooter from './EditarFooter';
 
 export default function FooterClient(){
 
@@ -26,9 +27,9 @@ export default function FooterClient(){
                             , 
                              
                         
-                            
+                       
                             [footer._id + "_",
-							footer.titulo, 
+							footer.titulo + "_", 
                             footer.descripcion, 
                 ]];
             console.log(footer.descripcion)
@@ -122,7 +123,7 @@ export default function FooterClient(){
 							<div className="card card-primary card-outline">
 								<div className="card-header">
 									<h5 className="m-0">
-										<button className="btn btn-primary limpiarForm" data-toggle="modal" data-target="">Nuevo Plan</button>
+										<button className="btn btn-primary limpiarForm" data-toggle="modal" data-target="#editarFooter">Nuevo Plan</button>
 									</h5>
 								</div>
 
@@ -168,10 +169,7 @@ export default function FooterClient(){
 				</div>
 			</div>
 
-			{/* <CrearImgPrincipal/> */}
-{/* 
-			<EditarBorrarImgPrincipal/> */}
-
+			<EditarFooter/>
 		</div>
 
 	);

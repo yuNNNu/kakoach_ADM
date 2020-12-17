@@ -110,7 +110,6 @@ export default function Logo(){
 						<div className="col-lg-12">
 							<div className="card card-primary card-outline">
 								<div className="card-header">
-									Solo se puede editar el logo, debido a que el sistema solo requiere "1" solamente.
 								</div>
 
 								<div className="card-body">
