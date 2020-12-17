@@ -176,7 +176,7 @@ export default function EditarBenefitInicio(){
 										<i className="fas fa-file-alt"></i>
 									</div>
 
-									<input id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" pattern="([0-9a-zA-Z]).{1,30}"/>
+									<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" pattern="([0-9a-zA-Z]).{1,30}"/>
 
 									<div className="invalid-feedback invalid-titulo"></div>
 								</div>

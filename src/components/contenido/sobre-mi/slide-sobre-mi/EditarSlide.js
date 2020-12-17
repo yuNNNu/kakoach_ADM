@@ -4,23 +4,42 @@ import {rutaAPI} from '../../../../config/Config';
 import notie from 'notie';
 import Swal from 'sweetalert2'
 
-export default function EditarImgInicio(){
+export default function EditarSlide()
+{ 
+    // HOOK
 
-	// HOOK
-
-	const [imgP, editarImg] = useState({
+	const [slide, editarSlide] = useState({
 
 		
         id: "",
         titulo: "",
         descripcion: "",
-        archivo: null,
+        imagen: null,
 
-	})
+    })
+  
+    // ONCHANGE
 
-	// ONCHANGE
+    const cambiarFormPut = e =>
+    {
+        if (!$("#editarTitulo").val())
+        {
+            $(".invalid-titulo").show();
+            $(".invalid-titulo").html("El titulo no puede ir vacio");
+        } else
+        {
+            $(".invalid-titulo").hide();
+        }
+          if (!$("#editarDescripcion").val())
+        {
+            $(".invalid-descripcion").show();
+            $(".invalid-descripcion").html("la descripcion no puede ir vacia");
+        } else
+        {
+            $(".invalid-descripcion").hide();
+        }
 
-	const cambiarFormPut = e => {
+
 		if($("#editarImagen").val()){
 
 
@@ -35,16 +54,18 @@ export default function EditarImgInicio(){
 					time: 7
 				})
 
-				$(".previsualizarImg").attr("src", "");
+                $(".previsualizarImg").attr("src", "");
+                $("#editarImagen").val("");
 				return;
-			}else if(imagen["size"] > 2000000){
+			}else if(imagen["size"] > 3000000){
 				$("#imagen").val("");
 				notie.alert({
 					type: 3,
-					text: 'ERROR: La imagen debe pesar como maximo 2mb',
+					text: 'ERROR: La imagen debe pesar como maximo 3mb',
 					time: 7
 				})
-				$(".previsualizarImg").attr("src", "");
+                $(".previsualizarImg").attr("src", "");
+                  $("#editarImagen").val("");
 				return;
 			}else{
 				let datosArchivo = new FileReader;
@@ -55,7 +76,7 @@ export default function EditarImgInicio(){
 					
 					$(".previsualizarImg").attr("src", rutaArchivo);
 
-					editarImg({
+					editarSlide({
 
                         'imagen': imagen,
                         'titulo': $("#editarTitulo").val(),
@@ -67,7 +88,7 @@ export default function EditarImgInicio(){
 			}
 		}else{
 
-			editarImg({
+			editarSlide({
 
                 'imagen': null,
                 'titulo': $("#editarTitulo").val(),
@@ -77,42 +98,54 @@ export default function EditarImgInicio(){
 					})
 
 		}	
-	}
-
-	// ONSUBMIT
+    }
+    // 	// ONSUBMIT
 
 	const submitPut = async e => {
 
 		$('.alert').remove();
 		e.preventDefault();
-		const {imagen, titulo, descripcion, id} = imgP;
+		const {imagen, titulo, descripcion, id} = slide;
 
-			if(titulo !== ""){
-			const expTitulo = /^([0-9a-zA-Z]).{1,30}$/;
+        // if (titulo !== "")
+        // {
+        //     $('.alert').remove();
+        // const expTitulo = /^([0-9a-zA-Z]).{1,30}$/;
 
-			if(!expTitulo.test(titulo)){
-				$(".invalid-titulo").show();
-				$(".invalid-titulo").html("Utiliza un formato que coincida con el solicitado");
+        // if(!expTitulo.test(titulo)){
+        //     $(".invalid-titulo").show();
+        //     $(".invalid-titulo").html("Utiliza un formato que coincida con el solicitado");
 
-				return;
-			}
-            }
-            if(descripcion !== ""){
-			const expDescripcion = /^([0-9a-zA-Z]).{1,100}$/;
+        //     return;
+        // }
+        // }
+        // if(descripcion !== ""){
+        // const expDescripcion = /^([0-9a-zA-Z]).{1,100}$/;
 
-                if(!expDescripcion.test(descripcion)){
-                    $(".invalid-titulo").show();
-                    $(".invalid-titulo").html("Utiliza un formato que coincida con el solicitado");
+        //     if(!expDescripcion.test(descripcion)){
+        //         $(".invalid-titulo").show();
+        //         $(".invalid-titulo").html("Utiliza un formato que coincida con el solicitado");
 
-                    return;
-                }
-		    }
-
+        //         return;
+        //     }
+        // }
+        if (titulo == "")
+        {
+            $(".invalid-titulo").show();
+            $(".invalid-titulo").html("El titulo no puede ir vacio");
+            return
+        } 
+        if (descripcion == "")
+        {
+            $(".invalid-descripcion").show();
+            $(".invalid-descripcion").html("La descripcion no puede ir vacia");
+            return
+        } 
+     
 		// SE EJECUTA SERVICIO PUT
 
-		const result = await putData(imgP); 
-		console.log("result", result.status);
-
+		const result = await putData(slide); 
+		
 
 		if(result.status === 400){
 
@@ -125,7 +158,7 @@ export default function EditarImgInicio(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_slide";
+					window.location.href = "/sobre_mi_slide";
 				}
 			})
 
@@ -142,31 +175,30 @@ export default function EditarImgInicio(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_slide";
+					window.location.href = "/sobre_mi_slide";
 				}
 			})
 		}
 
 	}
 
-	//CAPTURAR DATOS PARA EDITAR
+
+    //CAPTURAR DATOS PARA EDITAR
 
 	$(document).on("click", ".editarInputs", function(e){
 		e.preventDefault();
-
+       
         let data = $(this).attr("data").split('_,');
-
- 
       
 
         // recuperamos os datos
 
 		$("#editarID").val(data[0]);
-        $(".previsualizarImg").attr("src", `${rutaAPI}/mostrar-principal-img-inicio/${ data[1] }`);
+        $(".previsualizarImg").attr("src", `${rutaAPI}/mostrar-principal-img-sobremi/${ data[1] }`);
         $("#editarTitulo").val(data[2]);
 		$("#editarDescripcion").val(data[3]);
 
-		editarImg({
+		editarSlide({
 
 			'imagen': null,
 			'titulo': data[2],
@@ -176,23 +208,22 @@ export default function EditarImgInicio(){
 		})
 	})
 
-	
 
-	// RETORNO DE LA VISTA
+    	// RETORNO DE LA VISTA
 
 		return(
-		<div className="modal fade" id="editarImgInicio">
+		<div className="modal fade" id="open">
 
 			<div className="modal-dialog">
 
 				<div className="modal-content">
 
 					<div className="modal-header">
-						<h4 className="modal-title">Editar Imagen Principal Inicio</h4>
+						<h4 className="modal-title">Editar Imagen Principal Sobre Mi</h4>
 						<button type="button" className="close" data-dismiss="modal">x</button>
 					</div>
 
-					<form onChange={cambiarFormPut} onSubmit={submitPut} encType="multipart/form-data">
+					<form onChange={cambiarFormPut}   onSubmit={submitPut}   encType="multipart/form-data">
 
 						<div className="modal-body">
 
@@ -215,7 +246,7 @@ export default function EditarImgInicio(){
 										<i className="fas fa-heading"></i>
 									</div>
 
-									<input id="editarTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" pattern="([0-9a-zA-Z]){1,30}"/>
+									<input id="editarTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" /* pattern="([0-9a-zA-Z]){1,30}"*//>
 
 									<div className="invalid-feedback invalid-titulo"></div>
 								</div>
@@ -231,9 +262,9 @@ export default function EditarImgInicio(){
 										<i className="fas fa-file-alt"></i>
 									</div>
 
-									<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" pattern="([0-9a-zA-Z]).{1,30}"/>
+									<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" /* pattern="([0-9a-zA-Z]).{1,30}" */ />
 
-									<div className="invalid-feedback invalid-titulo"></div>
+									<div className="invalid-feedback invalid-descripcion"></div>
 								</div>
 							</div>
 						</div>
@@ -258,8 +289,8 @@ export default function EditarImgInicio(){
 		</div>
 
 	)
-
 }
+
 
 /*=============================================
 =       Peticion PUT para logo    =
@@ -267,7 +298,7 @@ export default function EditarImgInicio(){
 
 const putData = data => {
 
-	const url = `${rutaAPI}/editar-principal-img-inicio-data/${data.id}`;
+	const url = `${rutaAPI}/editar-principal-img-sobremi-data/${data.id}`;
 	const token = localStorage.getItem("ACCESS_TOKEN");
 
 	let formData = new FormData();
@@ -292,6 +323,4 @@ const putData = data => {
 	})
 
 }
-
-
 

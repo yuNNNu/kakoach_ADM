@@ -4,11 +4,11 @@ import {rutaAPI} from '../../../../config/Config';
 import notie from 'notie';
 import Swal from 'sweetalert2'
 
-export default function EditarImgSlide()
+export default function EditarCategoria()
 { 
-    // HOOK
+   // HOOK
 
-	const [imgP, editarImg] = useState({
+	const [category, editarCategoria] = useState({
 
 		
         id: "",
@@ -16,9 +16,8 @@ export default function EditarImgSlide()
         descripcion: "",
         imagen: null,
 
-    })
-  
-    // ONCHANGE
+	})
+	// ONCHANGE
 
     const cambiarFormPut = e =>
     {
@@ -76,7 +75,7 @@ export default function EditarImgSlide()
 					
 					$(".previsualizarImg").attr("src", rutaArchivo);
 
-					editarImg({
+					editarCategoria({
 
                         'imagen': imagen,
                         'titulo': $("#editarTitulo").val(),
@@ -84,11 +83,12 @@ export default function EditarImgSlide()
 						'id' : $("#editarID").val()
 
 					})
+					console.log(editarCategoria)
 				})
 			}
 		}else{
 
-			editarImg({
+			editarCategoria({
 
                 'imagen': null,
                 'titulo': $("#editarTitulo").val(),
@@ -98,14 +98,14 @@ export default function EditarImgSlide()
 					})
 
 		}	
-    }
-    	// ONSUBMIT
+	}
+	// ONSUBMIT
 
 	const submitPut = async e => {
 
 		$('.alert').remove();
 		e.preventDefault();
-		const {imagen, titulo, descripcion, id} = imgP;
+		const {imagen, titulo, descripcion, id} = category;
 
         // if (titulo !== "")
         // {
@@ -144,7 +144,7 @@ export default function EditarImgSlide()
      
 		// SE EJECUTA SERVICIO PUT
 
-		const result = await putData(imgP); 
+		const result = await putData(category); 
 		
 
 		if(result.status === 400){
@@ -158,7 +158,7 @@ export default function EditarImgSlide()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/planes_slide";
+					window.location.href = "/planes_categoria";
 				}
 			})
 
@@ -175,30 +175,29 @@ export default function EditarImgSlide()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/planes_slide";
+					window.location.href = "/planes_categoria";
 				}
 			})
 		}
 
 	}
-
-
-    //CAPTURAR DATOS PARA EDITAR
+  
+  	//CAPTURAR DATOS PARA EDITAR
 
 	$(document).on("click", ".editarInputs", function(e){
 		e.preventDefault();
        
         let data = $(this).attr("data").split('_,');
-
+	
 
         // recuperamos os datos
 
 		$("#editarID").val(data[0]);
-        $(".previsualizarImg").attr("src", `${rutaAPI}/mostrar-principal-img-planes/${ data[1] }`);
+        $(".previsualizarImg").attr("src", `${rutaAPI}/show-img-category/${ data[1] }`);
         $("#editarTitulo").val(data[2]);
 		$("#editarDescripcion").val(data[3]);
 
-		editarImg({
+		editarCategoria({
 
 			'imagen': null,
 			'titulo': data[2],
@@ -208,86 +207,83 @@ export default function EditarImgSlide()
 		})
 	})
 
+	// RETORNO DE LA VISTA
+	return(
+	<div className="modal fade" id="editarCategoria">
 
-    	// RETORNO DE LA VISTA
+		<div className="modal-dialog">
 
-		return(
-		<div className="modal fade" id="editarImgSlide">
+			<div className="modal-content">
 
-			<div className="modal-dialog">
-
-				<div className="modal-content">
-
-					<div className="modal-header">
-						<h4 className="modal-title">Editar Imagen Principal Inicio</h4>
-						<button type="button" className="close" data-dismiss="modal">x</button>
-					</div>
-
-					<form onChange={cambiarFormPut}   onSubmit={submitPut}   encType="multipart/form-data">
-
-						<div className="modal-body">
-
-							<input type="hidden" id="editarID"/>
-
-							{/* ENTRADA IMAGEN*/}
-
-							<label className="small text-secondary" htmlFor="editarImagen">*Peso Max. 2MB | Formato: JPG o PNG</label>
-							<input id="editarImagen" type="file" className="form-control-file border" name="imagen" />
-							<div className="invalidad-feedback invalid-imagen"></div>
-							<img className="previsualizarImg img-fluid"/>
-
-							{/* ENTRADA TITULO*/}
-
-							<div className="form-group">
-								<label className="small text-secondary" htmlFor="editarTitulo">* No ingresar caracteres especiales, solo letras y números</label>
-
-								<div className="input-group mb-3">
-									<div className="input-group-append input-group-text">
-										<i className="fas fa-heading"></i>
-									</div>
-
-									<input id="editarTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" /* pattern="([0-9a-zA-Z]){1,30}"*//>
-
-									<div className="invalid-feedback invalid-titulo"></div>
-								</div>
-							</div>
-
-							{/* ENTRADA DESCRIPCION*/}
-
-							<div className="form-group">
-								<label className="small text-secondary" htmlFor="editarDescripcion">* No ingresar caracteres especiales, solo letras y números</label>
-
-								<div className="input-group mb-3">
-									<div className="input-group-append input-group-text">
-										<i className="fas fa-file-alt"></i>
-									</div>
-
-									<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" /* pattern="([0-9a-zA-Z]).{1,30}" */ />
-
-									<div className="invalid-feedback invalid-descripcion"></div>
-								</div>
-							</div>
-						</div>
-
-						<div className="modal-footer d-flex justify-content-between">
-
-							<div>
-								<button type="button" className="btn btn-danger" data-dismiss="modal">Cerrar</button>
-							</div>
-
-							<div>
-								<button type="submit" className="btn btn-primary">Guardar</button>
-							</div>
-
-						</div>
-
-					</form>
+				<div className="modal-header">
+					<h4 className="modal-title">Editar Categoria</h4>
+					<button type="button" className="close" data-dismiss="modal">x</button>
 				</div>
 
+				<form onChange={cambiarFormPut}  onSubmit={submitPut}   encType="multipart/form-data">
+
+					<div className="modal-body">
+
+						<input type="hidden" id="editarID"/>
+
+						{/* ENTRADA IMAGEN*/}
+
+						<label className="small text-secondary" htmlFor="editarImagen">*Peso Max. 2MB | Formato: JPG o PNG</label>
+						<input id="editarImagen" type="file" className="form-control-file border" name="imagen" />
+						<div className="invalidad-feedback invalid-imagen"></div>
+						<img className="previsualizarImg img-fluid"/>
+
+						{/* ENTRADA TITULO*/}
+
+						<div className="form-group">
+							<label className="small text-secondary" htmlFor="editarTitulo">* No ingresar caracteres especiales, solo letras y números</label>
+
+							<div className="input-group mb-3">
+								<div className="input-group-append input-group-text">
+									<i className="fas fa-heading"></i>
+								</div>
+
+								<input id="editarTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" /* pattern="([0-9a-zA-Z]){1,30}"*//>
+
+								<div className="invalid-feedback invalid-titulo"></div>
+							</div>
+						</div>
+
+						{/* ENTRADA DESCRIPCION*/}
+
+						<div className="form-group">
+							<label className="small text-secondary" htmlFor="editarDescripcion">* No ingresar caracteres especiales, solo letras y números</label>
+
+							<div className="input-group mb-3">
+								<div className="input-group-append input-group-text">
+									<i className="fas fa-file-alt"></i>
+								</div>
+
+								<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" /* pattern="([0-9a-zA-Z]).{1,30}" */ />
+
+								<div className="invalid-feedback invalid-descripcion"></div>
+							</div>
+						</div>
+					</div>
+
+					<div className="modal-footer d-flex justify-content-between">
+
+						<div>
+							<button type="button" className="btn btn-danger" data-dismiss="modal">Cerrar</button>
+						</div>
+
+						<div>
+							<button type="submit" className="btn btn-primary">Guardar</button>
+						</div>
+
+					</div>
+
+				</form>
 			</div>
 
 		</div>
 
+	</div>
 	)
 }
 
@@ -298,7 +294,7 @@ export default function EditarImgSlide()
 
 const putData = data => {
 
-	const url = `${rutaAPI}/editar-principal-img-planes-data/${data.id}`;
+	const url = `${rutaAPI}/edit-category/${data.id}`;
 	const token = localStorage.getItem("ACCESS_TOKEN");
 
 	let formData = new FormData();

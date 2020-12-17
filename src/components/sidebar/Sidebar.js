@@ -199,7 +199,7 @@ export default function Sidebar(){
 
 								<li className="nav-item">
 
-									<a href="/usuarios" className="nav-link">
+									<a href="/tarjetas" className="nav-link">
 										<i className="nav-icon fas fa-users"></i>
 										<p>
 										Gestor Tarjetas

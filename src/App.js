@@ -38,7 +38,7 @@ import Planes from './components/contenido/planes/planes/Planes';
 import BenefitsPlan from './components/contenido/planes/benefits/BenefitsPlan';
 // PAGINA SOBRE MI
 import SlideSobreMi  from './components/contenido/sobre-mi/slide-sobre-mi/Slide_principal_sobre_mi';
-
+import Tarjetas from './components/contenido/sobre-mi/tarjetas/Tarjetas'
 
 
 export default function App() {
@@ -75,7 +75,8 @@ export default function App() {
             <Route exact path="/planes_categoria" component={Category} />
             <Route exact path="/planes" component={Planes} />
             <Route exact path="/planes_benefits" component={BenefitsPlan} />
-            <Route exact path="/sobre_mi_slide" component={SlideSobreMi}/>
+            <Route exact path="/sobre_mi_slide" component={SlideSobreMi} />
+            <Route exact path="/tarjetas" component={Tarjetas} />
         		<Route component={Error404}/>
         	</Switch>
 

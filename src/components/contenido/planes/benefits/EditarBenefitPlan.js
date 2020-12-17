@@ -4,79 +4,48 @@ import {rutaAPI} from '../../../../config/Config';
 import notie from 'notie';
 import Swal from 'sweetalert2'
 
-export default function EditarImgInicio(){
+export default function EditarBenefitPlan(){
 
 	// HOOK
 
-	const [imgP, editarImg] = useState({
+	const [benefit, editarBenefitPlan] = useState({
 
 		
         id: "",
         titulo: "",
         descripcion: "",
-        archivo: null,
+     
 
 	})
 
 	// ONCHANGE
 
 	const cambiarFormPut = e => {
-		if($("#editarImagen").val()){
+        if (!$("#editarTitulo").val())
+        {
+            $(".invalid-titulo").show();
+            $(".invalid-titulo").html("El titulo no puede ir vacio");
+        } else
+        {
+            $(".invalid-titulo").hide();
+        }
 
+        if (!$("#editarDescripcion").val())
+        {
+            $(".invalid-descripcion").show();
+            $(".invalid-descripcion").html("El descripcion no puede ir vacio");
+        } else
+        {
+            $(".invalid-descripcion").hide();
+        }
 
-			let imagen = $("#editarImagen").get(0).files[0];
-			
-			if(imagen["type"] !== "image/jpeg" && imagen["type"] !== "image/png"){
-				$("#imagen").val("");
+        editarBenefitPlan({
+     
+        'titulo': $("#editarTitulo").val(),
+        'descripcion': $("#editarDescripcion").val(),
+        'id' : $("#editarID").val()
 
-				notie.alert({
-					type: 3,
-					text: 'ERROR: La imagen debe estar en formato JPG o PNG!',
-					time: 7
-				})
-
-				$(".previsualizarImg").attr("src", "");
-				return;
-			}else if(imagen["size"] > 2000000){
-				$("#imagen").val("");
-				notie.alert({
-					type: 3,
-					text: 'ERROR: La imagen debe pesar como maximo 2mb',
-					time: 7
-				})
-				$(".previsualizarImg").attr("src", "");
-				return;
-			}else{
-				let datosArchivo = new FileReader;
-				datosArchivo.readAsDataURL(imagen);
-
-				$(datosArchivo).on("load", function(event){
-					let rutaArchivo = event.target.result;
-					
-					$(".previsualizarImg").attr("src", rutaArchivo);
-
-					editarImg({
-
-                        'imagen': imagen,
-                        'titulo': $("#editarTitulo").val(),
-                        'descripcion': $("#editarDescripcion").val(),
-						'id' : $("#editarID").val()
-
-					})
-				})
-			}
-		}else{
-
-			editarImg({
-
-                'imagen': null,
-                'titulo': $("#editarTitulo").val(),
-                'descripcion': $("#editarDescripcion").val(),
-                'id' : $("#editarID").val()
-
-					})
-
-		}	
+        })
 	}
 
 	// ONSUBMIT
@@ -85,32 +54,28 @@ export default function EditarImgInicio(){
 
 		$('.alert').remove();
 		e.preventDefault();
-		const {imagen, titulo, descripcion, id} = imgP;
+		const { titulo, descripcion, id} = benefit;
 
-			if(titulo !== ""){
-			const expTitulo = /^([0-9a-zA-Z]).{1,30}$/;
-
-			if(!expTitulo.test(titulo)){
+			if(titulo === ""){
+			
 				$(".invalid-titulo").show();
-				$(".invalid-titulo").html("Utiliza un formato que coincida con el solicitado");
+				$(".invalid-titulo").html("El titulo no puede ir vacio");
 
 				return;
-			}
+			
             }
-            if(descripcion !== ""){
-			const expDescripcion = /^([0-9a-zA-Z]).{1,100}$/;
+            if(descripcion === ""){
+			
+            $(".invalid-titulo").show();
+            $(".invalid-titulo").html("La descripcion no puede ir vacia");
 
-                if(!expDescripcion.test(descripcion)){
-                    $(".invalid-titulo").show();
-                    $(".invalid-titulo").html("Utiliza un formato que coincida con el solicitado");
-
-                    return;
-                }
+            return;
+                
 		    }
 
 		// SE EJECUTA SERVICIO PUT
 
-		const result = await putData(imgP); 
+		const result = await putData(benefit); 
 		console.log("result", result.status);
 
 
@@ -125,7 +90,7 @@ export default function EditarImgInicio(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_slide";
+					window.location.href = "/planes_benefits";
 				}
 			})
 
@@ -142,7 +107,7 @@ export default function EditarImgInicio(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_slide";
+					window.location.href = "/planes_benefits";
 				}
 			})
 		}
@@ -157,21 +122,20 @@ export default function EditarImgInicio(){
         let data = $(this).attr("data").split('_,');
 
  
-      
+      console.log(data)
 
         // recuperamos os datos
 
 		$("#editarID").val(data[0]);
-        $(".previsualizarImg").attr("src", `${rutaAPI}/mostrar-principal-img-inicio/${ data[1] }`);
-        $("#editarTitulo").val(data[2]);
-		$("#editarDescripcion").val(data[3]);
+        $("#editarTitulo").val(data[1]);
+		$("#editarDescripcion").val(data[2]);
 
-		editarImg({
+		editarBenefitPlan({
 
-			'imagen': null,
-			'titulo': data[2],
-			'descripcion': data[3],
-			'id' : data[0]
+			
+			'id' : data[0],
+			'titulo': data[1],
+			'descripcion': data[2]
 
 		})
 	})
@@ -181,14 +145,14 @@ export default function EditarImgInicio(){
 	// RETORNO DE LA VISTA
 
 		return(
-		<div className="modal fade" id="editarImgInicio">
+		<div className="modal fade" id="editarBenefitPlan">
 
 			<div className="modal-dialog">
 
 				<div className="modal-content">
 
 					<div className="modal-header">
-						<h4 className="modal-title">Editar Imagen Principal Inicio</h4>
+						<h4 className="modal-title">Editar beneficio Planes</h4>
 						<button type="button" className="close" data-dismiss="modal">x</button>
 					</div>
 
@@ -198,13 +162,7 @@ export default function EditarImgInicio(){
 
 							<input type="hidden" id="editarID"/>
 
-							{/* ENTRADA IMAGEN*/}
-
-							<label className="small text-secondary" htmlFor="editarImagen">*Peso Max. 2MB | Formato: JPG o PNG</label>
-							<input id="editarImagen" type="file" className="form-control-file border" name="imagen" />
-							<div className="invalidad-feedback invalid-imagen"></div>
-							<img className="previsualizarImg img-fluid"/>
-
+					
 							{/* ENTRADA TITULO*/}
 
 							<div className="form-group">
@@ -215,7 +173,7 @@ export default function EditarImgInicio(){
 										<i className="fas fa-heading"></i>
 									</div>
 
-									<input id="editarTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" pattern="([0-9a-zA-Z]){1,30}"/>
+									<input id="editarTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo"/* pattern="([0-9a-zA-Z]).{1,60}" */ />
 
 									<div className="invalid-feedback invalid-titulo"></div>
 								</div>
@@ -231,9 +189,9 @@ export default function EditarImgInicio(){
 										<i className="fas fa-file-alt"></i>
 									</div>
 
-									<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" pattern="([0-9a-zA-Z]).{1,30}"/>
+									<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" /* pattern="([0-9a-zA-Z]).{1,30}" */ />
 
-									<div className="invalid-feedback invalid-titulo"></div>
+									<div className="invalid-feedback invalid-descripcion"></div>
 								</div>
 							</div>
 						</div>
@@ -262,16 +220,15 @@ export default function EditarImgInicio(){
 }
 
 /*=============================================
-=       Peticion PUT para logo    =
+=       Peticion PUT para benefit de inicio    =
 =============================================*/
 
 const putData = data => {
 
-	const url = `${rutaAPI}/editar-principal-img-inicio-data/${data.id}`;
+	const url = `${rutaAPI}/edit-planbenefit/${data.id}`;
 	const token = localStorage.getItem("ACCESS_TOKEN");
 
 	let formData = new FormData();
-	formData.append("imagen", data.imagen);
 	formData.append("titulo", data.titulo);
 	formData.append("descripcion", data.descripcion);
 
