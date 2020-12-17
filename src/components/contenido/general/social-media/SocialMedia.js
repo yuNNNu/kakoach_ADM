@@ -47,7 +47,6 @@ export default function SocialMedia(){
 				"order":[[0, "desc"]],
 			columns: [
             { title: "#" },
-           
             { title: "Url" },
 			{title: "Acciones",
               render: function(data){

@@ -109,7 +109,7 @@ export default function FooterClient(){
 				<div className="container-fluid">
 					<div className="row mb-2">
 						<div className="col-sm-6">
-							<h1 className="m-0 text-dark">Plan Personal</h1>
+							<h1 className="m-0 text-dark">Footer</h1>
 						</div>
 					</div>	
 				</div>
@@ -123,7 +123,7 @@ export default function FooterClient(){
 							<div className="card card-primary card-outline">
 								<div className="card-header">
 									<h5 className="m-0">
-										<button className="btn btn-primary limpiarForm" data-toggle="modal" data-target="#editarFooter">Nuevo Plan</button>
+										<button className="btn btn-primary limpiarForm" data-toggle="modal" data-target="#editarFooter">Nuevo Footer</button>
 									</h5>
 								</div>
 

@@ -39,7 +39,6 @@ export default function EditarFooter(){
 		// SE EJECUTA SERVICIO PUT
 
 		const result = await putData(footer); 
-		console.log("result", result);
 
 		if(titulo === ""){
 			$(".invalid-titulo").show();
