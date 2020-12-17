@@ -110,7 +110,7 @@ export default function Sidebar(){
 
 							    <li className="nav-item">
 
-									<a href="/articulos" className="nav-link">
+									<a href="/inicio_planes_estrella" className="nav-link">
 										<i className="nav-icon fas fa-file"></i>
 										<p>
 										Gestor Planes Secundarios

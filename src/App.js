@@ -30,6 +30,7 @@ import SocialMedia from './components/contenido/general/social-media/SocialMedia
 import Benefits from './components/contenido/inicio/benefits/Benefit'
 import ImgPrincipal from './components/contenido/inicio/img-principal/ImgPrincipal'
 import Logo from './components/contenido/general/logo/Logo'
+import PlanesEstrellas from './components/contenido/inicio/planes-estrellas/Planes-estrellas';
 
 // PAGINA PLANES
 import SlidePlanes from './components/contenido/planes/slide_principal/slide_principal';
@@ -68,6 +69,7 @@ export default function App() {
             <Route exact path="/inicio_benefits" component={Benefits} />
             <Route exact path="/inicio_slide" component={ImgPrincipal} />
             <Route exact path="/inicio_plan_personal" component={PlanPersonal} />
+            <Route exact path="/inicio_planes_estrella" component={PlanesEstrellas} />
             <Route exact path="/logo" component={Logo} />
             <Route exact path="/footer" component={FooterClient} />
             <Route exact path="/redes_sociales" component={SocialMedia} />
