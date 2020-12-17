@@ -20,18 +20,18 @@ export default function PlanPersonal(){
 		getPlanPersonal.data.forEach((planPersonal, index) => {
 			dataSet[index] = [(index+1),
                             planPersonal.imagen,
-							planPersonal.titulo, 
+							planPersonal.nombre, 
                             planPersonal.descripcion, 
-                            planPersonal.valor, 
+                            planPersonal.precio, 
 							planPersonal.pros, 
                             [planPersonal._id + "_",
                             planPersonal.imagen + "_",
-							planPersonal.titulo + "_", 
+							planPersonal.nombre + "_", 
                             planPersonal.descripcion + "_", 
-                            planPersonal.valor + "_", 
+                            planPersonal.precio + "_", 
 							planPersonal.pros 
                 ]];
-            console.log(planPersonal.pros)
+           
 		})
 
 		// =============================================
@@ -60,7 +60,7 @@ export default function PlanPersonal(){
             },
 			{title: "Título"},
             { title: "Descripción" },
-            {title: "Valor"},
+            {title: "Precio"},
             { title: "Pros" },
 			{title: "Acciones",
               render: function(data){

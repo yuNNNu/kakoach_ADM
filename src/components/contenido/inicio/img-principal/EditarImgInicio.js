@@ -111,7 +111,7 @@ export default function EditarImgInicio(){
 		// SE EJECUTA SERVICIO PUT
 
 		const result = await putData(imgP); 
-		console.log("result", result.status);
+		
 
 
 		if(result.status === 400){

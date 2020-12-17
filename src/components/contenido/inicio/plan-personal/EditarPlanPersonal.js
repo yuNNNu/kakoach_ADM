@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import $ from 'jquery';
+import notie from 'notie';
 import Swal from 'sweetalert2'
 import {rutaAPI} from '../../../../config/Config';
 
@@ -13,9 +14,9 @@ export default function EditarBorrarAdministradores(){
 	const [planpersonal, editarPlanPersonal ] = useState({
 
 		id: "",
-		titulo: "",
+		nombre: "",
 		descripcion: "",
-		valor: 0,
+		precio: 0,
 		pros: [],
 		pdf: null,
 		imagen: null
@@ -26,53 +27,144 @@ export default function EditarBorrarAdministradores(){
 	OnChange
 	=============================================*/
 
-	const cambiaFormPut = e => {
-
+	const cambiaFormPut = e =>
+	{
 		
-		/*=============================================
-		 FALTA VALIDAR PDF E IMAGEN
-		=============================================*/
-		/*=============================================
-		 FALTA VALIDAR PDF E IMAGEN
-		=============================================*/
-		/*=============================================
-		 FALTA VALIDAR PDF E IMAGEN
-		=============================================*/
-		/*=============================================
-		 FALTA VALIDAR PDF E IMAGEN
-		=============================================*/
-		/*=============================================
-		 FALTA VALIDAR PDF E IMAGEN
-		=============================================*/
-		//                    |
-		//					  |
-		//					  |
-		//					  |
-		//					  V
-
-		let imagen = $("#editarImagen").get(0).files[0];
-		let pdf = $("#editarPdf").get(0).files[0];
-
-		let datosArchivo = new FileReader;
 		
-		datosArchivo.readAsDataURL(imagen, pdf);
+		let pdf = "";
+		let imagen = "";
+		// si carga img
+		if ($("#editarImagen").val())
+		{
+			let imagen = $("#editarImagen").get(0).files[0];
+			// validaciones imagen
+			if(imagen["type"] !== "image/jpeg" && imagen["type"] !== "image/png"){
+				$("#imagen").val("");
 
-		$(datosArchivo).on("load", function(event){
-			let rutaArchivo = event.target.result;
+				notie.alert({
+					type: 3,
+					text: 'ERROR: La imagen debe estar en formato JPG o PNG!',
+					time: 7
+				})
+
+				$(".previsualizarImg").attr("src", "");
+				
+				return;
+			}else if (imagen["size"] > 2000000)
+			{
+				$("#imagen").val("");
+				notie.alert({
+					type: 3,
+					text: 'ERROR: La imagen debe pesar como maximo 2mb',
+					time: 7
+				})
+				$(".previsualizarImg").attr("src", "");
+				return;
+			} else
+			{
+				let datosArchivo = new FileReader;
+				datosArchivo.readAsDataURL(imagen);
+				$(datosArchivo).on("load", function (event)
+				{
+					let rutaArchivo = event.target.result;
+					
+					$(".previsualizarImg").attr("src", rutaArchivo);
+
+					editarPlanPersonal({
+
+						'id': $("#editarID").val(),
+						'nombre': $("#editarNombre").val(),
+						'descripcion': $("#editarDescripcion").val(),
+						'precio': $("#editarPrecio").val(),
+						'pros' : $("#editarPros").val(),
+						'pdf': pdf,
+						'imagen': imagen
+					
+					})
+				})
+			}
 			
-			$(".previsualizarImg").attr("src", rutaArchivo);
-
+		} else
+		{
 			editarPlanPersonal({
 
 				'id' : $("#editarID").val(),
-				'titulo' : $("#editarTitulo").val(),
+				'nombre' : $("#editarNombre").val(),
 				'descripcion' :  $("#editarDescripcion").val(),
-				'valor' :   $("#editarValor").val(),
+				'precio' :   $("#editarPrecio").val(),
+				'pros' : $("#editarPros").val(),
+				'pdf' : pdf,
+				'imagen' : null
+
+			})
+		}
+		// si carga pdf
+		if ($("#editarPdf").val())
+		{
+			 pdf = $("#editarPdf").get(0).files[0];
+			// validaciones imagen
+			if(pdf["type"] !== "application/pdf" ){
+			
+
+				notie.alert({
+					type: 3,
+					text: 'ERROR: La archivo debe ser pdf',
+					time: 7
+				})
+				
+				
+				
+				return;
+			}
+			if (pdf["size"] > 2000000)
+			{
+				var clone = 
+				notie.alert({
+					type: 3,
+					text: 'ERROR: La pdf debe pesar como maximo 2mb',
+					time: 7
+				})
+				
+				return;
+			}
+			editarPlanPersonal({
+
+				'id' : $("#editarID").val(),
+				'nombre' : $("#editarNombre").val(),
+				'descripcion' :  $("#editarDescripcion").val(),
+				'precio' :   $("#editarPrecio").val(),
 				'pros' : $("#editarPros").val(),
 				'pdf' : pdf,
 				'imagen' : imagen
+
 			})
+		} else
+		{
+			editarPlanPersonal({
+
+				'id' : $("#editarID").val(),
+				'nombre' : $("#editarNombre").val(),
+				'descripcion' :  $("#editarDescripcion").val(),
+				'precio' :   $("#editarPrecio").val(),
+				'pros' : $("#editarPros").val(),
+				'pdf' : null,
+				'imagen' : imagen
+
+			})
+		}
+		
+		
+		editarPlanPersonal({
+
+			'id' : $("#editarID").val(),
+			'nombre' : $("#editarNombre").val(),
+			'descripcion' :  $("#editarDescripcion").val(),
+			'precio' :   $("#editarPrecio").val(),
+			'pros' : $("#editarPros").val(),
+			'pdf' : pdf,
+			'imagen' : imagen
 		})
+		
 
 	}
 
@@ -86,51 +178,36 @@ export default function EditarBorrarAdministradores(){
 
 		e.preventDefault();		
 
-		const {id, titulo, descripcion, valor, pros, pdf, imagen} = planpersonal;
+		const {id, nombre, descripcion, precio, pros, pdf, imagen} = planpersonal;
 
 		/*=============================================
 		Validamos que el campo user no venga vacío
 		=============================================*/
 
-		if(titulo === ""){
+		if(nombre === ""){
 
-			$(".invalid-titulo").show();
-			$(".invalid-titulo").html("Completa este campo");
-
+			$(".invalid-nombre").show();
+			$(".invalid-nombre").html("Completa este campo");
+			return;
 		}
 
 		/*=============================================
 		Validamos Expresión regular
 		=============================================*/
-
-		// const expuser = /^(?=.*[A-Za-z]).{2,6}$/;
-
-		// if(!expuser.test(user)){
-
-		// 	$(".invalid-user").show();
-		// 	$(".invalid-user").html("Utiliza un formato que coincida con el solicitado");
-
-		// 	return;
-
-		// }
-
-
-		/*=============================================
-		Validamos Expresión regular
-		=============================================*/
-
 		if(descripcion === ""){
 
-			// const expPassword = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
+			
 			$(".invalid-descripcion").show();
-			$(".invalid-descripcion").html("Utiliza un formato que coincida con el solicitado");
+			$(".invalid-descripcion").html("Completa este campo");
+			return;
 		}
 
 
-		if(valor === ""){
+		if(precio === ""){
 
-			$(".invalid-valor").show();
-			$(".invalid-valor").html("Completa este campo");
+			$(".invalid-precio").show();
+			$(".invalid-precio").html("Completa este campo");
+			return;
 
 		}
 
@@ -138,7 +215,7 @@ export default function EditarBorrarAdministradores(){
 
 			$(".invalid-pros").show();
 			$(".invalid-pros").html("Completa este campo");
-
+			return;
 		}
 
 
@@ -151,18 +228,35 @@ export default function EditarBorrarAdministradores(){
 
 		if(result.status === 400){
 
-			$(".modal-footer").before(`<div class="alert alert-danger">${result.mensaje}</div>`)
+			Swal.fire({
+
+		      type: "error",
+		      title: result.mensaje,
+		      showConfirmButton: true,
+		      confirmButtonText: "Cerrar"
+            
+			}).then(function(result){
+				if(result.value){
+					window.location.href = "/inicio_plan_personal";
+				}
+			})
 
 		}
 
 		if(result.status === 200){
 
-			$(".modal-footer").before(`<div class="alert alert-success">${result.mensaje}</div>`)
+			Swal.fire({
 
-			$('button[type="submit"]').remove();
-
-			setTimeout(()=>{window.location.href= "/inicio_plan_personal";},500)
-
+		      type: "success",
+		      title: result.mensaje,
+		      showConfirmButton: true,
+		      confirmButtonText: "Cerrar"
+            
+			}).then(function(result){
+				if(result.value){
+					window.location.href = "/inicio_plan_personal";
+				}
+			})
 		}
 
 	}
@@ -176,22 +270,25 @@ export default function EditarBorrarAdministradores(){
 		e.preventDefault();
 
 		let data = $(this).attr("data").split('_,');
+	
 		
 		$("#editarID").val(data[0]);
-		$("#editarTitulo").val(data[2]);
+		$("#editarNombre").val(data[2]);
 		$("#editarDescripcion").val(data[3]);
-	 	$("#editarValor").val(data[4]);
+	 	$("#editarPrecio").val(data[4]);
 		$("#editarPros").val(data[5]);
+		$(".previsualizarImg").attr("src", `${rutaAPI}/show-personal-plan-img/${ data[1] }`);
+		// editarImagen
 
 		editarPlanPersonal({
 
 			'id' : data[0],
-			'titulo' : $("#editarTitulo").val(),
-			'descripcion' :  $("#editarDescripcion").val(),
-			'valor' :   $("#editarValor").val(),
-			'pros' : $("#editarPros").val(),
-			'pdf' : $("#editarPdf").val(),
-			'imagen' : $("#editarImagen").val(),
+			'nombre' : data[2],
+			'descripcion' :  data[3],
+			'precio' :   data[4],
+			'pros' : data[5],
+			'pdf' : null,
+			'imagen' : null,
 		})
 
 
@@ -224,15 +321,15 @@ export default function EditarBorrarAdministradores(){
 					<label className="small text-secondary" htmlFor="editarImagen">
 					Imagen de Plan personal |
 					*Peso Max. 2MB | Formato: JPG o PNG</label>
-					<input id="editarImagen" type="file" className="form-control-file border" name="imagen" required/>
+					<input id="editarImagen" type="file" className="form-control-file border" name="imagen" />
 					<div className="invalidad-feedback invalid-imagen"></div>
 					<img className="previsualizarImg img-fluid"/>
 
-					{/* ENTRADA TITULO */}
+					{/* ENTRADA nombre */}
 
 			      	<div className="form-group">
 
-			      		<label className="small text-secondary" htmlFor="editarTitulo">*Mínimo 2 caracteres, máximo 6, sin números</label>
+			      		<label className="small text-secondary" htmlFor="editarNombre">*Mínimo 2 caracteres, máximo 6, sin números</label>
 
 			      		<div className="input-group mb-3">
 
@@ -241,17 +338,17 @@ export default function EditarBorrarAdministradores(){
 			      			</div>
 
 			      			<input 
-			      				id="editarTitulo"
+			      				id="editarNombre"
 			      				type="text"
 			      				className="form-control"
-			      				name="titulo"
-			      				placeholder="Ingrese el titulo*"
+			      				name="nombre"
+			      				placeholder="Ingrese el nombre*"
 			      				maxLength="40"
 			      				required
 
 			      			/>
 
-			      			<div className="invalid-feedback invalid-titulo"></div>
+			      			<div className="invalid-feedback invalid-nombre"></div>
 
 			      		</div>	
 
@@ -284,11 +381,11 @@ export default function EditarBorrarAdministradores(){
 
 			      	</div>
 
-			      	 {/* ENTRADA VALOR */}
+			      	 {/* ENTRADA precio */}
 
 			      	<div className="form-group">
 
-			      		<label className="small text-secondary" htmlFor="editarValor">* Mínimo 8 caracteres, letras en mayúscula, en minúscula y números</label>
+			      		<label className="small text-secondary" htmlFor="editarPrecio">* Mínimo 8 caracteres, letras en mayúscula, en minúscula y números</label>
 
 			      		<div className="input-group mb-3">
 
@@ -297,15 +394,15 @@ export default function EditarBorrarAdministradores(){
 			      			</div>
 
 			      			<input 
-			      				id="editarValor"
+			      				id="editarPrecio"
 			      				type="text"
 			      				className="form-control"
-			      				name="valor"
-			      				placeholder="Ingrese el valor*"
+			      				name="precio"
+			      				placeholder="Ingrese el precio*"
 
 			      			/>
 
-			      			<div className="invalid-feedback invalid-valor"></div>
+			      			<div className="invalid-feedback invalid-precio"></div>
 
 			      		</div>	
 
@@ -331,7 +428,7 @@ export default function EditarBorrarAdministradores(){
 
 					<div className="form-group">
 						<label className="small text-secondary" htmlFor="editarPdf">PDF Plan personal | *Peso Max. 2MB | Formato: JPG o PNG</label>
-						<input id="editarPdf" type="file" className="form-control-file border" name="pdf" required/>
+						<input id="editarPdf" type="file" className="form-control-file border" name="pdf" />
 						<div className="invalidad-feedback invalid-pdf"></div>
 			   		</div>
 
@@ -366,9 +463,9 @@ const putData = data => {
 	const token = localStorage.getItem("ACCESS_TOKEN");
 
 	let formData = new FormData();
-	formData.append("titulo", data.titulo);
+	formData.append("nombre", data.nombre);
 	formData.append("descripcion", data.descripcion);
-	formData.append("valor", data.valor);
+	formData.append("precio", data.precio);
 	formData.append("pros", data.pros);
 	formData.append("pdf", data.pdf);
 	formData.append("imagen", data.imagen);
