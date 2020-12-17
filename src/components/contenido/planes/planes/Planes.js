@@ -26,7 +26,7 @@ export default function Planes(){
                             planes.descripcion, 
                             planes.precio, 
                             planes.nivel,
-                            planes.archivo,
+                            planes.pdf,
                             [planes._id + "_",
                             planes.imagen,
                             planes.pros, 
@@ -35,9 +35,9 @@ export default function Planes(){
                             planes.descripcion, 
                             planes.precio, 
                             planes.nivel,
-                            planes.archivo,
+                            planes.pdf,
                 ]];
-            console.log(planes.archivo)
+            console.log(planes.pdf)
 		})
 
 		// =============================================
@@ -71,7 +71,7 @@ export default function Planes(){
             { title: "Descripción" },
             {title: "Precio"},
             { title: "Nivel" },
-            { title: "Archivo" },
+            { title: "pdf" },
 			{title: "Acciones",
               render: function(data){
 

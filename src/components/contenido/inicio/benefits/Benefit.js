@@ -115,37 +115,7 @@ export default function Benefits(){
 								<div className="card-body">
 				   					
 				   					<table className="table table-striped dt-responsive" style={{"width": "100%"}}>
-				   						{// <thead>
-				   						// 	<tr>
-				   						// 		<th>#</th>
-					   					// 		<th>Imagen</th>
-					   					// 		<th>Título</th>
-					   					// 		<th>Descripcion</th>
-					   					// 		<th>Acciones</th>
-				   						// 	</tr>
-				   						// </thead>
-				   						// <tbody>
-
-				   						// 	<tr>
-				   						// 		<td>1</td>
-				   						// 		<td><img src={benefit01} className="img-fluid" alt="#"/></td>
-				   						// 		<td>Lorem Ipsum</td>
-				   						// 		<td>Primera descripcion dinámica</td>
-				   						// 		<td>
-				   						// 			<div>
-				   						// 				<button type="button" className="btn btn-warning rounded-circle mr-2">
-				   						// 				   <i className="nav-icon fas fa-pencil-alt"></i>
-				   						// 				</button>
-
-				   						// 				<button type="button" className="btn btn-danger rounded-circle">
-				   						// 				   <i className="nav-icon fas fa-trash"></i>
-				   						// 				</button>
-				   						// 			</div>
-				   						// 		</td>
-				   						// 	</tr>
-
-				   						// </tbody>
-				   						}
+				   						
 				   					</table>
 				  			    </div>		   
 							</div>
