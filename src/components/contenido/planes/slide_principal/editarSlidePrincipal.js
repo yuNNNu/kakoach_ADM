@@ -22,23 +22,6 @@ export default function EditarImgSlide()
 
     const cambiarFormPut = e =>
     {
-        if (!$("#editarTitulo").val())
-        {
-            $(".invalid-titulo").show();
-            $(".invalid-titulo").html("El titulo no puede ir vacio");
-        } else
-        {
-            $(".invalid-titulo").hide();
-        }
-          if (!$("#editarDescripcion").val())
-        {
-            $(".invalid-descripcion").show();
-            $(".invalid-descripcion").html("la descripcion no puede ir vacia");
-        } else
-        {
-            $(".invalid-descripcion").hide();
-        }
-
 
 		if($("#editarImagen").val()){
 
@@ -246,7 +229,7 @@ export default function EditarImgSlide()
 										<i className="fas fa-heading"></i>
 									</div>
 
-									<input id="editarTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" /* pattern="([0-9a-zA-Z]){1,30}"*//>
+									<input id="editarTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" required />
 
 									<div className="invalid-feedback invalid-titulo"></div>
 								</div>
@@ -262,7 +245,7 @@ export default function EditarImgSlide()
 										<i className="fas fa-file-alt"></i>
 									</div>
 
-									<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" /* pattern="([0-9a-zA-Z]).{1,30}" */ />
+									<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" required /* pattern="([0-9a-zA-Z]).{1,30}" */ />
 
 									<div className="invalid-feedback invalid-descripcion"></div>
 								</div>

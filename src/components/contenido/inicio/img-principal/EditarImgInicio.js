@@ -87,25 +87,22 @@ export default function EditarImgInicio(){
 		e.preventDefault();
 		const {imagen, titulo, descripcion, id} = imgP;
 
-			if(titulo !== ""){
-			const expTitulo = /^([0-9a-zA-Z]).{1,30}$/;
-
-			if(!expTitulo.test(titulo)){
+			if(titulo === ""){
+		
 				$(".invalid-titulo").show();
 				$(".invalid-titulo").html("Utiliza un formato que coincida con el solicitado");
 
 				return;
-			}
+	
             }
-            if(descripcion !== ""){
-			const expDescripcion = /^([0-9a-zA-Z]).{1,100}$/;
 
-                if(!expDescripcion.test(descripcion)){
-                    $(".invalid-titulo").show();
-                    $(".invalid-titulo").html("Utiliza un formato que coincida con el solicitado");
+            if(descripcion === ""){
 
-                    return;
-                }
+                $(".invalid-descripcion").show();
+                $(".invalid-descripcion").html("Utiliza un formato que coincida con el solicitado");
+
+                return;
+
 		    }
 
 		// SE EJECUTA SERVICIO PUT
@@ -215,7 +212,7 @@ export default function EditarImgInicio(){
 										<i className="fas fa-heading"></i>
 									</div>
 
-									<input id="editarTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" pattern="([0-9a-zA-Z]){1,30}"/>
+									<input id="editarTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" required/>
 
 									<div className="invalid-feedback invalid-titulo"></div>
 								</div>
@@ -231,9 +228,9 @@ export default function EditarImgInicio(){
 										<i className="fas fa-file-alt"></i>
 									</div>
 
-									<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" pattern="([0-9a-zA-Z]).{1,30}"/>
+									<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" required/>
 
-									<div className="invalid-feedback invalid-titulo"></div>
+									<div className="invalid-feedback invalid-descripcion"></div>
 								</div>
 							</div>
 						</div>

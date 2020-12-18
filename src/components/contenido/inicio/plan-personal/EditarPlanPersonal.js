@@ -182,7 +182,7 @@ export default function EditarBorrarAdministradores(){
 		if(!Number(precio)){
 
 			$(".invalid-precio").show();
-			$(".invalid-precio").html("Debe ser numerico");
+			$(".invalid-precio").html("Este es un campo numérico");
 			return;
 
 		}
@@ -378,6 +378,7 @@ export default function EditarBorrarAdministradores(){
 			      				className="form-control"
 			      				name="descripcion"
 			      				placeholder="Ingrese la descripción*"
+			      				required
 
 			      			/>
 
@@ -405,7 +406,7 @@ export default function EditarBorrarAdministradores(){
 			      				className="form-control"
 			      				name="precio"
 			      				placeholder="Ingrese el precio*"
-
+			      				required
 			      			/>
 
 			      			<div className="invalid-feedback invalid-precio"></div>
@@ -424,7 +425,8 @@ export default function EditarBorrarAdministradores(){
 								<i className="fas fa-file-alt"></i>
 							</div>
 
-							<textarea className="form-control" rows="5" id="editarPros" name="pros" placeholder="Ingrese los pros" pattern="([0-9a-zA-Z]).{1,30}"></textarea>
+							<textarea className="form-control" rows="5" id="editarPros" name="pros" placeholder="Ingrese los pros"
+							required></textarea>
 
 							<div className="invalid-feedback invalid-pros"></div>
 						</div>

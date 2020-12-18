@@ -140,6 +140,7 @@ export default function EditarBorrarAdministradores(){
 			      				className="form-control"
 			      				name="editaridd"
 			      				placeholder="Ingrese el valor*"
+			      				required
 
 			      			/>
 

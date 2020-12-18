@@ -125,7 +125,7 @@ export default function Sidebar(){
 									<a href="/inicio_benefits" className="nav-link">
 										<i className="nav-icon fas fa-file"></i>
 										<p>
-										Gestor Benefits
+										Gestor Beneficios
 										</p>
 
 									</a>

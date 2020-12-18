@@ -117,9 +117,10 @@ export default function Category(){
 						<div className="col-lg-12">
 							<div className="card card-primary card-outline">
 								<div className="card-header">
-									<h5 className="m-0">
-										
-									</h5>
+										<p className="m-0">
+										Recordatorio: Es necesario mantener el orden de las categorías
+									</p>
+								
 								</div>
 
 								<div className="card-body">
