@@ -21,24 +21,7 @@ export default function EditarBenefitPlan(){
 	// ONCHANGE
 
 	const cambiarFormPut = e => {
-        if (!$("#editarTitulo").val())
-        {
-            $(".invalid-titulo").show();
-            $(".invalid-titulo").html("El titulo no puede ir vacio");
-        } else
-        {
-            $(".invalid-titulo").hide();
-        }
-
-        if (!$("#editarDescripcion").val())
-        {
-            $(".invalid-descripcion").show();
-            $(".invalid-descripcion").html("El descripcion no puede ir vacio");
-        } else
-        {
-            $(".invalid-descripcion").hide();
-        }
-
+       
         editarBenefitPlan({
      
         'titulo': $("#editarTitulo").val(),
@@ -66,8 +49,8 @@ export default function EditarBenefitPlan(){
             }
             if(descripcion === ""){
 			
-            $(".invalid-titulo").show();
-            $(".invalid-titulo").html("La descripcion no puede ir vacia");
+            $(".invalid-descripcion").show();
+            $(".invalid-descripcion").html("La descripcion no puede ir vacia");
 
             return;
                 
@@ -173,7 +156,7 @@ export default function EditarBenefitPlan(){
 										<i className="fas fa-heading"></i>
 									</div>
 
-									<input id="editarTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo"/* pattern="([0-9a-zA-Z]).{1,60}" */ />
+									<input id="editarTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" required/* pattern="([0-9a-zA-Z]).{1,60}" */ />
 
 									<div className="invalid-feedback invalid-titulo"></div>
 								</div>
@@ -189,7 +172,7 @@ export default function EditarBenefitPlan(){
 										<i className="fas fa-file-alt"></i>
 									</div>
 
-									<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" /* pattern="([0-9a-zA-Z]).{1,30}" */ />
+									<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" required/* pattern="([0-9a-zA-Z]).{1,30}" */ />
 
 									<div className="invalid-feedback invalid-descripcion"></div>
 								</div>

@@ -17,24 +17,7 @@ export default function CrearTarjeta()
     // ONCHANGE
     const cambiarFormPut = e =>
     {
-        if (!$("#crearTitulo").val())
-        {
-            $(".invalid-titulo").show();
-            $(".invalid-titulo").html("El titulo no puede ir vacio");
-        } else
-        {
-            $(".invalid-titulo").hide();
-        }
-          if (!$("#crearDescripcion").val())
-        {
-            $(".invalid-descripcion").show();
-            $(".invalid-descripcion").html("la descripcion no puede ir vacia");
-        } else
-        {
-            $(".invalid-descripcion").hide();
-        }
-
-
+        
 		if($("#crearImagen").val()){
 
 
@@ -191,7 +174,7 @@ export default function CrearTarjeta()
                                     <i className="fas fa-heading"></i>
                                 </div>
 
-                                <input id="crearTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" /* pattern="([0-9a-zA-Z]){1,30}"*//>
+                                <input id="crearTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" required /* pattern="([0-9a-zA-Z]){1,30}"*//>
 
                                 <div className="invalid-feedback invalid-titulo"></div>
                             </div>
@@ -207,7 +190,7 @@ export default function CrearTarjeta()
                                     <i className="fas fa-file-alt"></i>
                                 </div>
 
-                                <textarea id="crearDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" /* pattern="([0-9a-zA-Z]).{1,30}" */ />
+                                <textarea id="crearDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" required/* pattern="([0-9a-zA-Z]).{1,30}" */ />
 
                                 <div className="invalid-feedback invalid-descripcion"></div>
                             </div>
