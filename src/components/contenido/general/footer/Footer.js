@@ -20,19 +20,15 @@ export default function FooterClient(){
 
         getFooter.data.forEach((footer, index) =>
         {
-            
+           
 			dataSet[index] = [(index+1),
 							footer.titulo, 
                             footer.descripcion
-                            , 
-                             
-                        
-                       
-                            [footer._id + "_",
+                            , [footer._id + "_",
 							footer.titulo + "_", 
                             footer.descripcion, 
                 ]];
-            console.log(footer.descripcion)
+            
 		})
 
 		// =============================================
