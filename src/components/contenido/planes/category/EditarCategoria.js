@@ -21,23 +21,7 @@ export default function EditarCategoria()
 
     const cambiarFormPut = e =>
     {
-        if (!$("#editarnombre").val())
-        {
-            $(".invalid-nombre").show();
-            $(".invalid-nombre").html("El nombre no puede ir vacio");
-        } else
-        {
-            $(".invalid-nombre").hide();
-        }
-          if (!$("#editarDescripcion").val())
-        {
-            $(".invalid-descripcion").show();
-            $(".invalid-descripcion").html("la descripcion no puede ir vacia");
-        } else
-        {
-            $(".invalid-descripcion").hide();
-        }
-
+       
 
 		if($("#editarImagen").val()){
 
@@ -107,28 +91,6 @@ export default function EditarCategoria()
 		e.preventDefault();
 		const {imagen, nombre, descripcion, id} = category;
 
-        // if (nombre !== "")
-        // {
-        //     $('.alert').remove();
-        // const expnombre = /^([0-9a-zA-Z]).{1,30}$/;
-
-        // if(!expnombre.test(nombre)){
-        //     $(".invalid-nombre").show();
-        //     $(".invalid-nombre").html("Utiliza un formato que coincida con el solicitado");
-
-        //     return;
-        // }
-        // }
-        // if(descripcion !== ""){
-        // const expDescripcion = /^([0-9a-zA-Z]).{1,100}$/;
-
-        //     if(!expDescripcion.test(descripcion)){
-        //         $(".invalid-nombre").show();
-        //         $(".invalid-nombre").html("Utiliza un formato que coincida con el solicitado");
-
-        //         return;
-        //     }
-        // }
         if (nombre == "")
         {
             $(".invalid-nombre").show();
@@ -243,7 +205,7 @@ export default function EditarCategoria()
 									<i className="fas fa-heading"></i>
 								</div>
 
-								<input id="editarnombre" type="text" className="form-control" name="nombre" placeholder="Ingrese el nombre" /* pattern="([0-9a-zA-Z]){1,30}"*//>
+								<input id="editarnombre" type="text" className="form-control" name="nombre" placeholder="Ingrese el nombre" required/>
 
 								<div className="invalid-feedback invalid-nombre"></div>
 							</div>
@@ -259,7 +221,7 @@ export default function EditarCategoria()
 									<i className="fas fa-file-alt"></i>
 								</div>
 
-								<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" /* pattern="([0-9a-zA-Z]).{1,30}" */ />
+								<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" required />
 
 								<div className="invalid-feedback invalid-descripcion"></div>
 							</div>
