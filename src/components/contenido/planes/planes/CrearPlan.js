@@ -29,6 +29,8 @@ export default function CrearPlan()
 
 	const cambiaFormPut = e =>
     {
+     
+        
         let type, nivel;
         //    TIPO
             if ($('#crearvol').prop('checked'))
@@ -57,7 +59,7 @@ export default function CrearPlan()
        let pdf = "";
 		let imagen = "";
 		// si carga img
-		if ($("#crearImagen").val())
+		if ($("#crearImagen").get(0).files[0])
 		{
 			let imagen = $("#crearImagen").get(0).files[0];
 			// validaciones imagen
@@ -67,7 +69,7 @@ export default function CrearPlan()
 				notie.alert({
 					type: 3,
 					text: 'ERROR: La imagen debe estar en formato JPG o PNG!',
-					time: 7
+					time: 4
 				})
 
 				$(".previsualizarImg").attr("src", "");
@@ -79,7 +81,7 @@ export default function CrearPlan()
 				notie.alert({
 					type: 3,
 					text: 'ERROR: La imagen debe pesar como maximo 2mb',
-					time: 7
+					time: 4
 				})
 				$(".previsualizarImg").attr("src", "");
 				return;
@@ -115,51 +117,45 @@ export default function CrearPlan()
 			$(".invalid-imagen").html("Completa este campo");
 			return;
 		}
-		// si carga pdf
-		if ($("#crearPdf").val())
-		{
-			 pdf = $("#crearPdf").get(0).files[0];
-			// validaciones imagen
-			if(pdf["type"] !== "application/pdf" ){
-			
+        // si carga pdf
+        if ($("#crearPdf").get(0).files[0]) {
+        pdf = $("#crearPdf").get(0).files[0];
+        // validaciones imagen
+        if (pdf["type"] !== "application/pdf") {
+            notie.alert({
+            type: 3,
+            text: "ERROR: La archivo debe ser pdf",
+            time: 4,
+            });
 
-				notie.alert({
-					type: 3,
-					text: 'ERROR: La archivo debe ser pdf',
-					time: 7
-				})
-				
-				return;
-			}
-			if (pdf["size"] > 2000000)
-			{
-				
-				notie.alert({
-					type: 3,
-					text: 'ERROR: La pdf debe pesar como maximo 2mb',
-					time: 7
-				})
-				
-				return;
-			}
-			crearPlan({
+            return;
+        }else if (pdf["size"] > 2000000) {
+            notie.alert({
+            type: 3,
+            text: "ERROR: La pdf debe pesar como maximo 2mb",
+            time: 4,
+            });
 
-				'id' : $("#editarID").val(),
-                'nombre' : $("#crearNombre").val(),
-                'descripcion' :  $("#crearDescripcion").val(),
-                'precio' :   $("#crearPrecio").val(),
-                'pros' : $("#crearPros").val(),
-                'pdf' : pdf,
-                'imagen': imagen,
-                'type':type,
-                'nivel':nivel
-
-			})
-		} else
-		{
-            $(".invalid-pdf").show();
-			$(".invalid-pdf").html("Completa este campo");
-			return;
+            return;
+        } else
+        {
+            crearPlan({
+                id: $("#editarID").val(),
+                nombre: $("#crearNombre").val(),
+                descripcion: $("#crearDescripcion").val(),
+                precio: $("#crearPrecio").val(),
+                pros: $("#crearPros").val(),
+                pdf: pdf,
+                imagen: imagen,
+                type: type,
+                nivel: nivel,
+            });
+        }
+        
+        } else {
+        $(".invalid-pdf").show();
+        $(".invalid-pdf").html("Completa este campo");
+        return;
         }
 
 		
@@ -191,7 +187,23 @@ export default function CrearPlan()
 		e.preventDefault();		
 
 		const {id, nombre, descripcion, precio, pros, pdf, imagen} = plan;
- 
+    
+        // VALIDANDO TIPO
+        if (!$('#crearvol').prop('checked') && !$('#creardef').prop('checked'))
+        {
+            $(".invalid-tipo").show();
+            $(".invalid-tipo").html("Debe seleccionar un tipo de plan");
+            return;
+        } 
+
+        // VALIDANDO NIVEL
+        if (!$('#crearb').prop('checked') && !$('#creari').prop('checked') && !$('#creara').prop('checked')  )
+        {
+            $(".invalid-nivel").show();
+            $(".invalid-nivel").html("Debe seleccionar un nivel del plan");
+            return;
+        } 
+        
 		/*=============================================
 		Validamos que el campo user no venga vacío
 		=============================================*/
@@ -275,7 +287,7 @@ export default function CrearPlan()
                 <label className="small text-secondary" htmlFor="crearImagen">
                 IMAGEN de Plan personal |
                 *Peso Max. 2MB | Formato: JPG o PNG</label>
-                <input id="crearImagen" type="file" className="form-control-file border" name="imagen" />
+                <input id="crearImagen" type="file" className="form-control-file border" name="imagen" required/>
                 <div className="invalidad-feedback invalid-imagen"></div>
                 <img className="previsualizarImg img-fluid" />
                             
