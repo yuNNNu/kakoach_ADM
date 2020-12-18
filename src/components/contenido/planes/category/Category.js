@@ -20,12 +20,12 @@ export default function Category(){
 		getCategory.data.forEach((category, index) => {
 			dataSet[index] = [(index+1),
                             category.imagen,
-							category.titulo, 
+							category.nombre, 
                             category.descripcion, 
                            
                             [category._id + "_",
                             category.imagen+ "_",
-							category.titulo+ "_", 
+							category.nombre+ "_", 
                             category.descripcion, 
                             
                 ]];

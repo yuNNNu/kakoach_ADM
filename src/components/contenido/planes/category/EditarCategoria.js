@@ -12,7 +12,7 @@ export default function EditarCategoria()
 
 		
         id: "",
-        titulo: "",
+        nombre: "",
         descripcion: "",
         imagen: null,
 
@@ -21,13 +21,13 @@ export default function EditarCategoria()
 
     const cambiarFormPut = e =>
     {
-        if (!$("#editarTitulo").val())
+        if (!$("#editarnombre").val())
         {
-            $(".invalid-titulo").show();
-            $(".invalid-titulo").html("El titulo no puede ir vacio");
+            $(".invalid-nombre").show();
+            $(".invalid-nombre").html("El nombre no puede ir vacio");
         } else
         {
-            $(".invalid-titulo").hide();
+            $(".invalid-nombre").hide();
         }
           if (!$("#editarDescripcion").val())
         {
@@ -78,7 +78,7 @@ export default function EditarCategoria()
 					editarCategoria({
 
                         'imagen': imagen,
-                        'titulo': $("#editarTitulo").val(),
+                        'nombre': $("#editarnombre").val(),
                         'descripcion': $("#editarDescripcion").val(),
 						'id' : $("#editarID").val()
 
@@ -91,7 +91,7 @@ export default function EditarCategoria()
 			editarCategoria({
 
                 'imagen': null,
-                'titulo': $("#editarTitulo").val(),
+                'nombre': $("#editarnombre").val(),
                 'descripcion': $("#editarDescripcion").val(),
                 'id' : $("#editarID").val()
 
@@ -105,16 +105,16 @@ export default function EditarCategoria()
 
 		$('.alert').remove();
 		e.preventDefault();
-		const {imagen, titulo, descripcion, id} = category;
+		const {imagen, nombre, descripcion, id} = category;
 
-        // if (titulo !== "")
+        // if (nombre !== "")
         // {
         //     $('.alert').remove();
-        // const expTitulo = /^([0-9a-zA-Z]).{1,30}$/;
+        // const expnombre = /^([0-9a-zA-Z]).{1,30}$/;
 
-        // if(!expTitulo.test(titulo)){
-        //     $(".invalid-titulo").show();
-        //     $(".invalid-titulo").html("Utiliza un formato que coincida con el solicitado");
+        // if(!expnombre.test(nombre)){
+        //     $(".invalid-nombre").show();
+        //     $(".invalid-nombre").html("Utiliza un formato que coincida con el solicitado");
 
         //     return;
         // }
@@ -123,16 +123,16 @@ export default function EditarCategoria()
         // const expDescripcion = /^([0-9a-zA-Z]).{1,100}$/;
 
         //     if(!expDescripcion.test(descripcion)){
-        //         $(".invalid-titulo").show();
-        //         $(".invalid-titulo").html("Utiliza un formato que coincida con el solicitado");
+        //         $(".invalid-nombre").show();
+        //         $(".invalid-nombre").html("Utiliza un formato que coincida con el solicitado");
 
         //         return;
         //     }
         // }
-        if (titulo == "")
+        if (nombre == "")
         {
-            $(".invalid-titulo").show();
-            $(".invalid-titulo").html("El titulo no puede ir vacio");
+            $(".invalid-nombre").show();
+            $(".invalid-nombre").html("El nombre no puede ir vacio");
             return
         } 
         if (descripcion == "")
@@ -194,13 +194,13 @@ export default function EditarCategoria()
 
 		$("#editarID").val(data[0]);
         $(".previsualizarImg").attr("src", `${rutaAPI}/show-img-category/${ data[1] }`);
-        $("#editarTitulo").val(data[2]);
+        $("#editarnombre").val(data[2]);
 		$("#editarDescripcion").val(data[3]);
 
 		editarCategoria({
 
 			'imagen': null,
-			'titulo': data[2],
+			'nombre': data[2],
 			'descripcion': data[3],
 			'id' : data[0]
 
@@ -233,19 +233,19 @@ export default function EditarCategoria()
 						<div className="invalidad-feedback invalid-imagen"></div>
 						<img className="previsualizarImg img-fluid"/>
 
-						{/* ENTRADA TITULO*/}
+						{/* ENTRADA nombre*/}
 
 						<div className="form-group">
-							<label className="small text-secondary" htmlFor="editarTitulo">* No ingresar caracteres especiales, solo letras y números</label>
+							<label className="small text-secondary" htmlFor="editarnombre">* No ingresar caracteres especiales, solo letras y números</label>
 
 							<div className="input-group mb-3">
 								<div className="input-group-append input-group-text">
 									<i className="fas fa-heading"></i>
 								</div>
 
-								<input id="editarTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" /* pattern="([0-9a-zA-Z]){1,30}"*//>
+								<input id="editarnombre" type="text" className="form-control" name="nombre" placeholder="Ingrese el nombre" /* pattern="([0-9a-zA-Z]){1,30}"*//>
 
-								<div className="invalid-feedback invalid-titulo"></div>
+								<div className="invalid-feedback invalid-nombre"></div>
 							</div>
 						</div>
 
@@ -299,7 +299,7 @@ const putData = data => {
 
 	let formData = new FormData();
 	formData.append("imagen", data.imagen);
-	formData.append("titulo", data.titulo);
+	formData.append("nombre", data.nombre);
 	formData.append("descripcion", data.descripcion);
 
 	const params = {
