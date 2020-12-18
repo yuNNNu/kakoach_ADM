@@ -19,7 +19,13 @@ export default function EditarFooter(){
 	// ONCHANGE
 
 	const cambiarFormPut = e => {
-		let arrDes = $("#editarDescripcion").val().split(',');
+		let arrDi = $("#editarDescripcion").val().split(',');
+		let arrDes = arrDi.map((x) =>
+		{
+			return x.replace("\n", "");
+			
+		})
+
 		console.log("arr en onchange",arrDes)
 		editarFooter({
 			'id' : $("#editarID").val(),
@@ -90,10 +96,17 @@ export default function EditarFooter(){
 
 	$(document).on("click", ".editarInputs", function(e){
 		e.preventDefault();
-
-		let data = $(this).attr("data").split('_,');
-		let arrDes = data[2].split(',');
+		
 	
+		let data = $(this).attr("data").split('_,');
+			
+		let arrDi = data[2].trim().split(',');
+		let arrDes = arrDi.map((x) =>
+		{
+			return x.replace("\n", "");
+			
+		})
+	console.log(arrDes)
 	
 		$("#editarID").val(data[0]);
 		
