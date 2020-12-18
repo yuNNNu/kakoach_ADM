@@ -4,7 +4,8 @@ import $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
 import 'datatables.net-responsive';
-
+import EditarPlan from './EditarPlan';
+import CrearPlan from './CrearPlan';
 export default function Planes(){
 
 
@@ -28,16 +29,16 @@ export default function Planes(){
                             planes.nivel,
                             planes.pdf,
                             [planes._id + "_",
-                            planes.imagen,
-                            planes.pros, 
-                            planes.type,
-							planes.nombre, 
-                            planes.descripcion, 
-                            planes.precio, 
-                            planes.nivel,
+                            planes.imagen+ "_",
+                            planes.pros+ "_", 
+                            planes.type+ "_",
+							planes.nombre+ "_", 
+                            planes.descripcion+ "_", 
+                            planes.precio+ "_", 
+                            planes.nivel+ "_",
                             planes.pdf,
                 ]];
-            console.log(planes.pdf)
+            
 		})
 
 		// =============================================
@@ -77,7 +78,7 @@ export default function Planes(){
 
               	return `
 					
-					<a href="#" class="editarInputs" data-toggle="modal" data-target="#editarPlanes" data="${data}">
+					<a href="#" class="editarInputs" data-toggle="modal" data-target="#editarPlan" data="${data}">
 
 						<svg style="color:black; background:orange; border-radius:100%; width:35px; line-height:35px; text-align:center; padding:8px"
 
@@ -139,7 +140,7 @@ export default function Planes(){
 							<div className="card card-primary card-outline">
 								<div className="card-header">
 									<h5 className="m-0">
-										<button className="btn btn-primary limpiarForm" data-toggle="modal" data-target="">Nuevo Plan</button>
+										<button className="btn btn-primary limpiarForm" data-toggle="modal" data-target="#crearPlan">Nuevo Plan</button>
 									</h5>
 								</div>
 
@@ -155,9 +156,9 @@ export default function Planes(){
 				</div>
 			</div>
 
-			{/* <CrearImgPrincipal/> */}
-{/* 
-			<EditarBorrarImgPrincipal/> */}
+			
+			<CrearPlan/>
+			<EditarPlan/>
 
 		</div>
 

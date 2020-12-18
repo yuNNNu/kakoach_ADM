@@ -118,7 +118,7 @@ export default function EditarBorrarAdministradores(){
 			}
 			if (pdf["size"] > 2000000)
 			{
-				var clone = 
+				
 				notie.alert({
 					type: 3,
 					text: 'ERROR: La pdf debe pesar como maximo 2mb',
@@ -179,7 +179,13 @@ export default function EditarBorrarAdministradores(){
 		e.preventDefault();		
 
 		const {id, nombre, descripcion, precio, pros, pdf, imagen} = planpersonal;
+		if(!Number(precio)){
 
+			$(".invalid-precio").show();
+			$(".invalid-precio").html("Debe ser numerico");
+			return;
+
+		}
 		/*=============================================
 		Validamos que el campo user no venga vacío
 		=============================================*/

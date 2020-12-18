@@ -23,7 +23,8 @@ export default function PlanPersonal(){
 							planPersonal.nombre, 
                             planPersonal.descripcion, 
                             planPersonal.precio, 
-							planPersonal.pros, 
+				planPersonal.pros, 
+						
                             [planPersonal._id + "_",
                             planPersonal.imagen + "_",
 							planPersonal.nombre + "_", 
