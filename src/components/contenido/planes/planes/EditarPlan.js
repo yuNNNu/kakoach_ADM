@@ -29,7 +29,16 @@ export default function EditarPlan()
 
 	const cambiaFormPut = e =>
     {
-        let type, nivel;
+		let type, nivel;
+		let arrDi = $("#editarPros").val().split(',');
+		let arrPros = arrDi.map((x) =>
+        {
+    
+			return x.trim().replace("\n", "");
+			
+		})
+
+	
         //    TIPO
             if ($('#vol').prop('checked'))
             {
@@ -71,7 +80,7 @@ export default function EditarPlan()
 				})
 
 				$(".previsualizarImg").attr("src", "");
-				
+				$("#editarImagen").get(0).value= "";
 				return;
 			}else if (imagen["size"] > 2000000)
 			{
@@ -82,6 +91,7 @@ export default function EditarPlan()
 					time: 7
 				})
 				$(".previsualizarImg").attr("src", "");
+				$("#editarImagen").get(0).value= "";
 				return;
 			} else
 			{
@@ -99,7 +109,7 @@ export default function EditarPlan()
                         'nombre' : $("#editarNombre").val(),
                         'descripcion' :  $("#editarDescripcion").val(),
                         'precio' :   $("#editarPrecio").val(),
-                        'pros' : $("#editarPros").val(),
+                        'pros' : arrPros,
                         'pdf' : pdf,
                         'imagen': imagen,
                         'type':type,
@@ -117,7 +127,7 @@ export default function EditarPlan()
                 'nombre' : $("#editarNombre").val(),
                 'descripcion' :  $("#editarDescripcion").val(),
                 'precio' :   $("#editarPrecio").val(),
-                'pros' : $("#editarPros").val(),
+                'pros' : arrPros,
                 'pdf' : pdf,
                 'imagen': imagen,
                 'type':type,
@@ -140,18 +150,18 @@ export default function EditarPlan()
 				})
 				
 				
-				
+				$("#editarPdf").get(0).value= "";
 				return;
 			}
-			if (pdf["size"] > 2000000)
+			if (pdf["size"] > 4000000)
 			{
 				var clone = 
 				notie.alert({
 					type: 3,
-					text: 'ERROR: La pdf debe pesar como maximo 2mb',
+					text: 'ERROR: La pdf debe pesar como maximo 4mb',
 					time: 7
 				})
-				
+				$("#editarPdf").get(0).value= "";
 				return;
 			}
 			editarPlan({
@@ -160,7 +170,7 @@ export default function EditarPlan()
                 'nombre' : $("#editarNombre").val(),
                 'descripcion' :  $("#editarDescripcion").val(),
                 'precio' :   $("#editarPrecio").val(),
-                'pros' : $("#editarPros").val(),
+                'pros' : arrPros,
                 'pdf' : pdf,
                 'imagen': imagen,
                 'type':type,
@@ -175,7 +185,7 @@ export default function EditarPlan()
                 'nombre' : $("#editarNombre").val(),
                 'descripcion' :  $("#editarDescripcion").val(),
                 'precio' :   $("#editarPrecio").val(),
-                'pros' : $("#editarPros").val(),
+                'pros' : arrPros,
                 'pdf' : null,
                 'imagen': imagen,
                 'type':type,
@@ -191,7 +201,7 @@ export default function EditarPlan()
 			'nombre' : $("#editarNombre").val(),
 			'descripcion' :  $("#editarDescripcion").val(),
 			'precio' :   $("#editarPrecio").val(),
-			'pros' : $("#editarPros").val(),
+			'pros' : arrPros,
 			'pdf' : pdf,
             'imagen': imagen,
             'type':type,
@@ -213,7 +223,21 @@ export default function EditarPlan()
 
 		const {id, nombre, descripcion, precio, pros, pdf, imagen} = plan;
         // validaciones imagen
-      
+            // VALIDANDO TIPO
+        if (!$('#vol').prop('checked') && !$('#def').prop('checked'))
+        {
+            $(".invalid-tipo").show();
+            $(".invalid-tipo").html("Debe seleccionar un tipo de plan");
+            return;
+        } 
+
+        // VALIDANDO NIVEL
+        if (!$('#b').prop('checked') && !$('#i').prop('checked') && !$('#a').prop('checked')  )
+        {
+            $(".invalid-nivel").show();
+            $(".invalid-nivel").html("Debe seleccionar un nivel del plan");
+            return;
+        } 
 		/*=============================================
 		Validamos que el campo user no venga vacío
 		=============================================*/
@@ -309,11 +333,17 @@ export default function EditarPlan()
 		e.preventDefault();
 
 		let data = $(this).attr("data").split('_,');
-        
-		
+       
+		let arrDi = data[2].trim().split(',');
+		let arrPros = arrDi.map((x) =>
+		{
+			return x.replace("\n", "");
+			
+		})
+	 	console.log("data2", arrPros)
 		$("#editarID").val(data[0]);
         $(".previsualizarImg").attr("src", `${rutaAPI}/show-plan/${ data[1] }`);
-		$("#editarPros").val(data[2]);
+		$("#editarPros").val(arrPros);
 		$("#editarNombre").val(data[4]);
 		$("#editarDescripcion").val(data[5]);
         $("#editarPrecio").val(data[6]);
@@ -348,7 +378,7 @@ export default function EditarPlan()
 		editarPlan({
 
 			'id' : data[0],
-            'pros': data[2],
+            'pros': arrPros,
             'type': data[3],
 			'nombre' : data[4],
 			'descripcion' :  data[5],
@@ -454,7 +484,7 @@ export default function EditarPlan()
                 IMAGEN de Plan personal |
                 *Peso Max. 2MB | Formato: JPG o PNG</label>
                 <input id="editarImagen" type="file" className="form-control-file border" name="imagen" />
-                <div className="invalidad-feedback invalid-imagen"></div>
+                <div className="invalid-feedback invalid-imagen"></div>
                 <img className="previsualizarImg img-fluid" />
                             
                 {/* filtro tipo */}
@@ -627,7 +657,7 @@ export default function EditarPlan()
                 <div className="form-group">
                     <label className="small text-secondary" htmlFor="editarPdf">PDF Plan personal | *Peso Max. 2MB | Formato: JPG o PNG</label>
                     <input id="editarPdf" type="file" className="form-control-file border" name="pdf" />
-                    <div className="invalidad-feedback invalid-pdf"></div>
+                    <div className="invalid-feedback invalid-pdf"></div>
                 </div>
 
 

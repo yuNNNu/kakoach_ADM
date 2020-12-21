@@ -32,6 +32,16 @@ export default function CrearPlan()
      
         
         let type, nivel;
+
+		let arrDi = $("#crearPros").val().split(',');
+		let arrDes = arrDi.map((x) =>
+        {
+            console.log("dentro de map", x)
+			return x.trim().replace("\n", "");
+			
+		})
+
+		console.log("arr en onchange",arrDes)
         //    TIPO
             if ($('#crearvol').prop('checked'))
             {
@@ -57,7 +67,8 @@ export default function CrearPlan()
        
         
        let pdf = "";
-		let imagen = "";
+        let imagen = "";
+   
 		// si carga img
 		if ($("#crearImagen").get(0).files[0])
 		{
@@ -73,7 +84,7 @@ export default function CrearPlan()
 				})
 
 				$(".previsualizarImg").attr("src", "");
-				
+                $("#crearImagen").get(0).value= "";
 				return;
 			}else if (imagen["size"] > 2000000)
 			{
@@ -83,7 +94,8 @@ export default function CrearPlan()
 					text: 'ERROR: La imagen debe pesar como maximo 2mb',
 					time: 4
 				})
-				$(".previsualizarImg").attr("src", "");
+                $(".previsualizarImg").attr("src", "");
+                 $("#crearImagen").get(0).value= "";
 				return;
 			} else
 			{
@@ -101,7 +113,7 @@ export default function CrearPlan()
                         'nombre' : $("#crearNombre").val(),
                         'descripcion' :  $("#crearDescripcion").val(),
                         'precio' :   $("#crearPrecio").val(),
-                        'pros' : $("#crearPros").val(),
+                        'pros' : arrDes,
                         'pdf' : pdf,
                         'imagen': imagen,
                         'type':type,
@@ -127,7 +139,7 @@ export default function CrearPlan()
             text: "ERROR: La archivo debe ser pdf",
             time: 4,
             });
-
+            $("#crearPdf").get(0).value = "";
             return;
         }else if (pdf["size"] > 2000000) {
             notie.alert({
@@ -135,7 +147,7 @@ export default function CrearPlan()
             text: "ERROR: La pdf debe pesar como maximo 2mb",
             time: 4,
             });
-
+            $("#crearPdf").get(0).value = "";
             return;
         } else
         {
@@ -144,7 +156,7 @@ export default function CrearPlan()
                 nombre: $("#crearNombre").val(),
                 descripcion: $("#crearDescripcion").val(),
                 precio: $("#crearPrecio").val(),
-                pros: $("#crearPros").val(),
+                pros: arrDes,
                 pdf: pdf,
                 imagen: imagen,
                 type: type,
@@ -159,14 +171,15 @@ export default function CrearPlan()
         }
 
 		
+
 		
 		crearPlan({
 
 			'id' : $("#editarID").val(),
 			'nombre' : $("#crearNombre").val(),
-			'descripcion' :  $("#crearDescripcion").val(),
+			'descripcion' :  arrDes,
 			'precio' :   $("#crearPrecio").val(),
-			'pros' : $("#crearPros").val(),
+			'pros' : arrDes,
 			'pdf' : pdf,
             'imagen': imagen,
             'type':type,
@@ -283,14 +296,15 @@ export default function CrearPlan()
                 
 
                 {/* ENTRADA IMAGEN*/}
+            <div className="form-group">
 
                 <label className="small text-secondary" htmlFor="crearImagen">
                 IMAGEN de Plan personal |
                 *Peso Max. 2MB | Formato: JPG o PNG</label>
                 <input id="crearImagen" type="file" className="form-control-file border" name="imagen" required/>
-                <div className="invalidad-feedback invalid-imagen"></div>
+                <div className="invalid-feedback invalid-imagen"></div>
                 <img className="previsualizarImg img-fluid" />
-                            
+                </div>          
                 {/* filtro tipo */}
                             
                 <div className="form-group">
@@ -443,14 +457,19 @@ export default function CrearPlan()
                 {/* ENTRADA PROS */}
 
                 <div className="form-group">
-                        <label className="small text-secondary" htmlFor="crearPros">* Pros del plan, deben separarse por "," para generar el salto de linea.</label>
+                                <label className="small text-secondary" htmlFor="crearPros">* Pros del plan, deben separarse por ","
+                                Ejemplo:
+                                pro1,
+                                pro2,
+                                pro3
+                        </label>
 
                     <div className="input-group mb-3">
                         <div className="input-group-append input-group-text">
                             <i className="fas fa-file-alt"></i>
                         </div>
 
-                        <textarea className="form-control" rows="5" id="crearPros" name="pros" placeholder="Ingrese los pros" pattern="([0-9a-zA-Z]).{1,30}" required></textarea>
+                        <textarea className="form-control" rows="5" id="crearPros" name="pros" placeholder="Ingrese los pros" required></textarea>
 
                         <div className="invalid-feedback invalid-pros"></div>
                     </div>
@@ -460,8 +479,8 @@ export default function CrearPlan()
 
                 <div className="form-group">
                     <label className="small text-secondary" htmlFor="crearPdf">PDF Plan personal | *Peso Max. 2MB | Formato: JPG o PNG</label>
-                    <input id="crearPdf" type="file" className="form-control-file border" name="pdf" required/>
-                    <div className="invalidad-feedback invalid-pdf"></div>
+                    <input id="crearPdf" type="file"  className="form-control-file border" name="pdf" required/>
+                    <div className="invalid-feedback invalid-pdf"></div>
                 </div>
 
 
