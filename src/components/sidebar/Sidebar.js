@@ -208,6 +208,18 @@ export default function Sidebar(){
 									</a>
 
 								</li>
+							<div className="sidenav-menu-heading">Usuarios</div>
+								<li className="nav-item">
+
+									<a href="/usuarios" className="nav-link">
+										<i className="nav-icon fas fa-users"></i>
+										<p>
+										Gestor Usuarios
+										</p>
+
+									</a>
+
+								</li>
 							</ul>
 						</nav>
 
