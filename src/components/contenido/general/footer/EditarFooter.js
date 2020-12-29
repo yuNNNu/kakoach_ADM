@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import $ from 'jquery';
 import {rutaAPI} from '../../../../config/Config';
-import notie from 'notie';
+
 import Swal from 'sweetalert2'
 
 export default function EditarFooter(){
@@ -18,14 +18,21 @@ export default function EditarFooter(){
 
 	// ONCHANGE
 
-	const cambiarFormPut = e => {
-		let arrDi = $("#editarDescripcion").val().split(',');
-		let arrDes = arrDi.map((x) =>
+	const cambiarFormPut = e =>
+	{
+		let arrDes;
+		if ($("#editarDescripcion").val())
 		{
-			return x.replace("\n", "");
+			let arrDi = $("#editarDescripcion").val().split(',');
+			 arrDes = arrDi.map((x) =>
+			{
+				return x.replace("\n", "");
 			
-		})
-
+			})
+		} else
+		{
+			arrDes = "";
+		}
 		console.log("arr en onchange",arrDes)
 		editarFooter({
 			'id' : $("#editarID").val(),
@@ -40,22 +47,26 @@ export default function EditarFooter(){
 
 		$('.alert').remove();
 		e.preventDefault();
-		const {id, titulo, descripcion} = footer;
+		const { titulo, descripcion} = footer;
+		if (!titulo || !descripcion)
+        {
+            if(titulo === ""){
+			$(".invalid-titulo").show();
+			$(".invalid-titulo").html("Completa este campo");
+            }
 
+            if(descripcion === ""){
+                $(".invalid-descripcion").show();
+                $(".invalid-descripcion").html("Completa este campo");
+            }
+            return
+        }
 	
 		// SE EJECUTA SERVICIO PUT
 
 		const result = await putData(footer); 
 
-		if(titulo === ""){
-			$(".invalid-titulo").show();
-			$(".invalid-titulo").html("Completa este campo");
-		}
-
-		if(descripcion === ""){
-			$(".invalid-descripcion").show();
-			$(".invalid-descripcion").html("Completa este campo");
-		}
+		
 
 		if(result.status === 400){
 
@@ -121,7 +132,74 @@ export default function EditarFooter(){
 
 		})
 	})
+    // CAPTURAR DATOS PARA BORRAR
+	$(document).on("click", ".borrarInput", function(e){
 
+		e.preventDefault();
+		let data = $(this).attr("data").split("_,")[0];
+		
+			Swal.fire({
+			  title: '¿Está seguro de eliminar este registro?',
+			  text: "Si no lo está... Puede cancelar esta acción!",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Sí, eliminar registro!'
+			}).then((result) => {
+			  if (result.value) {
+
+			  	const borrarFooter = async () => {
+
+					/*=============================================
+					EJECTUAMOS SERVICIO DELETE
+					=============================================*/
+
+					const result = await deleteData(data);
+
+					if(result.status === 400){
+
+						Swal.fire({
+
+					      type: "error",
+					      title: result.mensaje,
+					      showConfirmButton: true,
+					      confirmButtonText: "Cerrar"
+			            
+						}).then(function(result){
+							if(result.value){
+								window.location.href = "/footer";
+							}
+						})
+
+					}
+
+					if(result.status === 200){
+
+						Swal.fire({
+
+					      type: "success",
+					      title: result.mensaje,
+					      showConfirmButton: true,
+					      confirmButtonText: "Cerrar"
+			            
+						}).then(function(result){
+							if(result.value){
+								window.location.href = "/footer";
+							}
+						})
+					}
+
+				}
+
+				borrarFooter();
+
+			    
+			  }
+			})
+
+
+	})
 	
 
 	// RETORNO DE LA VISTA
@@ -227,3 +305,37 @@ const putData = data => {
 
 }
 
+/*=============================================
+PETICIÓN DELETE FOOTER
+=============================================*/
+
+const deleteData = data =>{
+
+	const url = `${rutaAPI}/borrar-footer/${data}`;
+	const token = localStorage.getItem("ACCESS_TOKEN");
+	const params = {
+
+		method: "DELETE",
+		headers: {
+
+			"Authorization": token,
+			"Content-Type": "application/json"
+		}
+
+	}
+
+	return fetch(url, params).then(response=>{
+
+		return response.json();
+
+	}).then(result=>{
+
+		return result;
+
+	}).catch(err=>{
+
+		return err;
+
+	})
+
+}

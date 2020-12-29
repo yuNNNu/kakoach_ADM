@@ -48,6 +48,7 @@ export default function EditarBorrarAdministradores(){
 				})
 
 				$(".previsualizarImg").attr("src", "");
+				$("#editarImagen").get(0).value= "";
 				
 				return;
 			}else if (imagen["size"] > 2000000)
@@ -59,6 +60,7 @@ export default function EditarBorrarAdministradores(){
 					time: 7
 				})
 				$(".previsualizarImg").attr("src", "");
+				$("#editarImagen").get(0).value= "";
 				return;
 			} else
 			{
@@ -113,7 +115,7 @@ export default function EditarBorrarAdministradores(){
 				})
 				
 				
-				
+				$("#editarPdf").get(0).value= "";
 				return;
 			}
 			if (pdf["size"] > 2000000)
@@ -124,7 +126,7 @@ export default function EditarBorrarAdministradores(){
 					text: 'ERROR: La pdf debe pesar como maximo 2mb',
 					time: 7
 				})
-				
+				$("#editarPdf").get(0).value= "";
 				return;
 			}
 			editarPlanPersonal({

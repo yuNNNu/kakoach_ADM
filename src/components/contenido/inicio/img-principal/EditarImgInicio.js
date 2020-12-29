@@ -36,6 +36,7 @@ export default function EditarImgInicio(){
 				})
 
 				$(".previsualizarImg").attr("src", "");
+				$("#editarImagen").get(0).value= "";
 				return;
 			}else if(imagen["size"] > 2000000){
 				$("#imagen").val("");
@@ -45,6 +46,7 @@ export default function EditarImgInicio(){
 					time: 7
 				})
 				$(".previsualizarImg").attr("src", "");
+				$("#editarImagen").get(0).value= "";
 				return;
 			}else{
 				let datosArchivo = new FileReader;
