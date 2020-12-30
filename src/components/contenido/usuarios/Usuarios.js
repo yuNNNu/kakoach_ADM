@@ -107,10 +107,12 @@ export default function Usuarios(){
 =============================================*/
 	
 const getData = () => {
-	const url = `${rutaAPI}/mostrar-clientes`;
+	const url = `${ rutaAPI }/mostrar-clientes`;
+	const token = localStorage.getItem("ACCESS_TOKEN");
 	const params = {
 		method: "GET",
 		headers: {
+			"Authorization": token,
 			"Content-type": "application/json"
 		}
 	}
