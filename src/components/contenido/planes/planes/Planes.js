@@ -27,7 +27,8 @@ export default function Planes(){
                             planes.descripcion, 
                             planes.precio, 
                             planes.nivel,
-                            planes.pdf,
+							planes.pdf,
+							planes._id,
                             [planes._id + "_",
                             planes.imagen+ "_",
                             planes.pros+ "_", 
@@ -72,7 +73,8 @@ export default function Planes(){
             { title: "Descripción" },
             {title: "Precio"},
             { title: "Nivel" },
-            { title: "pdf" },
+			{ title: "pdf" },
+			{title: "ID"},
 			{title: "Acciones",
               render: function(data){
 
