@@ -13,6 +13,9 @@ export default function Usuarios(){
 		=============================================*/
 		const getUser = await getData();
 		const dataSet = [];
+		let log = console.log
+		console.log("getUser: ", getUser["err"]["expiredAt"]?log("expirado"):"log(aun no expira")
+	
 		getUser.data.forEach((user, index) =>
         {
            

@@ -12,10 +12,9 @@ import Footer from './components/footer/Footer';
 
 
 // Componentes Dinamicos
-import Administradores from './components/contenido/administradores/Administradores';
-import Slide from './components/contenido/slide/Slide';
-import Galeria from './components/contenido/galeria/Galeria';
-import Articulos from './components/contenido/articulos/Articulos';
+
+
+
 import Usuarios from './components/contenido/usuarios/Usuarios';
 import Error404 from './components/contenido/error404/Error404';
 
@@ -61,10 +60,9 @@ export default function App() {
         <BrowserRouter>
 
         	<Switch>
-        		<Route exact path="/" component={Administradores}/>
-        		<Route exact path="/slide" component={Slide}/>
-        		<Route exact path="/galeria" component={Galeria}/>
-        		<Route exact path="/articulos" component={Articulos}/>
+        	
+        	
+        	
             <Route exact path="/usuarios" component={Usuarios} />
             <Route exact path="/inicio_benefits" component={Benefits} />
             <Route exact path="/inicio_slide" component={ImgPrincipal} />
@@ -121,7 +119,12 @@ const tokenExpira = (accessToken, metaToken) => {
 
   const seconds = 60;
   const{ exp } = metaToken;
-  const now = (Date.now()+seconds)/1000
-  return exp < now ;
+  
+  const now = (Date.now() + seconds) / 1000
+  console.log("exp", exp)
+  console.log("now", now)
+  console.log("ture or false",exp > now )
+  return exp > now;
+  
 
 }
