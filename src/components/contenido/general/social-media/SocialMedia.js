@@ -19,8 +19,8 @@ export default function SocialMedia(){
 
 		getSocialMedia.data.forEach((social, index) => {
 			dataSet[index] = [(index+1),
+							social.imagen,
                             social.url,
-							
                             [social._id + "_",
                             social.url,
 							
@@ -47,6 +47,10 @@ export default function SocialMedia(){
 				"order":[[0, "desc"]],
 			columns: [
             { title: "#" },
+            { title: "Red",
+                render: function(data){
+                    return `<img src=${rutaAPI}/mostrar-socialmedia-logo/${data} style="width:35px; background-color: #343A40;">`
+                }},
             { title: "Url" },
 			{title: "Acciones",
               render: function(data){
