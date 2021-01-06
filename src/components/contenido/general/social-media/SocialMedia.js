@@ -109,11 +109,6 @@ export default function SocialMedia(){
 					<div className="row">
 						<div className="col-lg-12">
 							<div className="card card-primary card-outline">
-								<div className="card-header">
-									<h5 className="m-0">
-										LAS URL, SOLO PERMITE EDITAR
-									</h5>
-								</div>
 
 								<div className="card-body">
 				   					

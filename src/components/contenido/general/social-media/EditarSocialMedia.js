@@ -134,7 +134,7 @@ export default function EditarSocialMedia()
 							{/* ENTRADA URL*/}
 
 							<div className="form-group">
-								<label className="small text-secondary" htmlFor="editarUrl">* Ingrese la url considerando https:// </label>
+								<label className="small text-secondary" htmlFor="editarUrl">* Ingrese la url considerando la entrada "https://". </label>
 
 								<div className="input-group mb-3">
 									<div className="input-group-append input-group-text">

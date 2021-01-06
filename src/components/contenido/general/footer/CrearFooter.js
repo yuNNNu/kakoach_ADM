@@ -133,14 +133,14 @@ export default function CrearFooter()
 							{/* ENTRADA TITULO */}
 
 							<div className="form-group">
-								<label className="small text-secondary" htmlFor="crearTitulo">* No ingresar caracteres especiales, solo letras y números</label>
+								<label className="small text-secondary" htmlFor="crearTitulo">* No ingresar caracterás especiales, sólo letras y números</label>
 
 								<div className="input-group mb-3">
 									<div className="input-group-append input-group-text">
-										<i className="fas fa-file-alt"></i>
+										<i className="fas fa-quote-left"></i>
 									</div>
 
-									<input id="crearTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" pattern="([0-9a-zA-Z]).{1,30}"/>
+									<input id="crearTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el título" pattern="([0-9a-zA-Z]).{1,30}"/>
 
 									<div className="invalid-feedback invalid-titulo"></div>
 								</div>
@@ -149,14 +149,14 @@ export default function CrearFooter()
 							{/* ENTRADA DESCRIPCION*/}
 
 							<div className="form-group">
-								<label className="small text-secondary" htmlFor="crearDescripcion">* No ingresar caracteres especiales, solo letras y números</label>
+								<label className="small text-secondary" htmlFor="crearDescripcion">* No ingresar carácteres especiales, sólo letras y números</label>
 
 								<div className="input-group mb-3">
 									<div className="input-group-append input-group-text">
 										<i className="fas fa-file-alt"></i>
 									</div>
 
-									<textarea className="form-control" rows="5" id="crearDescripcion" name="descripcion" placeholder="Ingrese la descripcion" pattern="([0-9a-zA-Z]).{1,30}"></textarea>
+									<textarea className="form-control" rows="5" id="crearDescripcion" name="descripcion" placeholder="Ingrese la descripción" pattern="([0-9a-zA-Z]).{1,30}"></textarea>
 
 									<div className="invalid-feedback invalid-descripcion"></div>
 								</div>

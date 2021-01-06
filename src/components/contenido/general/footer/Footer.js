@@ -51,7 +51,7 @@ export default function FooterClient(){
 			columns: [
             { title: "#" },
 			{title: "Título"},
-            {title: "Descripcion"},   
+            {title: "Descripción"},   
 			{title: "Acciones",
               render: function(data){
 

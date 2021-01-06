@@ -106,7 +106,7 @@ export default function PlanesEstrellas(){
 
 							<div className="card-header">
 									<p className="m-0">
-										Para editar los planes secundarios, solo se debe reemplazar el "id" del plan que se encuentra en su url. 
+										Para editar los planes secundarios, solo se debe reemplazar el <strong>"ID"</strong> del plan que desea asignar, la cual se encuentra en la sección <strong>"Gestor Planes"</strong>. 
 									</p>
 								</div>
 
