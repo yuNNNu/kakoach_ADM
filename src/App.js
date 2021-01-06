@@ -39,6 +39,8 @@ import BenefitsPlan from './components/contenido/planes/benefits/BenefitsPlan';
 // PAGINA SOBRE MI
 import SlideSobreMi  from './components/contenido/sobre-mi/slide-sobre-mi/Slide_principal_sobre_mi';
 import Tarjetas from './components/contenido/sobre-mi/tarjetas/Tarjetas'
+// VENTAS
+import Ventas from './components/contenido/ventas/Ventas'
 
 
 export default function App() {
@@ -62,7 +64,7 @@ export default function App() {
         	<Switch>
         	
         	
-        	
+        	 <Route exact path="/" component={Ventas} />
             <Route exact path="/usuarios" component={Usuarios} />
             <Route exact path="/inicio_benefits" component={Benefits} />
             <Route exact path="/inicio_slide" component={ImgPrincipal} />
@@ -121,9 +123,7 @@ const tokenExpira = (accessToken, metaToken) => {
   const{ exp } = metaToken;
   
   const now = (Date.now() + seconds) / 1000
-  console.log("exp", exp)
-  console.log("now", now)
-  console.log("ture or false",exp > now )
+
   return exp > now;
   
 
