@@ -17,9 +17,14 @@ export default function Ventas()
         fecha_fin: ""
 
     })
+    const [fecha, CrearFecha ] = useState({
+
+	    fecha_filtro: ""
+
+    })
     
     /*=============================================
-	OnChange
+	OnChange de filtro x rangos
 	=============================================*/
 
 	const cambiaForm = e =>
@@ -36,11 +41,11 @@ export default function Ventas()
         fecha_inicio: $("#fechaInicio").val(),
         fecha_fin: $("#fechaFin").val()
         });
-        console.log("rango", rango)
+        
     }
 
     /*=============================================
-	OnSubmit
+	OnSubmit de filtro x rangos
 	=============================================*/
     const submitForm = async e =>
     {
@@ -89,7 +94,7 @@ export default function Ventas()
             return
 		    }
     const dataSet = [];
-    console.log("getVentas",getVentas)    
+     
     
     getVentas["planes_y_cantidad"].forEach((e,i) => {
                 dataSet[i] = [(i+1),
@@ -134,7 +139,109 @@ export default function Ventas()
     })
 
     }
+
+    /*=============================================
+	OnChange de filtro x fecha unica mm/yyyy
+	=============================================*/
+
+	const cambiaFormFecha = e =>
+    {
+        if ($("#cambiaFormFecha").val())
+        {
+            $(".invalid-fecha").hide();
+        }
+        
+         CrearFecha({
+        fecha_filtro: $("#fecha").val()
+        });
+    
+    }
+    /*=============================================
+	OnSubmit de filtro  x fecha unica mm/yyyy
+	=============================================*/
+    const submitFormFecha = async e =>
+    {
+        $('.alert').remove();
+        e.preventDefault();	
+        const { fecha_filtro } = fecha
+        
+        if (!fecha_filtro)
+        {
+
+			$(".invalid-fecha").show();
+			$(".invalid-fecha").html("Requiere de fecha de filtro");
+			return;
+            
+        }else{$(".invalid-fecha").hide();}
+       
+         
+        
+    /*=============================================
+    =            SE CREA EL DATASET       =
+    =============================================*/
+        const getVentas = await getDatabyMonth(fecha);
+            if(getVentas.status === 404){
+
+			Swal.fire({
+
+		      type: "error",
+		      title: getVentas.mensaje,
+		      showConfirmButton: true,
+		      confirmButtonText: "Cerrar"
+            
+			}).then(function(getVentas){
+				if(getVentas.value){
+					window.location.href = "/";
+				}
+			})
+            return
+		    }
+    const dataSet = [];
       
+    
+    getVentas["planes_y_cantidad"].forEach((e,i) => {
+                dataSet[i] = [(i+1),
+                    e.nombre, 
+                    e.cantidad,
+                    e.id
+                    , [e.id + "_",
+                    e.nombre + "_", 
+                    e.cantidad, 
+                        
+            ]];
+    
+        
+    });
+    
+    // pasando datos
+        // mas vendido
+        $('#masVendido').html(getVentas["mas_vendido"].nombre)
+        $('#CantidadmasVendido').html("total: "+getVentas["mas_vendido"].cantidad)
+        $('#idMasVendido').html(getVentas["mas_vendido"].id)
+        // menos vendido
+        $('#menosVendido').html(getVentas["menos_vendido"].nombre)
+        $('#CantidadmenosVendido').html("total: "+getVentas["menos_vendido"].cantidad)
+        $('#idmenosVendido').html(getVentas["menos_vendido"].id)
+        // saldo general
+        $('#cantidadVentasGeneral').html("total: "+getVentas["cantidad_ventas"])
+        $('#saldoGeneral').html("$"+getVentas["total_ventas"])
+        
+    // /*=============================================
+    // =            EJECUTAMOS DATATABLE          =
+    // =============================================*/
+    $(document).ready(function () {
+        $('.table').DataTable({
+            retrieve: true,
+            data: dataSet,
+            columns: [
+            {title: "#"},
+            {title: "Nombre"},
+            {title: "Cantidad"},
+                {title: "id"}]
+        })
+    })
+
+    }
 
 
 
@@ -157,39 +264,75 @@ export default function Ventas()
 
                 <div className="container-fluid">
                     {/* RANGO DE FECHAS */}   
-                    <form onChange={cambiaForm} onSubmit={submitForm}>
-                        <div className="col-sm-6">
-							<button type="submit" className="btn btn-primary">Filtrar Ventas</button>
-						</div>
-                     <div className="row">
+                    <div className="row">
+                        <div className=" col-xl-6 col-md-6">
+                            <form onChange={cambiaForm} onSubmit={submitForm}>
+                                <div className="col-sm-6">
+                                    <button type="submit" className="btn btn-primary">Filtrar por rango </button>
+                                </div>
+                                <div className="">
+                                
+                                    <div className="col-xl-6 col-md-6">
+                                        <div className="form-group">
+                                            <label className="small text-secondary" htmlFor="fechaInicio">*Fecha inicio</label>
+                                            <div className="input-group mb-3">
+                                                <input id="fechaInicio" type="date" />
+                                                <div className="invalid-feedback invalid-fechaInicio"></div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div className="col-xl-6 col-md-6">
+                                        <div className="form-group">
+                                            <label className="small text-secondary" htmlFor="fechaFin">*Fecha salida</label>
+                                            <div className="input-group mb-3">
+                                                <input id="fechaFin" type="date" />
+                                                <div className="invalid-feedback invalid-fechaFin"></div>
+                                            </div>
+                                            
+                                        </div>
+                                    
+                                    </div>
+                                    
+                                    
+                                
+                            
+                                </div>
+                            </form>
                         
-                            <div className="col-xl-4 col-md-4">
-                                <div className="form-group">
-                                    <label className="small text-secondary" htmlFor="fechaInicio">*Fecha inicio</label>
-                                    <div className="input-group mb-3">
-                                        <input id="fechaInicio" type="date" />
-                                        <div className="invalid-feedback invalid-fechaInicio"></div>
-                                    </div>
-                                    
+                        </div>
+                          {/* RANGO  X MES Y AÑO */}   
+                        <div className=" col-xl-6 col-md-6">
+                            <form onChange={cambiaFormFecha} onSubmit={submitFormFecha} >
+                                <div className="col-sm-6">
+                                    <button type="submit" className="btn btn-primary">Filtrar por mes y año</button>
                                 </div>
-                            </div>
-                            <div className="col-xl-4 col-md-4">
-                                <div className="form-group">
-                                    <label className="small text-secondary" htmlFor="fechaFin">*Fecha salida</label>
-                                    <div className="input-group mb-3">
-                                        <input id="fechaFin" type="date" />
-                                        <div className="invalid-feedback invalid-fechaFin"></div>
+                                <div className="">
+                                
+                                    <div className="col-xl-12 col-md-12">
+                                        <div className="form-group">
+                                            <label className="small text-secondary" htmlFor="fecha">*Fecha inicio</label>
+                                            <div className="input-group mb-3">
+                                                <input id="fecha" type="month" />
+                                                <div className="invalid-feedback invalid-fecha"></div>
+                                            </div>
+                                            
+                                        </div>
                                     </div>
+                                
                                     
+                                    
+                                
+                            
                                 </div>
-                               
-                            </div>
-                            
-                            
-                           
-                       
+                            </form>
+                    
+                        </div>
+
                     </div>
-                         </form>
+                   
+                    
+                    
                     {/* PLANES + Y - MENOS VENDIDOS */}
                     <div className="row">
                         {/* CUENTA GENERAL */}
@@ -280,6 +423,31 @@ const getData = (data) => {
     let formData = new FormData();
     formData.append("fecha_inicio", data.fecha_inicio);
     formData.append("fecha_fin", data.fecha_fin);
+	const params = {
+        method: "POST",
+        body: formData,
+		headers: {
+			"Authorization": token
+		}
+	}
+
+	return fetch(url, params).then(response => {
+		return response.json();
+	}).then(result => {
+		return  result;
+	}).then(err => {
+		return err;
+	})
+}
+/*=============================================
+=                     GET                     =
+=============================================*/
+	
+const getDatabyMonth = (data) => {
+	const url = `${ rutaAPI }/estadisticas-mensual`;
+    const token = localStorage.getItem("ACCESS_TOKEN");
+    let formData = new FormData();
+    formData.append("fecha_filtro", data.fecha_filtro);
 	const params = {
         method: "POST",
         body: formData,
