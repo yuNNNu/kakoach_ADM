@@ -40,7 +40,9 @@ import BenefitsPlan from './components/contenido/planes/benefits/BenefitsPlan';
 import SlideSobreMi  from './components/contenido/sobre-mi/slide-sobre-mi/Slide_principal_sobre_mi';
 import Tarjetas from './components/contenido/sobre-mi/tarjetas/Tarjetas'
 // VENTAS
-import Ventas from './components/contenido/ventas/Ventas'
+import Estadisticas from './components/contenido/ventas/Estadisticas'
+
+import Ventas from './components/contenido/ventas/Ventas.controlador'
 
 
 export default function App() {
@@ -64,7 +66,8 @@ export default function App() {
         	<Switch>
         	
         	
-        	 <Route exact path="/" component={Ventas} />
+            <Route exact path="/" component={Estadisticas} />
+            <Route exact path="/ventas" component={Ventas} />
             <Route exact path="/usuarios" component={Usuarios} />
             <Route exact path="/inicio_benefits" component={Benefits} />
             <Route exact path="/inicio_slide" component={ImgPrincipal} />

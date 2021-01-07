@@ -50,9 +50,17 @@ export default function Sidebar()
 						>
 							<div className="sidenav-menu-heading">Negocio</div>
 							<li className="nav-item">
-								<a href="/" className="nav-link">
+								<a href="/ventas" className="nav-link">
 									<i className="nav-icon fas fa-poll"></i>
 									<p>Ventas</p>
+									
+
+								</a>
+							</li>	
+							<li className="nav-item">
+								<a href="/" className="nav-link">
+									<i className="nav-icon fas fa-poll"></i>
+									<p>Estadisticas</p>
 									
 
 								</a>
