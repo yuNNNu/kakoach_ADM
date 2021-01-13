@@ -20,6 +20,7 @@ import Error404 from './components/contenido/error404/Error404';
 
 // componenetes nuevos 
 // PAGINA GENERAL
+import Terminos from './components/contenido/general/terminos-y-condiciones/Terminos'
 import PlanPersonal from './components/contenido/inicio/plan-personal/Plan-personal'
 import FooterClient from './components/contenido/general/footer/Footer'
 import SocialMedia from './components/contenido/general/social-media/SocialMedia'
@@ -30,6 +31,7 @@ import Benefits from './components/contenido/inicio/benefits/Benefit'
 import ImgPrincipal from './components/contenido/inicio/img-principal/ImgPrincipal'
 import Logo from './components/contenido/general/logo/Logo'
 import PlanesEstrellas from './components/contenido/inicio/planes-estrellas/Planes-estrellas';
+import DescripcionPlanes from './components/contenido/inicio/descripcion-planes/DescripcionPlanes';
 
 // PAGINA PLANES
 import SlidePlanes from './components/contenido/planes/slide_principal/slide_principal';
@@ -82,6 +84,8 @@ export default function App() {
             <Route exact path="/planes_benefits" component={BenefitsPlan} />
             <Route exact path="/sobre_mi_slide" component={SlideSobreMi} />
             <Route exact path="/tarjetas" component={Tarjetas} />
+            <Route exact path="/descripcion_planes" component={DescripcionPlanes} />
+            <Route exact path="/terminos_y_condiciones" component={Terminos} />
         		<Route component={Error404}/>
         	</Switch>
 
@@ -124,9 +128,14 @@ const tokenExpira = (accessToken, metaToken) => {
 
   const seconds = 60;
   const{ exp } = metaToken;
+  console.log("🚀 ~ file: App.js ~ line 131 ~ tokenExpira ~ exp", exp)
   
   const now = (Date.now() + seconds) / 1000
-
+  console.log("🚀 ~ file: App.js ~ line 134 ~ tokenExpira ~ now", now)
+  if (now > exp)
+  {
+    localStorage.clear();
+  }
   return exp > now;
   
 

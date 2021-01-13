@@ -4,11 +4,10 @@ import {rutaAPI} from '../../../../config/Config';
 import notie from 'notie';
 import Swal from 'sweetalert2'
 
-export default function EditarBenefitInicio(){
+export default function EditarDescripcion(){
 
 	// HOOK
-
-	const [imgP, editarImg] = useState({
+	const [desc, editarDesc] = useState({
 
 		
         id: "",
@@ -21,14 +20,13 @@ export default function EditarBenefitInicio(){
 	// ONCHANGE
 
 	const cambiarFormPut = e => {
-	
-        editarImg({
-     
+         editarDesc ({
         'titulo': $("#editarTitulo").val(),
         'descripcion': $("#editarDescripcion").val(),
         'id' : $("#editarID").val()
 
         })
+   
 	}
 
 	// ONSUBMIT
@@ -37,12 +35,12 @@ export default function EditarBenefitInicio(){
 
 		$('.alert').remove();
 		e.preventDefault();
-		const { titulo, descripcion, id} = imgP;
+		const { titulo, descripcion, id} = desc;
 
 			
 		// SE EJECUTA SERVICIO PUT
 
-		const result = await putData(imgP); 
+		const result = await putData(desc); 
 		console.log("result", result.status);
 
 
@@ -57,7 +55,7 @@ export default function EditarBenefitInicio(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_benefits";
+					window.location.href = "/descripcion_planes";
 				}
 			})
 
@@ -74,12 +72,13 @@ export default function EditarBenefitInicio(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_benefits";
+					window.location.href = "/descripcion_planes";
 				}
 			})
 		}
 
 	}
+
 
 	//CAPTURAR DATOS PARA EDITAR
 
@@ -97,7 +96,7 @@ export default function EditarBenefitInicio(){
         $("#editarTitulo").val(data[1]);
 		$("#editarDescripcion").val(data[2]);
 
-		editarImg({
+		editarDesc({
 
 			
 			'id' : data[0],
@@ -112,14 +111,14 @@ export default function EditarBenefitInicio(){
 	// RETORNO DE LA VISTA
 
 		return(
-		<div className="modal fade" id="editarBenefitInicio">
+		<div className="modal fade" id="editarDescripcionInicio">
 
 			<div className="modal-dialog">
 
 				<div className="modal-content">
 
 					<div className="modal-header">
-						<h4 className="modal-title">Editar Imagen Principal Inicio</h4>
+						<h4 className="modal-title">Editar Descrpción</h4>
 						<button type="button" className="close" data-dismiss="modal">x</button>
 					</div>
 
@@ -192,7 +191,7 @@ export default function EditarBenefitInicio(){
 
 const putData = data => {
 
-	const url = `${rutaAPI}/edit-benefit/${data.id}`;
+	const url = `${rutaAPI}/edit-info-planes-incio/${data.id}`;
 	const token = localStorage.getItem("ACCESS_TOKEN");
 
 	let formData = new FormData();

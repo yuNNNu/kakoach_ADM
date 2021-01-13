@@ -3,53 +3,41 @@ import $ from 'jquery';
 import {rutaAPI} from '../../../../config/Config';
 import notie from 'notie';
 import Swal from 'sweetalert2'
+import 'summernote/dist/summernote-lite.js'
+import 'summernote/dist/summernote-lite.css'
+export default function EditarTerminos(){
 
-export default function EditarBenefitInicio(){
-
-	// HOOK
-
-	const [imgP, editarImg] = useState({
-
-		
-        id: "",
-        titulo: "",
-        descripcion: "",
-     
-
-	})
-
-	// ONCHANGE
-
-	const cambiarFormPut = e => {
 	
-        editarImg({
-     
-        'titulo': $("#editarTitulo").val(),
-        'descripcion': $("#editarDescripcion").val(),
-        'id' : $("#editarID").val()
-
-        })
-	}
 
 	// ONSUBMIT
-
 	const submitPut = async e => {
-
 		$('.alert').remove();
 		e.preventDefault();
-		const { titulo, descripcion, id} = imgP;
-
+		const html = $('#editarContenido').summernote('code');
+			
+		if (html == "")
+		{
+			$(".invalid-editarContenido").show();
+            $(".invalid-editarContenido").html("Debe ingresar contenido");
+			return
+		} else
+		{
+			$(".invalid-editarContenido").hide();
+		}
+		
+		
+		let datos = {
+			'id' : $('#editarID').val(),
+			'contenido': $('#editarContenido').summernote('code') 
+		}
 			
 		// SE EJECUTA SERVICIO PUT
 
-		const result = await putData(imgP); 
-		console.log("result", result.status);
-
-
+		const result = await putData(datos); 
+		
 		if(result.status === 400){
 
 			Swal.fire({
-
 		      type: "error",
 		      title: result.mensaje,
 		      showConfirmButton: true,
@@ -57,7 +45,7 @@ export default function EditarBenefitInicio(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_benefits";
+					window.location.href = "/terminos_y_condiciones";
 				}
 			})
 
@@ -74,94 +62,71 @@ export default function EditarBenefitInicio(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_benefits";
+					window.location.href = "/terminos_y_condiciones";
 				}
 			})
 		}
 
 	}
 
+	
 	//CAPTURAR DATOS PARA EDITAR
 
 	$(document).on("click", ".editarInputs", function(e){
 		e.preventDefault();
 
         let data = $(this).attr("data").split('_,');
-
- 
-      
-
+       console.log("data",data)
         // recuperamos os datos
 
 		$("#editarID").val(data[0]);
-        $("#editarTitulo").val(data[1]);
-		$("#editarDescripcion").val(data[2]);
-
-		editarImg({
-
-			
-			'id' : data[0],
-			'titulo': data[1],
-			'descripcion': data[2]
-
-		})
+		$("#editarContenido").summernote('code', data[1]);
+	
 	})
 
-	
+	// summernote
+	$(document).ready(function(valorSummer){
+		$("#editarContenido").summernote({
+			height:350
+		});
+	})
 
 	// RETORNO DE LA VISTA
 
 		return(
-		<div className="modal fade" id="editarBenefitInicio">
+		<div className="modal fade" id="editarTerminos">
 
 			<div className="modal-dialog">
 
 				<div className="modal-content">
 
 					<div className="modal-header">
-						<h4 className="modal-title">Editar Imagen Principal Inicio</h4>
+						<h4 className="modal-title">Editar Terminos y Condiciones</h4>
 						<button type="button" className="close" data-dismiss="modal">x</button>
 					</div>
 
-					<form onChange={cambiarFormPut} onSubmit={submitPut} encType="multipart/form-data">
+					<form   onSubmit={submitPut} encType="multipart/form-data" >
 
 						<div className="modal-body">
 
 							<input type="hidden" id="editarID"/>
 
 					
-							{/* ENTRADA TITULO*/}
+							{/* ENTRADA contenido*/}
 
 							<div className="form-group">
-								<label className="small text-secondary" htmlFor="editarTitulo">* No ingresar caracteres especiales, solo letras y números</label>
+									<label className="small text-secondary" htmlFor="editarContenido"> Ingrese los terminos</label>
 
 								<div className="input-group mb-3">
-									<div className="input-group-append input-group-text">
-										<i className="fas fa-heading"></i>
-									</div>
+								
 
-									<input id="editarTitulo" type="text" className="form-control" name="titulo" placeholder="Ingrese el titulo" required/>
+									<textarea id="editarContenido" name="editarContenido" ></textarea>
 
-									<div className="invalid-feedback invalid-titulo"></div>
+									<div className="invalid-feedback invalid-editarContenido"></div>
 								</div>
 							</div>
 
-							{/* ENTRADA DESCRIPCION*/}
-
-							<div className="form-group">
-								<label className="small text-secondary" htmlFor="editarDescripcion">* No ingresar caracteres especiales, solo letras y números</label>
-
-								<div className="input-group mb-3">
-									<div className="input-group-append input-group-text">
-										<i className="fas fa-file-alt"></i>
-									</div>
-
-									<textarea id="editarDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" required/>
-
-									<div className="invalid-feedback invalid-titulo"></div>
-								</div>
-							</div>
-						</div>
+                        </div>
 
 						<div className="modal-footer d-flex justify-content-between">
 
@@ -192,12 +157,11 @@ export default function EditarBenefitInicio(){
 
 const putData = data => {
 
-	const url = `${rutaAPI}/edit-benefit/${data.id}`;
+	const url = `${rutaAPI}/editar-terminos/${data.id}`;
 	const token = localStorage.getItem("ACCESS_TOKEN");
 
 	let formData = new FormData();
-	formData.append("titulo", data.titulo);
-	formData.append("descripcion", data.descripcion);
+	formData.append("contenido", data.contenido);
 
 	const params = {
 		method: "PUT",

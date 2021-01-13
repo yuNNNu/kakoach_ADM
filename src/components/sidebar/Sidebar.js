@@ -80,6 +80,17 @@ export default function Sidebar()
 							<div class="sidenav-menu-heading">General</div>
 								<li className="nav-item">
 
+									<a href="/terminos_y_condiciones" className="nav-link">
+
+										<p>
+										Terminos y Condiciones
+										</p>
+
+									</a>
+
+								</li>
+								<li className="nav-item">
+
 									<a href="/logo" className="nav-link">
 
 										<p>
@@ -126,7 +137,18 @@ export default function Sidebar()
 
 									</a>
 
-								</li>
+							</li>
+							<li className="nav-item">
+
+									<a href="/descripcion_planes" className="nav-link">
+										
+										<p>
+										Gestor Descripción Planes
+										</p>
+
+									</a>
+
+							</li>
 
 								<li className="nav-item">
 
