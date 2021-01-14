@@ -63,7 +63,6 @@ export default function Tarjeta(){
         
 			{title: "Acciones",
               render: function(data){
-              console.log("🚀 ~ file: Tarjetas.js ~ line 66 ~ data", data)
 
               	return `
 					

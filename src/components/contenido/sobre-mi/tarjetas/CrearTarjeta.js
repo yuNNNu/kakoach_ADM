@@ -58,7 +58,7 @@ export default function CrearTarjeta()
 
                         'imagen': imagen,
                         'titulo': $("#crearTitulo").val(),
-                        'descripcion': $("#crearDescripcion").val(),
+                        'descripcion': $('#crearDescripcion').summernote('code'),
 					
 
 					})
@@ -70,7 +70,7 @@ export default function CrearTarjeta()
 
                 'imagen': null,
                 'titulo': $("#crearTitulo").val(),
-                'descripcion': $("#crearDescripcion").val()
+                'descripcion': $('#crearDescripcion').summernote('code')
 
 					})
 
@@ -83,8 +83,9 @@ export default function CrearTarjeta()
 
 		$('.alert').remove();
 		e.preventDefault();
-		const { titulo, descripcion} = tarjeta;
-
+		const { titulo, imagen} = tarjeta;
+        const html = $('#crearDescripcion').summernote('code');
+        console.log("🚀 ~ file: CrearTarjeta.js ~ line 88 ~ html", html)
        
         if (titulo === "")
         {
@@ -92,16 +93,22 @@ export default function CrearTarjeta()
             $(".invalid-titulo").html("El titulo no puede ir vacio");
             return
         } 
-        if (descripcion === "")
+        console.log("🚀 ~ file: CrearTarjeta.js ~ line 97 ~ html", html)
+        if (html === "")
         {
             $(".invalid-descripcion").show();
             $(".invalid-descripcion").html("La descripcion no puede ir vacia");
             return
         } 
-     
+        
+        let datos = {
+            titulo: titulo,
+            descripcion: html,
+            imagen:imagen
+        }
 		// SE EJECUTA SERVICIO PUT
 
-		const result = await postData(tarjeta); 
+		const result = await postData(datos); 
 		
 
 		if(result.status === 400){
@@ -139,7 +146,12 @@ export default function CrearTarjeta()
 
 	}   
    
-  
+  	// summernote
+	$(document).ready(function(valorSummer){
+		$("#crearDescripcion").summernote({
+			height:350
+		});
+	})
     // RETORNO DE LA VISTA
     return(
     <div className="modal fade" id="crearTarjeta">
@@ -162,7 +174,7 @@ export default function CrearTarjeta()
                         <label className="small text-secondary" htmlFor="crearImagen">*Peso Max. 2MB | Formato: JPG o PNG</label>
                         <input id="crearImagen" type="file" className="form-control-file border" name="imagen" required/>
                         <div className="invalidad-feedback invalid-imagen"></div>
-                        <img className="previsualizarImg img-fluid" alt="img-cargar"/>
+                        <img className="previsualizarImg img-fluid" alt=""/>
 
                         {/* ENTRADA TITULO*/}
 
@@ -190,7 +202,7 @@ export default function CrearTarjeta()
                                     <i className="fas fa-file-alt"></i>
                                 </div>
 
-                                <textarea id="crearDescripcion" type="text" className="form-control" name="descripcion" placeholder="Ingrese la descripcion" required/* pattern="([0-9a-zA-Z]).{1,30}" */ />
+                                <textarea id="crearDescripcion" type="text" className="form-control" name="descripcion"  />
 
                                 <div className="invalid-feedback invalid-descripcion"></div>
                             </div>
