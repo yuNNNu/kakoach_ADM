@@ -14,19 +14,23 @@ export default function Terminos(){
 		=============================================*/
 		
 		const getTarjetas = await getData();
-
-		const dataSet = [];
+        
 		
+		let dataSet = [];
+		getTarjetas.data.forEach((dat, index) =>
+		{
 		
-
-			dataSet[0] = [1,
-							getTarjetas.data[0].contenido,
-                   
-                            [getTarjetas.data[0]._id+ "_",
-							getTarjetas.data[0].contenido]];
-            
+		dataSet[index] = [(index+1),
+			
+			dat.contenido,
+			[dat._id+"_",
+			dat.contenido,
+		]];
+		
 	
+		})
 
+		
 		// =============================================
 	// =            EJECUTAMOS DATATABLE          =
 	// =============================================
@@ -49,11 +53,14 @@ export default function Terminos(){
             { title: "Contenido" },
         
 			{title: "Acciones",
-              render: function(data){
+				render: function (data)
+				{
+                
+                
 
               	return `
 					
-					<a href="#" class="editarInputs" data-toggle="modal" data-target="#editarTerminos" data="${getTarjetas.data[0]._id}">
+					<a href="#" class="editarInputs" data-toggle="modal" data-target="#editarTerminos" data='${data}'>
 
 						<svg style="color:black; background:orange; border-radius:100%; width:35px; line-height:35px; text-align:center; padding:8px"
 

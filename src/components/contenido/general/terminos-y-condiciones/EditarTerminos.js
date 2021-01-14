@@ -75,17 +75,23 @@ export default function EditarTerminos(){
 	$(document).on("click", ".editarInputs", function(e){
 		e.preventDefault();
 
-        let data = $(this).attr("data").split('_,');
-        // recuperamos os datos
-
+		 let data = $(this).attr("data").split("_,"); 
+      
+		
+        // // recuperamos os datos
+		
 		$("#editarID").val(data[0]);
-		$("#editarContenido").summernote('code', data[1]);
+		$("#editarContenido").val(data[1])
+		$("#editarContenido").summernote({
+            height:350
+        });
 	
+		
 	})
 
 	// summernote
 	$(document).ready(function(valorSummer){
-		$("#editarContenido").summernote({
+		$("#contenido").summernote({
 			height:350
 		});
 	})
@@ -119,7 +125,7 @@ export default function EditarTerminos(){
 								<div className="input-group mb-3">
 								
 
-									<textarea id="editarContenido" name="editarContenido" ></textarea>
+									<textarea id="editarContenido" name="contenido" ></textarea>
 
 									<div className="invalid-feedback invalid-editarContenido"></div>
 								</div>

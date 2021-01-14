@@ -3,7 +3,8 @@ import $ from 'jquery';
 import {rutaAPI} from '../../../../config/Config';
 import notie from 'notie';
 import Swal from 'sweetalert2'
-
+import 'summernote/dist/summernote-lite.js'
+import 'summernote/dist/summernote-lite.css'
 export default function EditarTarjetas()
 { 
     // HOOK
@@ -75,7 +76,7 @@ export default function EditarTarjetas()
 
                         'imagen': imagen,
                         'titulo': $("#editarTitulo").val(),
-                        'descripcion': $("#editarDescripcion").val(),
+                        'descripcion': $('#editarDescripcion').summernote('code'),
 						'id' : $("#editarID").val()
 
 					})
@@ -87,7 +88,7 @@ export default function EditarTarjetas()
 
                 'imagen': null,
                 'titulo': $("#editarTitulo").val(),
-                'descripcion': $("#editarDescripcion").val(),
+                'descripcion': $('#editarDescripcion').summernote('code'),
                 'id' : $("#editarID").val()
 
 					})
@@ -96,29 +97,40 @@ export default function EditarTarjetas()
     }
     // ONSUBMIT
 
-	const submitPut = async e => {
-
+	const submitPut = async e =>
+	{
+		
+	
 		$('.alert').remove();
 		e.preventDefault();
-		const { titulo, descripcion} = tarjeta;
-
-       
-        if (titulo === "")
-        {
-            $(".invalid-titulo").show();
-            $(".invalid-titulo").html("El titulo no puede ir vacio");
-            return
-        } 
-        if (descripcion === "")
-        {
-            $(".invalid-descripcion").show();
-            $(".invalid-descripcion").html("La descripcion no puede ir vacia");
-            return
-        } 
+		let { id, titulo, imagen } = tarjeta;
+		const html = $('#editarDescripcion').summernote('code');
+		if (titulo === "")
+		{
+			$(".invalid-titulo").show();
+			$(".invalid-titulo").html("El titulo no puede ir vacio");
+			return
+		} 
+		if (html === "")
+		{
+			$(".invalid-descripcion").show();
+			$(".invalid-descripcion").html("La descripcion no puede ir vacia");
+			return
+		} 
+		let data = {
+			id: id,
+			titulo: titulo,
+			descripcion: $('#editarDescripcion').summernote('code'),
+			imagen : imagen
+		}
+      
+		
+		
+		
      
 		// SE EJECUTA SERVICIO PUT
 
-		const result = await putData(tarjeta); 
+		const result = await putData(data); 
 		
 
 		if(result.status === 400){
@@ -160,6 +172,7 @@ export default function EditarTarjetas()
 		e.preventDefault();
        
         let data = $(this).attr("data").split('_,');
+        console.log("🚀 ~ file: EditarTarjetas.js ~ line 175 ~ $ ~ data", data)
       
 
         // recuperamos os datos
@@ -168,7 +181,9 @@ export default function EditarTarjetas()
         $(".previsualizarImg").attr("src", `${rutaAPI}/mostrar-tarjeta-img/${ data[1] }`);
         $("#editarTitulo").val(data[2]);
 		$("#editarDescripcion").val(data[3]);
-
+		$("#editarDescripcion").summernote({
+            height:350
+        });
 		editarTarjetas({
 
 			'imagen': null,
@@ -179,7 +194,7 @@ export default function EditarTarjetas()
 		})
     })
     
-    	// CAPTURAR DATOS PARA BORRAR
+	// CAPTURAR DATOS PARA BORRAR
 
 	$(document).on("click", ".borrarInput", function(e){
 
@@ -247,6 +262,12 @@ export default function EditarTarjetas()
 			})
 
 
+	})
+	// summernote
+	$(document).ready(function(valorSummer){
+		$("#descripcion").summernote({
+			height:350
+		});
 	})
     // RETORNO DE LA VISTA
     return(

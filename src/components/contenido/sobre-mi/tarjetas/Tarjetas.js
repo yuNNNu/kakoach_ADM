@@ -27,7 +27,7 @@ export default function Tarjeta(){
                             [tarjeta._id + "_",
                             tarjeta.imagen+ "_",
 							tarjeta.titulo+ "_", 
-                            tarjeta.descripcion, 
+                            tarjeta.descripcion+"", 
                      
 
                 ]];
@@ -63,10 +63,11 @@ export default function Tarjeta(){
         
 			{title: "Acciones",
               render: function(data){
+              console.log("🚀 ~ file: Tarjetas.js ~ line 66 ~ data", data)
 
               	return `
 					
-					<a href="#" class="editarInputs" data-toggle="modal" data-target="#open" data="${data}">
+					<a href="#" class="editarInputs" data-toggle="modal" data-target="#open" data='${data}'>
 
 						<svg style="color:black; background:orange; border-radius:100%; width:35px; line-height:35px; text-align:center; padding:8px"
 
@@ -74,7 +75,7 @@ export default function Tarjeta(){
 
 
                     </a>
-                    <a href="#" class="borrarInput" data="${data}">
+                    <a href="#" class="borrarInput" data='${data}'>
 
 						
 						<svg style="color:white; background:#dc3545; border-radius:100%; width:35px; line-height:35px; text-align:center; padding:12px"
