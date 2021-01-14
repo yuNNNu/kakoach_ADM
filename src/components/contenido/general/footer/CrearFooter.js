@@ -35,7 +35,6 @@ export default function CrearFooter()
         }
 
 
-		console.log("arr en onchange",arrDes)
 		crearFooter({
 			'titulo': $("#crearTitulo").val(),
 			'descripcion': arrDes

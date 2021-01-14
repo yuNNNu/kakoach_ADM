@@ -49,7 +49,7 @@ export default function EditarImgInicio(){
 				$("#editarImagen").get(0).value= "";
 				return;
 			}else{
-				let datosArchivo = new FileReader;
+				let datosArchivo = new FileReader();
 				datosArchivo.readAsDataURL(imagen);
 
 				$(datosArchivo).on("load", function(event){
@@ -87,7 +87,7 @@ export default function EditarImgInicio(){
 
 		$('.alert').remove();
 		e.preventDefault();
-		const {imagen, titulo, descripcion, id} = imgP;
+		const {titulo, descripcion} = imgP;
 
 			if(titulo === ""){
 		
@@ -202,7 +202,7 @@ export default function EditarImgInicio(){
 							<label className="small text-secondary" htmlFor="editarImagen">*Peso Max. 2MB | Formato: JPG o PNG</label>
 							<input id="editarImagen" type="file" className="form-control-file border" name="imagen" />
 							<div className="invalidad-feedback invalid-imagen"></div>
-							<img className="previsualizarImg img-fluid"/>
+							<img className="previsualizarImg img-fluid" alt="img-carga"/>
 
 							{/* ENTRADA TITULO*/}
 

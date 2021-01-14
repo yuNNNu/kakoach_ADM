@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import $ from 'jquery';
 import {rutaAPI} from '../../../../config/Config';
-import notie from 'notie';
 import Swal from 'sweetalert2'
 
 export default function EditarBenefitInicio(){
@@ -37,13 +36,12 @@ export default function EditarBenefitInicio(){
 
 		$('.alert').remove();
 		e.preventDefault();
-		const { titulo, descripcion, id} = imgP;
+		
 
 			
 		// SE EJECUTA SERVICIO PUT
 
 		const result = await putData(imgP); 
-		console.log("result", result.status);
 
 
 		if(result.status === 400){

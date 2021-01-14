@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import $, { type } from 'jquery';
+import $ from 'jquery';
 import notie from 'notie';
 import Swal from 'sweetalert2'
 import {rutaAPI} from '../../../../config/Config';
@@ -36,12 +36,10 @@ export default function CrearPlan()
 		let arrDi = $("#crearPros").val().split(',');
 		let arrDes = arrDi.map((x) =>
         {
-            console.log("dentro de map", x)
 			return x.trim().replace("\n", "");
 			
 		})
 
-		console.log("arr en onchange",arrDes)
         //    TIPO
             if ($('#crearvol').prop('checked'))
             {
@@ -99,7 +97,7 @@ export default function CrearPlan()
 				return;
 			} else
 			{
-				let datosArchivo = new FileReader;
+				let datosArchivo = new FileReader();
 				datosArchivo.readAsDataURL(imagen);
 				$(datosArchivo).on("load", function (event)
 				{
@@ -199,7 +197,7 @@ export default function CrearPlan()
 
 		e.preventDefault();		
 
-		const {id, nombre, descripcion, precio, pros, pdf, imagen} = plan;
+		const { precio} = plan;
     
         // VALIDANDO TIPO
         if (!$('#crearvol').prop('checked') && !$('#creardef').prop('checked'))
@@ -303,7 +301,7 @@ export default function CrearPlan()
                 *Peso Max. 2MB | Formato: JPG o PNG</label>
                 <input id="crearImagen" type="file" className="form-control-file border" name="imagen" required/>
                 <div className="invalid-feedback invalid-imagen"></div>
-                <img className="previsualizarImg img-fluid" />
+                <img className="previsualizarImg img-fluid"  alt="img-carga"/>
                 </div>          
                 {/* filtro tipo */}
                             

@@ -46,7 +46,7 @@ export default function CrearTarjeta()
                   $("#crearImagen").val("");
 				return;
 			}else{
-				let datosArchivo = new FileReader;
+				let datosArchivo = new FileReader();
 				datosArchivo.readAsDataURL(imagen);
 
 				$(datosArchivo).on("load", function(event){
@@ -83,16 +83,16 @@ export default function CrearTarjeta()
 
 		$('.alert').remove();
 		e.preventDefault();
-		const {imagen, titulo, descripcion} = tarjeta;
+		const { titulo, descripcion} = tarjeta;
 
        
-        if (titulo == "")
+        if (titulo === "")
         {
             $(".invalid-titulo").show();
             $(".invalid-titulo").html("El titulo no puede ir vacio");
             return
         } 
-        if (descripcion == "")
+        if (descripcion === "")
         {
             $(".invalid-descripcion").show();
             $(".invalid-descripcion").html("La descripcion no puede ir vacia");
@@ -162,7 +162,7 @@ export default function CrearTarjeta()
                         <label className="small text-secondary" htmlFor="crearImagen">*Peso Max. 2MB | Formato: JPG o PNG</label>
                         <input id="crearImagen" type="file" className="form-control-file border" name="imagen" required/>
                         <div className="invalidad-feedback invalid-imagen"></div>
-                        <img className="previsualizarImg img-fluid"/>
+                        <img className="previsualizarImg img-fluid" alt="img-cargar"/>
 
                         {/* ENTRADA TITULO*/}
 

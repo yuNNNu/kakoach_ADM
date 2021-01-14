@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import $ from 'jquery';
 import {rutaAPI} from '../../../../config/Config';
-import notie from 'notie';
+
 import Swal from 'sweetalert2'
 
 export default function EditarBenefitPlan(){
@@ -37,7 +37,7 @@ export default function EditarBenefitPlan(){
 
 		$('.alert').remove();
 		e.preventDefault();
-		const { titulo, descripcion, id} = benefit;
+		const { titulo, descripcion} = benefit;
 
 			if(titulo === ""){
 			
@@ -59,7 +59,6 @@ export default function EditarBenefitPlan(){
 		// SE EJECUTA SERVICIO PUT
 
 		const result = await putData(benefit); 
-		console.log("result", result.status);
 
 
 		if(result.status === 400){
@@ -105,7 +104,6 @@ export default function EditarBenefitPlan(){
         let data = $(this).attr("data").split('_,');
 
  
-      console.log(data)
 
         // recuperamos os datos
 

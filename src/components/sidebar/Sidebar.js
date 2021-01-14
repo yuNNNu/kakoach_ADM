@@ -10,7 +10,6 @@ export default function Sidebar()
 		=============================================*/
 		
 		const getLogo = await getData();
-		console.log(getLogo.data[0].imagen)
 		localStorage.setItem("logo",getLogo.data[0].imagen)
 			
 		

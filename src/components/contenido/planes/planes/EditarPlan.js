@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import $, { type } from 'jquery';
+import $ from 'jquery';
 import notie from 'notie';
 import Swal from 'sweetalert2'
 import {rutaAPI} from '../../../../config/Config';
@@ -95,7 +95,7 @@ export default function EditarPlan()
 				return;
 			} else
 			{
-				let datosArchivo = new FileReader;
+				let datosArchivo = new FileReader();
 				datosArchivo.readAsDataURL(imagen);
 				$(datosArchivo).on("load", function (event)
 				{
@@ -155,7 +155,7 @@ export default function EditarPlan()
 			}
 			if (pdf["size"] > 4000000)
 			{
-				var clone = 
+				
 				notie.alert({
 					type: 3,
 					text: 'ERROR: La pdf debe pesar como maximo 4mb',
@@ -221,7 +221,7 @@ export default function EditarPlan()
 
 		e.preventDefault();		
 
-		const {id, nombre, descripcion, precio, pros, pdf, imagen} = plan;
+		const {nombre, descripcion, precio, pros} = plan;
         // validaciones imagen
             // VALIDANDO TIPO
         if (!$('#vol').prop('checked') && !$('#def').prop('checked'))
@@ -340,7 +340,6 @@ export default function EditarPlan()
 			return x.replace("\n", "");
 			
 		})
-	 	console.log("data2", arrPros)
 		$("#editarID").val(data[0]);
         $(".previsualizarImg").attr("src", `${rutaAPI}/show-plan/${ data[1] }`);
 		$("#editarPros").val(arrPros);
@@ -356,7 +355,9 @@ export default function EditarPlan()
                 break;
             case 'vol':
                 $("#vol").prop('checked', true)
-                break;
+				break;
+			default:
+				$("#def").prop('checked', true);
         }
         // NIVEL
         let nivel = data[7];
@@ -370,7 +371,9 @@ export default function EditarPlan()
                 break;
             case 'avanzado':
                 $("#a").prop('checked', true)
-                break;
+				break;
+			default:
+				$("#b").prop('checked', true);
         }
        
 		
@@ -485,7 +488,7 @@ export default function EditarPlan()
                 *Peso Max. 2MB | Formato: JPG o PNG</label>
                 <input id="editarImagen" type="file" className="form-control-file border" name="imagen" />
                 <div className="invalid-feedback invalid-imagen"></div>
-                <img className="previsualizarImg img-fluid" />
+                <img className="previsualizarImg img-fluid" alt="img-cargar" />
                             
                 {/* filtro tipo */}
                             

@@ -46,7 +46,7 @@ export default function EditarLogo(){
 				$("#editarImagen").get(0).value= "";
 				return;
 			}else{
-				let datosArchivo = new FileReader;
+				let datosArchivo = new FileReader();
 				datosArchivo.readAsDataURL(imagen);
 
 				$(datosArchivo).on("load", function(event){
@@ -80,14 +80,13 @@ export default function EditarLogo(){
 
 		$('.alert').remove();
 		e.preventDefault();
-		const {imagen, id} = logo;
+		
 
 	
 
 		// SE EJECUTA SERVICIO PUT
 
 		const result = await putData(logo); 
-		console.log("result", result.status);
 
 
 		if(result.status === 400){
@@ -170,7 +169,7 @@ export default function EditarLogo(){
 							<label className="small text-secondary" htmlFor="editarImagen">*Peso Max. 2MB | Formato: JPG o PNG</label>
 							<input id="editarImagen" type="file" className="form-control-file border" name="imagen" required/>
 							<div className="invalidad-feedback invalid-imagen"></div>
-							<img className="previsualizarImg img-fluid"/>
+							<img className="previsualizarImg img-fluid" alt="img-carga"/>
 
 						</div>
 

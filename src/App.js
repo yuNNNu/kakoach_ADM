@@ -128,10 +128,8 @@ const tokenExpira = (accessToken, metaToken) => {
 
   const seconds = 60;
   const{ exp } = metaToken;
-  console.log("🚀 ~ file: App.js ~ line 131 ~ tokenExpira ~ exp", exp)
   
   const now = (Date.now() + seconds) / 1000
-  console.log("🚀 ~ file: App.js ~ line 134 ~ tokenExpira ~ now", now)
   if (now > exp)
   {
     localStorage.clear();

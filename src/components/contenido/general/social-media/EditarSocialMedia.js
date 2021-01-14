@@ -53,7 +53,7 @@ export default function EditarSocialMedia()
 			return;
 		}
 		const result = await putData(red); 
-		// console.log(result);
+		
 	
 		if(result.status === 400){
 

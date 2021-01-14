@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import $ from 'jquery';
 import {rutaAPI} from '../../../../config/Config';
-import notie from 'notie';
+
 import Swal from 'sweetalert2'
 import 'summernote/dist/summernote-lite.js'
 import 'summernote/dist/summernote-lite.css'
@@ -15,7 +15,7 @@ export default function EditarTerminos(){
 		e.preventDefault();
 		const html = $('#editarContenido').summernote('code');
 			
-		if (html == "")
+		if (html === "")
 		{
 			$(".invalid-editarContenido").show();
             $(".invalid-editarContenido").html("Debe ingresar contenido");
@@ -76,7 +76,6 @@ export default function EditarTerminos(){
 		e.preventDefault();
 
         let data = $(this).attr("data").split('_,');
-       console.log("data",data)
         // recuperamos os datos
 
 		$("#editarID").val(data[0]);

@@ -64,7 +64,7 @@ export default function EditarBorrarAdministradores(){
 				return;
 			} else
 			{
-				let datosArchivo = new FileReader;
+				let datosArchivo = new FileReader();
 				datosArchivo.readAsDataURL(imagen);
 				$(datosArchivo).on("load", function (event)
 				{
@@ -180,7 +180,7 @@ export default function EditarBorrarAdministradores(){
 
 		e.preventDefault();		
 
-		const {id, nombre, descripcion, precio, pros, pdf, imagen} = planpersonal;
+		const { nombre, descripcion, precio, pros} = planpersonal;
 		if(!Number(precio)){
 
 			$(".invalid-precio").show();
@@ -331,7 +331,7 @@ export default function EditarBorrarAdministradores(){
 					*Peso Max. 2MB | Formato: JPG o PNG</label>
 					<input id="editarImagen" type="file" className="form-control-file border" name="imagen" />
 					<div className="invalidad-feedback invalid-imagen"></div>
-					<img className="previsualizarImg img-fluid"/>
+					<img className="previsualizarImg img-fluid" alt="img-carga"/>
 
 					{/* ENTRADA nombre */}
 

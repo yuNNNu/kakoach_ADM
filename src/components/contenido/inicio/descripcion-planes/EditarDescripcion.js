@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import $ from 'jquery';
 import {rutaAPI} from '../../../../config/Config';
-import notie from 'notie';
+
 import Swal from 'sweetalert2'
 
 export default function EditarDescripcion(){
@@ -35,13 +35,12 @@ export default function EditarDescripcion(){
 
 		$('.alert').remove();
 		e.preventDefault();
-		const { titulo, descripcion, id} = desc;
+	
 
 			
 		// SE EJECUTA SERVICIO PUT
 
 		const result = await putData(desc); 
-		console.log("result", result.status);
 
 
 		if(result.status === 400){

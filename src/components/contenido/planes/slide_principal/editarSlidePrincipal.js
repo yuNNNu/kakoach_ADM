@@ -51,7 +51,7 @@ export default function EditarImgSlide()
                   $("#editarImagen").val("");
 				return;
 			}else{
-				let datosArchivo = new FileReader;
+				let datosArchivo = new FileReader();
 				datosArchivo.readAsDataURL(imagen);
 
 				$(datosArchivo).on("load", function(event){
@@ -88,37 +88,16 @@ export default function EditarImgSlide()
 
 		$('.alert').remove();
 		e.preventDefault();
-		const {imagen, titulo, descripcion, id} = imgP;
+		const { titulo, descripcion} = imgP;
 
-        // if (titulo !== "")
-        // {
-        //     $('.alert').remove();
-        // const expTitulo = /^([0-9a-zA-Z]).{1,30}$/;
-
-        // if(!expTitulo.test(titulo)){
-        //     $(".invalid-titulo").show();
-        //     $(".invalid-titulo").html("Utiliza un formato que coincida con el solicitado");
-
-        //     return;
-        // }
-        // }
-        // if(descripcion !== ""){
-        // const expDescripcion = /^([0-9a-zA-Z]).{1,100}$/;
-
-        //     if(!expDescripcion.test(descripcion)){
-        //         $(".invalid-titulo").show();
-        //         $(".invalid-titulo").html("Utiliza un formato que coincida con el solicitado");
-
-        //         return;
-        //     }
-        // }
-        if (titulo == "")
+       
+        if (titulo === "")
         {
             $(".invalid-titulo").show();
             $(".invalid-titulo").html("El titulo no puede ir vacio");
             return
         } 
-        if (descripcion == "")
+        if (descripcion === "")
         {
             $(".invalid-descripcion").show();
             $(".invalid-descripcion").html("La descripcion no puede ir vacia");
@@ -217,7 +196,7 @@ export default function EditarImgSlide()
 							<label className="small text-secondary" htmlFor="editarImagen">*Peso Max. 2MB | Formato: JPG o PNG</label>
 							<input id="editarImagen" type="file" className="form-control-file border" name="imagen" />
 							<div className="invalidad-feedback invalid-imagen"></div>
-							<img className="previsualizarImg img-fluid"/>
+							<img className="previsualizarImg img-fluid" alt="img-cargar"/>
 
 							{/* ENTRADA TITULO*/}
 

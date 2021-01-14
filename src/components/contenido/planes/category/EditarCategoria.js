@@ -51,7 +51,7 @@ export default function EditarCategoria()
                   $("#editarImagen").val("");
 				return;
 			}else{
-				let datosArchivo = new FileReader;
+				let datosArchivo = new FileReader();
 				datosArchivo.readAsDataURL(imagen);
 
 				$(datosArchivo).on("load", function(event){
@@ -67,7 +67,6 @@ export default function EditarCategoria()
 						'id' : $("#editarID").val()
 
 					})
-					console.log(editarCategoria)
 				})
 			}
 		}else{
@@ -89,15 +88,15 @@ export default function EditarCategoria()
 
 		$('.alert').remove();
 		e.preventDefault();
-		const {imagen, nombre, descripcion, id} = category;
+		const {nombre, descripcion} = category;
 
-        if (nombre == "")
+        if (nombre === "")
         {
             $(".invalid-nombre").show();
             $(".invalid-nombre").html("El nombre no puede ir vacio");
             return
         } 
-        if (descripcion == "")
+        if (descripcion === "")
         {
             $(".invalid-descripcion").show();
             $(".invalid-descripcion").html("La descripcion no puede ir vacia");
@@ -193,7 +192,7 @@ export default function EditarCategoria()
 						<label className="small text-secondary" htmlFor="editarImagen">*Peso Max. 2MB | Formato: JPG o PNG</label>
 						<input id="editarImagen" type="file" className="form-control-file border" name="imagen" />
 						<div className="invalidad-feedback invalid-imagen"></div>
-						<img className="previsualizarImg img-fluid"/>
+						<img className="previsualizarImg img-fluid" alt="img-carga"/>
 
 						{/* ENTRADA nombre*/}
 

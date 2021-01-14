@@ -33,7 +33,6 @@ export default function EditarFooter(){
 		{
 			arrDes = "";
 		}
-		console.log("arr en onchange",arrDes)
 		editarFooter({
 			'id' : $("#editarID").val(),
 			'titulo': $("#editarTitulo").val(),
@@ -117,7 +116,6 @@ export default function EditarFooter(){
 			return x.replace("\n", "");
 			
 		})
-	console.log(arrDes)
 	
 		$("#editarID").val(data[0]);
 		
