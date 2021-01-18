@@ -21,15 +21,11 @@ export default function Ventas()
 		getUser.data.forEach((venta, index) =>
         {
             totalVentas += venta.precio;
-            const fecha = new Date(venta.fecha_venta)
+        
            
-            const anno =  fecha.getFullYear();
-            const mes =  fecha.getMonth()+1;
-            const dia = fecha.getDay()+3;
-            const formatoFech = dia+"/"+mes+"/"+anno
 			dataSet[index] = [(index+1),
                             venta.nro_venta, 
-                            formatoFech,
+                            venta.fecha_venta,
                             venta.email,
 							venta.nombre_plan, 
                             venta.precio
