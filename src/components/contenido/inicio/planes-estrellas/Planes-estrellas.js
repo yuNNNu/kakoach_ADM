@@ -18,10 +18,13 @@ export default function PlanesEstrellas(){
 		const dataSet = [];
 		
 
-		getPlanesEstrellas.data.forEach((planesEstrellas, index) => {
+		getPlanesEstrellas.data.forEach((planesEstrellas, index) =>
+		{
+     
+			
 			dataSet[index] = [(index+1),
 							planesEstrellas.id,
-                            planesEstrellas.id,
+                            planesEstrellas._id,
                             [planesEstrellas._id + "_",
                             planesEstrellas.id
 							]];
@@ -49,6 +52,7 @@ export default function PlanesEstrellas(){
             {title: "ID"},
 			{title: "Acciones",
               render: function(data){
+              
 
               	return `
 					
