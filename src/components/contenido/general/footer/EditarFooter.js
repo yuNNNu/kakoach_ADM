@@ -221,7 +221,6 @@ export default function EditarFooter(){
 							{/* ENTRADA TITULO */}
 
 							<div className="form-group">
-								<label className="small text-secondary" htmlFor="editarTitulo">* No ingresar carácteres especiales, sólo letras y números.</label>
 
 								<div className="input-group mb-3">
 									<div className="input-group-append input-group-text">
@@ -237,8 +236,6 @@ export default function EditarFooter(){
 							{/* ENTRADA DESCRIPCION*/}
 
 							<div className="form-group">
-								<label className="small text-secondary" htmlFor="editarDescripcion">* No ingresar carácteres especiales, sólo letras y números.</label>
-
 								<div className="input-group mb-3">
 									<div className="input-group-append input-group-text">
 										<i className="fas fa-file-alt"></i>

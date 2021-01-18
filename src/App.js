@@ -18,7 +18,6 @@ import Footer from './components/footer/Footer';
 import Usuarios from './components/contenido/usuarios/Usuarios';
 import Error404 from './components/contenido/error404/Error404';
 
-// componenetes nuevos 
 // PAGINA GENERAL
 import Terminos from './components/contenido/general/terminos-y-condiciones/Terminos'
 import PlanPersonal from './components/contenido/inicio/plan-personal/Plan-personal'

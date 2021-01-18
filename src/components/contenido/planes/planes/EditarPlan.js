@@ -471,7 +471,7 @@ export default function EditarPlan()
 		    <div className="modal-content">
 
 		      <div className="modal-header">
-		        <h4 className="modal-title">Editar Plan Personal</h4>
+		        <h4 className="modal-title">Editar Plan</h4>
 		        <button type="button" className="close" data-dismiss="modal">&times;</button>
 		      </div>
 
@@ -484,7 +484,7 @@ export default function EditarPlan()
                 {/* ENTRADA IMAGEN*/}
 
                 <label className="small text-secondary" htmlFor="editarImagen">
-                IMAGEN de Plan personal |
+                Imagen de Plan |
                 *Peso Max. 2MB | Formato: JPG o PNG</label>
                 <input id="editarImagen" type="file" className="form-control-file border" name="imagen" />
                 <div className="invalid-feedback invalid-imagen"></div>
@@ -494,7 +494,7 @@ export default function EditarPlan()
                             
                 <div className="form-group">
 
-                <label className="small text-secondary" >*Plan de Volumen o Definicion</label>
+                <label className="small text-secondary mt-3" >*Plan de Volumen o Definicion</label>
 
                 <div className="input-group mb-3">
 
@@ -560,9 +560,7 @@ export default function EditarPlan()
 
                 <div className="form-group">
 
-                    <label className="small text-secondary" htmlFor="editarNombre">*Nombre plan</label>
-
-                    <div className="input-group mb-3">
+                    <div className="input-group mb-3 mt-3">
 
                         <div className="input-group-append input-group-text">
                             <i className="fas fa-user"></i>
@@ -589,8 +587,6 @@ export default function EditarPlan()
 
                 <div className="form-group">
 
-                    <label className="small text-secondary" htmlFor="editarDescripcion">*Descripcion Plan</label>
-
                     <div className="input-group mb-3">
 
                         <div className="input-group-append input-group-text">
@@ -616,8 +612,6 @@ export default function EditarPlan()
 
                 <div className="form-group">
 
-                    <label className="small text-secondary" htmlFor="editarPrecio">*Precio Plan</label>
-
                     <div className="input-group mb-3">
 
                         <div className="input-group-append input-group-text">
@@ -642,7 +636,11 @@ export default function EditarPlan()
                 {/* ENTRADA PROS */}
 
                 <div className="form-group">
-                        <label className="small text-secondary" htmlFor="editarPros">* Pros del plan, deben separarse por "," para generar el salto de linea.</label>
+                        <label className="small text-secondary" htmlFor="editarPros">* Pros, cada pro deben separarse por ","
+                                Ejemplo:
+                                pro1,
+                                pro2,
+                                pro3.</label>
 
                     <div className="input-group mb-3">
                         <div className="input-group-append input-group-text">
@@ -658,7 +656,7 @@ export default function EditarPlan()
                 {/* ENTRADA PDF*/}
 
                 <div className="form-group">
-                    <label className="small text-secondary" htmlFor="editarPdf">PDF Plan personal | *Peso Max. 2MB | Formato: JPG o PNG</label>
+                    <label className="small text-secondary" htmlFor="editarPdf">Plan | *Peso Max. 2MB | Formato: PDF</label>
                     <input id="editarPdf" type="file" className="form-control-file border" name="pdf" />
                     <div className="invalid-feedback invalid-pdf"></div>
                 </div>

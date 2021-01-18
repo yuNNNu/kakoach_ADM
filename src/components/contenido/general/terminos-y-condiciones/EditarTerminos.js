@@ -106,7 +106,7 @@ export default function EditarTerminos(){
 				<div className="modal-content">
 
 					<div className="modal-header">
-						<h4 className="modal-title">Editar Terminos y Condiciones</h4>
+						<h4 className="modal-title">Editar Términos y Condiciones</h4>
 						<button type="button" className="close" data-dismiss="modal">x</button>
 					</div>
 
@@ -120,7 +120,7 @@ export default function EditarTerminos(){
 							{/* ENTRADA contenido*/}
 
 							<div className="form-group">
-									<label className="small text-secondary" htmlFor="editarContenido"> Ingrese los terminos</label>
+									<label className="small text-secondary" htmlFor="editarContenido">Ingresar los términos y condiciones</label>
 
 								<div className="input-group mb-3">
 								

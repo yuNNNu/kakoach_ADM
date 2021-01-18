@@ -59,7 +59,7 @@ export default function Sidebar()
 							<li className="nav-item">
 								<a href="/" className="nav-link">
 									<i className="nav-icon fas fa-poll"></i>
-									<p>Estadisticas</p>
+									<p>Estadísticas</p>
 									
 
 								</a>
@@ -82,7 +82,7 @@ export default function Sidebar()
 									<a href="/terminos_y_condiciones" className="nav-link">
 
 										<p>
-										Terminos y Condiciones
+										Términos y Condiciones
 										</p>
 
 									</a>
@@ -192,7 +192,7 @@ export default function Sidebar()
 									<a href="/planes_slide" className="nav-link">
 
 										<p>
-										Gestor Img Principal
+										Gestor Imagen Principal
 										</p>
 
 									</a>
@@ -243,7 +243,7 @@ export default function Sidebar()
 									<a href="/sobre_mi_slide" className="nav-link">
 
 										<p>
-										Gestor Img Principal
+										Gestor Imagen Principal
 										</p>
 
 									</a>

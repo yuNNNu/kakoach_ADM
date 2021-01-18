@@ -133,7 +133,7 @@ export default function EditarBenefitPlan(){
 				<div className="modal-content">
 
 					<div className="modal-header">
-						<h4 className="modal-title">Editar beneficio Planes</h4>
+						<h4 className="modal-title">Editar Beneficio</h4>
 						<button type="button" className="close" data-dismiss="modal">x</button>
 					</div>
 
@@ -147,7 +147,6 @@ export default function EditarBenefitPlan(){
 							{/* ENTRADA TITULO*/}
 
 							<div className="form-group">
-								<label className="small text-secondary" htmlFor="editarTitulo">* No ingresar caracteres especiales, solo letras y números</label>
 
 								<div className="input-group mb-3">
 									<div className="input-group-append input-group-text">
@@ -163,8 +162,6 @@ export default function EditarBenefitPlan(){
 							{/* ENTRADA DESCRIPCION*/}
 
 							<div className="form-group">
-								<label className="small text-secondary" htmlFor="editarDescripcion">* No ingresar caracteres especiales, solo letras y números</label>
-
 								<div className="input-group mb-3">
 									<div className="input-group-append input-group-text">
 										<i className="fas fa-file-alt"></i>

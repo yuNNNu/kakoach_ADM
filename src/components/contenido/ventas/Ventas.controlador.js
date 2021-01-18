@@ -60,8 +60,8 @@ export default function Ventas()
 			})
         })
         //   Mostrando datos 
-            $('#cantidadVentasGeneral').html(cantVentas);
-            $('#saldoGeneral').html("$"+totalVentas);
+            $('#cantidadVentasGeneral').html("Cantidad de Ventas: " + cantVentas);
+            $('#saldoGeneral').html("Total de Ventas: $"+totalVentas);
 
 	}
     dataVentas();
@@ -75,7 +75,7 @@ export default function Ventas()
 				<div className="container-fluid">
 					<div className="row mb-2">
 						<div className="col-sm-6">
-							<h1 className="m-0 text-dark">Ventas</h1>
+							<h1 className="m-0 text-dark">Ventas Históricas</h1>
 						</div>
 					</div>	
 				</div>
@@ -92,8 +92,7 @@ export default function Ventas()
                         <div className="col-xl-4 col-md-4">
                             <div className="card bg-primary text-white mb-4">
                                 <div className="card-body">
-                                    <h3>Información</h3>  
-                                    <p>Información general</p>
+                                    <h3>Información General</h3>  
                                 </div>
                                 <div className="card-footer d-flex align-items-center justify-content-between">
                                     

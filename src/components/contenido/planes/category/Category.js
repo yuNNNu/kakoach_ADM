@@ -104,7 +104,7 @@ export default function Category(){
 				<div className="container-fluid">
 					<div className="row mb-2">
 						<div className="col-sm-6">
-							<h1 className="m-0 text-dark">Categoria</h1>
+							<h1 className="m-0 text-dark">Categoría</h1>
 						</div>
 					</div>	
 				</div>
@@ -118,7 +118,7 @@ export default function Category(){
 							<div className="card card-primary card-outline">
 								<div className="card-header">
 										<p className="m-0">
-										Recordatorio: Es necesario mantener el orden de las categorías
+										Recordatorio: Para que las categorías tengan un sentido lógico en la vista del cliente, mantener el orden.
 									</p>
 								
 								</div>

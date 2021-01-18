@@ -283,7 +283,7 @@ export default function CrearPlan()
 		    <div className="modal-content">
 
 		      <div className="modal-header">
-		        <h4 className="modal-title">Editar Plan Personal</h4>
+		        <h4 className="modal-title">Nuevo Plan</h4>
 		        <button type="button" className="close" data-dismiss="modal">&times;</button>
 		      </div>
 
@@ -297,11 +297,11 @@ export default function CrearPlan()
             <div className="form-group">
 
                 <label className="small text-secondary" htmlFor="crearImagen">
-                IMAGEN de Plan personal |
+                Imagen de Plan |
                 *Peso Max. 2MB | Formato: JPG o PNG</label>
                 <input id="crearImagen" type="file" className="form-control-file border" name="imagen" required/>
                 <div className="invalid-feedback invalid-imagen"></div>
-                <img className="previsualizarImg img-fluid"  alt="img-carga"/>
+                <img className="previsualizarImg img-fluid"/>
                 </div>          
                 {/* filtro tipo */}
                             
@@ -373,8 +373,6 @@ export default function CrearPlan()
 
                 <div className="form-group">
 
-                    <label className="small text-secondary" htmlFor="crearNombre">*Nombre plan</label>
-
                     <div className="input-group mb-3">
 
                         <div className="input-group-append input-group-text">
@@ -402,8 +400,6 @@ export default function CrearPlan()
 
                 <div className="form-group">
 
-                    <label className="small text-secondary" htmlFor="crearDescripcion">*Descripcion Plan</label>
-
                     <div className="input-group mb-3">
 
                         <div className="input-group-append input-group-text">
@@ -429,8 +425,6 @@ export default function CrearPlan()
 
                 <div className="form-group">
 
-                    <label className="small text-secondary" htmlFor="crearPrecio">*Precio Plan</label>
-
                     <div className="input-group mb-3">
 
                         <div className="input-group-append input-group-text">
@@ -455,7 +449,7 @@ export default function CrearPlan()
                 {/* ENTRADA PROS */}
 
                 <div className="form-group">
-                                <label className="small text-secondary" htmlFor="crearPros">* Pros del plan, deben separarse por ","
+                                <label className="small text-secondary" htmlFor="crearPros">* Pros, cada pro deben separarse por ","
                                 Ejemplo:
                                 pro1,
                                 pro2,
@@ -476,7 +470,7 @@ export default function CrearPlan()
                 {/* ENTRADA PDF*/}
 
                 <div className="form-group">
-                    <label className="small text-secondary" htmlFor="crearPdf">PDF Plan personal | *Peso Max. 2MB | Formato: JPG o PNG</label>
+                    <label className="small text-secondary" htmlFor="crearPdf">Plan | *Peso Max. 2MB | Formato: PDF</label>
                     <input id="crearPdf" type="file"  className="form-control-file border" name="pdf" required/>
                     <div className="invalid-feedback invalid-pdf"></div>
                 </div>

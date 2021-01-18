@@ -3,6 +3,11 @@ import $ from 'jquery';
 import {rutaAPI} from '../../../../config/Config';
 import Swal from 'sweetalert2'
 
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
+
 export default function CrearFooter()
 { 
     /*=============================================
@@ -13,32 +18,23 @@ export default function CrearFooter()
 
 		titulo: "",
 		descripcion: []
-
     })
+
+    const [descInputs, createDesc] = useState([
+    	{descripcion: '', link: ''}
+    ])
     /*=============================================
 	OnChange
 	=============================================*/
-    const cambiarFormPut = e =>
+    const cambiarFormPut = () =>
     {
-        let arrDes;
-        if ($("#crearDescripcion").val())
-        {
-            let arrDi = $("#crearDescripcion").val().split(',');
-             arrDes = arrDi.map((x) =>
-            {
-                return x.replace("\n", "");
-                
-            })
-        } else
-        {
-            arrDes = "";
-        }
-
+        let arrDes = [...descInputs];
 
 		crearFooter({
 			'titulo': $("#crearTitulo").val(),
 			'descripcion': arrDes
 		})
+
     }
     /*=============================================
 	OnSubmit
@@ -65,12 +61,9 @@ export default function CrearFooter()
             }
             return
         }
-       
-	
-	
 
-
-
+        console.log("Footer", Footer);
+        return;
 		/*=============================================
 		EJECTUAMOS SERVICIO PUT
 		=============================================*/
@@ -111,6 +104,25 @@ export default function CrearFooter()
 		}
 
 	}
+
+	const handleChangeDesc = (index, event) => {
+		const values = [...descInputs];
+		values[index][event.target.name] = event.target.value;
+		createDesc(values);
+	}
+
+	const handleAddFields = () => {
+		createDesc([...descInputs, {descripcion: '', link: ''}])
+	}
+
+	const handleRemoveFields = () => {
+		const values = [...descInputs];
+		let index = values.length-1;
+		values.splice(index, 1);
+		createDesc(values);
+	}
+
+
 	// RETORNO DE LA VISTA
 
 	return(
@@ -121,18 +133,18 @@ export default function CrearFooter()
 				<div className="modal-content">
 
 					<div className="modal-header">
-						<h4 className="modal-title">crear footer</h4>
+						<h4 className="modal-title">Nuevo Footer</h4>
 						<button type="button" className="close" data-dismiss="modal">x</button>
 					</div>
 
-					<form onChange={cambiarFormPut}   onSubmit={submitPut} encType="multipart/form-data">
+					<form onChange={cambiarFormPut} onSubmit={submitPut} encType="multipart/form-data">
 
 						<div className="modal-body">
 						
 							{/* ENTRADA TITULO */}
 
 							<div className="form-group">
-								<label className="small text-secondary" htmlFor="crearTitulo">* No ingresar caracterás especiales, sólo letras y números</label>
+						
 
 								<div className="input-group mb-3">
 									<div className="input-group-append input-group-text">
@@ -145,21 +157,34 @@ export default function CrearFooter()
 								</div>
 							</div>
 
-							{/* ENTRADA DESCRIPCION*/}
+							{/* ENTRADA DESCRIPCION Y LINK*/}
 
 							<div className="form-group">
-								<label className="small text-secondary" htmlFor="crearDescripcion">* No ingresar carácteres especiales, sólo letras y números</label>
 
-								<div className="input-group mb-3">
-									<div className="input-group-append input-group-text">
-										<i className="fas fa-file-alt"></i>
-									</div>
+								<div className="input-group mb-3 ml-2">
 
-									<textarea className="form-control" rows="5" id="crearDescripcion" name="descripcion" placeholder="Ingrese la descripción" pattern="([0-9a-zA-Z]).{1,30}"></textarea>
+									{
+										descInputs.map((descInput,index) => (
+
+											<div key={index} className="row mb-3"> 
+												<div className="input-group-append input-group-text col-1">
+													<i class="fas fa-list"></i>
+												</div>
+												<input onChange={event => handleChangeDesc(index, event)} value={descInputs.descripcion} id="crearDesc" type="text" className="form-control col-5" name="descripcion" placeholder="Ingrese la descripción"/>
+
+												<div className="input-group-append input-group-text col-1">
+													<i class="fas fa-link"></i>
+												</div>
+
+												<input onChange={event => handleChangeDesc(index, event)} value={descInputs.link} id="crearLink" type="text" className="form-control col-5" name="link" placeholder="Ingrese el link"/>
+											</div>
+										))
+									}
 
 									<div className="invalid-feedback invalid-descripcion"></div>
 								</div>
 							</div>
+
 
 						</div>
 
@@ -170,7 +195,16 @@ export default function CrearFooter()
 							</div>
 
 							<div>
-								<button type="submit" className="btn btn-primary">Guardar</button>
+								<IconButton className="mb-1" style={{margin: 0}}  onClick={() => handleRemoveFields()}> 
+									<RemoveIcon/>
+								</IconButton>
+								<IconButton onClick={() => handleAddFields()}>
+									<AddIcon/>
+								</IconButton>
+							</div>
+
+							<div>
+								<button type="submit" className="btn btn-primary" onClick={cambiarFormPut}>Guardar</button>
 							</div>
 
 						</div>

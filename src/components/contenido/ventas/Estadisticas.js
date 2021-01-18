@@ -110,19 +110,6 @@ export default function Estadisticas()
         
     });
     
-    // pasando datos
-        // mas vendido
-        $('#masVendido').html(getVentas["mas_vendido"].nombre)
-        $('#CantidadmasVendido').html("total: "+getVentas["mas_vendido"].cantidad)
-        $('#idMasVendido').html(getVentas["mas_vendido"].id)
-        // menos vendido
-        $('#menosVendido').html(getVentas["menos_vendido"].nombre)
-        $('#CantidadmenosVendido').html("total: "+getVentas["menos_vendido"].cantidad)
-        $('#idmenosVendido').html(getVentas["menos_vendido"].id)
-        // saldo general
-        $('#cantidadVentasGeneral').html("total: "+getVentas["cantidad_ventas"])
-        $('#saldoGeneral').html("$"+getVentas["total_ventas"])
-        
     // /*=============================================
     // =            EJECUTAMOS DATATABLE          =
     // =============================================*/
@@ -215,16 +202,16 @@ export default function Estadisticas()
     
     // pasando datos
         // mas vendido
-        $('#masVendido').html(getVentas["mas_vendido"].nombre)
-        $('#CantidadmasVendido').html("total: "+getVentas["mas_vendido"].cantidad)
-        $('#idMasVendido').html(getVentas["mas_vendido"].id)
+        $('#masVendido').html("Nombre: " + getVentas["mas_vendido"].nombre)
+        $('#CantidadmasVendido').html("Cantidad: "+getVentas["mas_vendido"].cantidad)
+        $('#idMasVendido').html("Id: " + getVentas["mas_vendido"].id)
         // menos vendido
-        $('#menosVendido').html(getVentas["menos_vendido"].nombre)
-        $('#CantidadmenosVendido').html("total: "+getVentas["menos_vendido"].cantidad)
-        $('#idmenosVendido').html(getVentas["menos_vendido"].id)
+        $('#menosVendido').html("Nombre: " + getVentas["menos_vendido"].nombre)
+        $('#CantidadmenosVendido').html("Cantidad: "+getVentas["menos_vendido"].cantidad)
+        $('#idmenosVendido').html("Id: " + getVentas["menos_vendido"].id)
         // saldo general
-        $('#cantidadVentasGeneral').html("total: "+getVentas["cantidad_ventas"])
-        $('#saldoGeneral').html("$"+getVentas["total_ventas"])
+        $('#cantidadVentasGeneral').html("N° de Ventas: "+getVentas["cantidad_ventas"])
+        $('#saldoGeneral').html("Total de ventas: $"+getVentas["total_ventas"])
         
     // /*=============================================
     // =            EJECUTAMOS DATATABLE          =
@@ -254,7 +241,7 @@ export default function Estadisticas()
 				<div className="container-fluid">
 					<div className="row mb-2">
 						<div className="col-sm-6">
-							<h1 className="m-0 text-dark">Estadisticas</h1>
+							<h1 className="m-0 text-dark">Estadísticas</h1>
 						</div>
 					</div>	
 				</div>
@@ -319,11 +306,6 @@ export default function Estadisticas()
                                             
                                         </div>
                                     </div>
-                                
-                                    
-                                    
-                                
-                            
                                 </div>
                             </form>
                     
@@ -339,14 +321,13 @@ export default function Estadisticas()
                         <div className="col-xl-4 col-md-4">
                             <div className="card bg-primary text-white mb-4">
                                 <div className="card-body">
-                                    <h3>Información</h3>  
-                                    <p>Información por rango</p>
+                                    <h3>Información por rango:</h3>  
                                 </div>
                                 <div className="card-footer d-flex align-items-center justify-content-between">
                                     
                                     <div className="small text-white">
-                                        <h4 id="cantidadVentasGeneral">nro ventas</h4>        
-                                        <h4 id="saldoGeneral">$</h4>           
+                                        <h5 id="cantidadVentasGeneral">N° de Ventas: 0</h5>        
+                                        <h5 id="saldoGeneral">Total de ventas: $0</h5>           
                                     </div>
                                 </div>
                             </div>
@@ -356,14 +337,15 @@ export default function Estadisticas()
                                 <div className="card bg-success text-white mb-4">
                                     
                                 <div className="card-body">
-                                    <h3 id="masVendido">Más vendido</h3> 
-                                    <p>Plan más vendido</p>
+                                    <h3>Plan más vendido:</h3> 
+
                                 </div>
                                 <div className="card-footer d-flex align-items-center justify-content-between">
                                     
                                     <div className="small text-white">
-                                        <h4 id="CantidadmasVendido">cantidad</h4 >        
-                                        <p id="idMasVendido"></p>         
+                                        <h5 id="masVendido">Nombre: </h5>
+                                        <h5 id="CantidadmasVendido">Cantidad: </h5 >        
+                                        <h5 id="idMasVendido">Id: </h5>         
                                     </div>
                                 </div>
                             </div>
@@ -372,14 +354,14 @@ export default function Estadisticas()
                         <div className="col-xl-4 col-md-4">
                             <div className="card bg-danger text-white mb-4">
                             <div className="card-body">
-                                    <h3 id="menosVendido">Menos vendido</h3>  
-                                    <p>Plan menos vendido</p>
+                                    <h3>Plan menos vendido:</h3>  
                                 </div>
                                 <div className="card-footer d-flex align-items-center justify-content-between">
                                     
                                     <div className="small text-white">
-                                        <h4 id="CantidadmenosVendido">cantidad</h4 >        
-                                        <p id="idmenosVendido"></p>         
+                                        <h5 id="menosVendido">Nombre: </h5>
+                                        <h5 id="CantidadmenosVendido">Cantidad: </h5>        
+                                        <h5 id="idmenosVendido">Id: </h5>         
                                     </div>
                                 </div> </div>
                         </div>

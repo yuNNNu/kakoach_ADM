@@ -337,9 +337,7 @@ export default function EditarBorrarAdministradores(){
 
 			      	<div className="form-group">
 
-			      		<label className="small text-secondary" htmlFor="editarNombre">*Mínimo 2 caracteres, máximo 6, sin números</label>
-
-			      		<div className="input-group mb-3">
+			      		<div className="input-group mb-3 mt-3">
 
 			      			<div className="input-group-append input-group-text">
 			      				<i className="fas fa-user"></i>
@@ -350,7 +348,7 @@ export default function EditarBorrarAdministradores(){
 			      				type="text"
 			      				className="form-control"
 			      				name="nombre"
-			      				placeholder="Ingrese el nombre*"
+			      				placeholder="Ingrese el nombre"
 			      				maxLength="40"
 			      				required
 
@@ -366,8 +364,6 @@ export default function EditarBorrarAdministradores(){
 
 			      	<div className="form-group">
 
-			      		<label className="small text-secondary" htmlFor="editarDescripcion">* Mínimo 8 caracteres, letras en mayúscula, en minúscula y números</label>
-
 			      		<div className="input-group mb-3">
 
 			      			<div className="input-group-append input-group-text">
@@ -379,7 +375,7 @@ export default function EditarBorrarAdministradores(){
 			      				type="text"
 			      				className="form-control"
 			      				name="descripcion"
-			      				placeholder="Ingrese la descripción*"
+			      				placeholder="Ingrese la descripción"
 			      				required
 
 			      			/>
@@ -394,8 +390,6 @@ export default function EditarBorrarAdministradores(){
 
 			      	<div className="form-group">
 
-			      		<label className="small text-secondary" htmlFor="editarPrecio">* Mínimo 8 caracteres, letras en mayúscula, en minúscula y números</label>
-
 			      		<div className="input-group mb-3">
 
 			      			<div className="input-group-append input-group-text">
@@ -407,7 +401,7 @@ export default function EditarBorrarAdministradores(){
 			      				type="text"
 			      				className="form-control"
 			      				name="precio"
-			      				placeholder="Ingrese el precio*"
+			      				placeholder="Ingrese el precio"
 			      				required
 			      			/>
 
@@ -420,7 +414,6 @@ export default function EditarBorrarAdministradores(){
 			      	 {/* ENTRADA PROS */}
 
 		     		<div className="form-group">
-							<label className="small text-secondary" htmlFor="editarPros">* No ingresar caracteres especiales, solo letras y números</label>
 
 						<div className="input-group mb-3">
 							<div className="input-group-append input-group-text">
@@ -437,7 +430,7 @@ export default function EditarBorrarAdministradores(){
 					{/* ENTRADA PDF*/}
 
 					<div className="form-group">
-						<label className="small text-secondary" htmlFor="editarPdf">PDF Plan personal | *Peso Max. 2MB | Formato: JPG o PNG</label>
+						<label className="small text-secondary" htmlFor="editarPdf">Plan personal | *Peso Max. 2MB | Formato: PDF</label>
 						<input id="editarPdf" type="file" className="form-control-file border" name="pdf" />
 						<div className="invalidad-feedback invalid-pdf"></div>
 			   		</div>

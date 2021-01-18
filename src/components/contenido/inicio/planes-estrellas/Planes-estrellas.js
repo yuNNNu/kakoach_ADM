@@ -20,6 +20,7 @@ export default function PlanesEstrellas(){
 
 		getPlanesEstrellas.data.forEach((planesEstrellas, index) => {
 			dataSet[index] = [(index+1),
+							planesEstrellas.id,
                             planesEstrellas.id,
                             [planesEstrellas._id + "_",
                             planesEstrellas.id
@@ -91,7 +92,7 @@ export default function PlanesEstrellas(){
 				<div className="container-fluid">
 					<div className="row mb-2">
 						<div className="col-sm-6">
-							<h1 className="m-0 text-dark">Planes Estrellas</h1>
+							<h1 className="m-0 text-dark">Planes Secundarios</h1>
 						</div>
 					</div>	
 				</div>

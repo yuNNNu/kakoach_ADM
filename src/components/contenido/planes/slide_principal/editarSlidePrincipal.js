@@ -201,9 +201,8 @@ export default function EditarImgSlide()
 							{/* ENTRADA TITULO*/}
 
 							<div className="form-group">
-								<label className="small text-secondary" htmlFor="editarTitulo">* No ingresar caracteres especiales, solo letras y números</label>
 
-								<div className="input-group mb-3">
+								<div className="input-group mb-3 mt-3">
 									<div className="input-group-append input-group-text">
 										<i className="fas fa-heading"></i>
 									</div>
@@ -217,7 +216,6 @@ export default function EditarImgSlide()
 							{/* ENTRADA DESCRIPCION*/}
 
 							<div className="form-group">
-								<label className="small text-secondary" htmlFor="editarDescripcion">* No ingresar caracteres especiales, solo letras y números</label>
 
 								<div className="input-group mb-3">
 									<div className="input-group-append input-group-text">

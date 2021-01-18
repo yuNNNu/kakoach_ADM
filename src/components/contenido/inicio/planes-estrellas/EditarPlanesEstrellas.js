@@ -39,7 +39,7 @@ export default function EditarBorrarAdministradores(){
 
 		e.preventDefault();		
 
-		const { id} = planesestrellas;
+		const {_id, id} = planesestrellas;
 
 		/*=============================================
 		Validamos que el campo user no venga vacío
@@ -111,7 +111,7 @@ export default function EditarBorrarAdministradores(){
 		    <div className="modal-content">
 
 		      <div className="modal-header">
-		        <h4 className="modal-title">Editar Plan Estrella</h4>
+		        <h4 className="modal-title">Editar Plan Secundario</h4>
 		        <button type="button" className="close" data-dismiss="modal">&times;</button>
 		      </div>
 
