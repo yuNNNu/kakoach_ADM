@@ -14,11 +14,11 @@ export default function CrearFooter()
 	Hook para capturar datos
 	=============================================*/
 
-	const [Footer, crearFooter ] = useState({
+	const [Footer, crearFooter ] = useState([{
 
 		titulo: "",
 		descripcion: []
-    })
+    }])
 
     const [descInputs, createDesc] = useState([
     	{descripcion: '', link: ''}
@@ -61,9 +61,20 @@ export default function CrearFooter()
             }
             return
         }
-
+		let inventoA = [{
+			titulo: "tituloInverntado",
+			descripcion: [{desc:"desc1",link:"link1"}]
+		}]
+        console.log("ARRAY", inventoA);
         console.log("Footer", Footer);
-        return;
+        console.log("tipo Footer", typeof(Footer));
+        console.log("tipo descripcion", typeof(Footer.descripcion));
+        console.log("descripcion general", Footer.descripcion);
+        console.log("descripcion [0]", Footer.descripcion[0]);
+        console.log("descripcion [0] object key",Object.keys( Footer.descripcion[0]) );
+        console.log("descripcion [0] object value",Object.values( Footer.descripcion[0]) );
+        console.log("descripcion [0] object entries",Object.entries( Footer.descripcion[0]) );
+     
 		/*=============================================
 		EJECTUAMOS SERVICIO PUT
 		=============================================*/
