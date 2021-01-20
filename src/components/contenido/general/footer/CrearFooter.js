@@ -3,7 +3,6 @@ import $ from 'jquery';
 import {rutaAPI} from '../../../../config/Config';
 import Swal from 'sweetalert2'
 
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
@@ -14,11 +13,11 @@ export default function CrearFooter()
 	Hook para capturar datos
 	=============================================*/
 
-	const [Footer, crearFooter ] = useState([{
+	const [Footer, crearFooter ] = useState({
 
 		titulo: "",
-		descripcion: []
-    }])
+		descripciones: ""
+    })
 
     const [descInputs, createDesc] = useState([
     	{descripcion: '', link: ''}
@@ -29,11 +28,13 @@ export default function CrearFooter()
     const cambiarFormPut = () =>
     {
         let arrDes = [...descInputs];
-
+		
+		
 		crearFooter({
 			'titulo': $("#crearTitulo").val(),
-			'descripcion': arrDes
+			'descripciones': arrDes
 		})
+		
 
     }
     /*=============================================
@@ -47,34 +48,23 @@ export default function CrearFooter()
 
 		e.preventDefault();		
 
-		const { titulo, descripcion} = Footer;
-        if (!titulo || !descripcion)
+		const { titulo, descripciones} = Footer;
+        if (!titulo || !descripciones)
         {
             if(!titulo){
 			$(".invalid-titulo").show();
 			$(".invalid-titulo").html("Completa este campo");
             }
 
-            if(descripcion === ""){
+            if(descripciones === ""){
                 $(".invalid-descripcion").show();
                 $(".invalid-descripcion").html("Completa este campo");
             }
             return
         }
-		let inventoA = [{
-			titulo: "tituloInverntado",
-			descripcion: [{desc:"desc1",link:"link1"}]
-		}]
-        console.log("ARRAY", inventoA);
-        console.log("Footer", Footer);
-        console.log("tipo Footer", typeof(Footer));
-        console.log("tipo descripcion", typeof(Footer.descripcion));
-        console.log("descripcion general", Footer.descripcion);
-        console.log("descripcion [0]", Footer.descripcion[0]);
-        console.log("descripcion [0] object key",Object.keys( Footer.descripcion[0]) );
-        console.log("descripcion [0] object value",Object.values( Footer.descripcion[0]) );
-        console.log("descripcion [0] object entries",Object.entries( Footer.descripcion[0]) );
-     
+		
+      
+		
 		/*=============================================
 		EJECTUAMOS SERVICIO PUT
 		=============================================*/
@@ -236,12 +226,14 @@ export default function CrearFooter()
 
     const postData = data => {
 
+		let descripcion = new Array(data.descripciones);
+	
         const url = `${rutaAPI}/create-footer`;
         const token = localStorage.getItem("ACCESS_TOKEN");
 
         let formData = new FormData();
        	formData.append("titulo", data.titulo);
-        formData.append("descripcion", data.descripcion);
+        formData.append("descripcion", JSON.stringify(descripcion));
 
         const params = {
             method: "POST",
