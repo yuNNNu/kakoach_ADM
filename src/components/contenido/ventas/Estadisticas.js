@@ -35,6 +35,7 @@ export default function Estadisticas()
         }
         if ($("#fechaFin").val())
         {
+      
             $(".invalid-fechaFin").hide();
         }
          CrearRango({
@@ -52,6 +53,7 @@ export default function Estadisticas()
         $('.alert').remove();
         e.preventDefault();	
         const { fecha_inicio, fecha_fin } = rango
+     
         
         if (!fecha_inicio)
         {
@@ -77,6 +79,7 @@ export default function Estadisticas()
     =            SE CREA EL DATASET       =
     =============================================*/
         const getVentas = await getData(rango);
+        console.log("🚀 ~ file: Estadisticas.js ~ line 81 ~ getVentas", getVentas)
             if(getVentas.status === 404){
 
 			Swal.fire({
@@ -96,7 +99,10 @@ export default function Estadisticas()
     const dataSet = [];
      
     
-    getVentas["planes_y_cantidad"].forEach((e,i) => {
+        getVentas["planes_y_cantidad"].forEach((e, i) =>
+        {
+        console.log("🚀 ~ file: Estadisticas.js ~ line 104 ~ e", e)
+        
                 dataSet[i] = [(i+1),
                     e.nombre, 
                     e.cantidad,
@@ -108,7 +114,20 @@ export default function Estadisticas()
             ]];
     
         
-    });
+        });
+        
+        // pasando datos
+        // mas vendido
+        $('#masVendido').html("Nombre: " + getVentas["mas_vendido"].nombre)
+        $('#CantidadmasVendido').html("Cantidad: "+getVentas["mas_vendido"].cantidad)
+        $('#idMasVendido').html("Id: " + getVentas["mas_vendido"].id)
+        // menos vendido
+        $('#menosVendido').html("Nombre: " + getVentas["menos_vendido"].nombre)
+        $('#CantidadmenosVendido').html("Cantidad: "+getVentas["menos_vendido"].cantidad)
+        $('#idmenosVendido').html("Id: " + getVentas["menos_vendido"].id)
+        // saldo general
+        $('#cantidadVentasGeneral').html("N° de Ventas: "+getVentas["cantidad_ventas"])
+        $('#saldoGeneral').html("Total de ventas: $"+getVentas["total_ventas"])
     
     // /*=============================================
     // =            EJECUTAMOS DATATABLE          =
@@ -403,6 +422,8 @@ const getData = (data) => {
 	const url = `${ rutaAPI }/estadisticas`;
     const token = localStorage.getItem("ACCESS_TOKEN");
     let formData = new FormData();
+  
+    
     formData.append("fecha_inicio", data.fecha_inicio);
     formData.append("fecha_fin", data.fecha_fin);
 	const params = {

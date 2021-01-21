@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import $ from 'jquery';
 import {rutaAPI} from '../../../../config/Config';
+import Swal from 'sweetalert2'
 
 export default function EditarBorrarAdministradores(){
 
@@ -58,21 +59,40 @@ export default function EditarBorrarAdministradores(){
 		=============================================*/
 
 		const result = await putData(planesestrellas);
+        console.log("🚀 ~ file: EditarPlanesEstrellas.js ~ line 61 ~ EditarBorrarAdministradores ~ result", result)
 
+	
 		if(result.status === 400){
 
-			$(".modal-footer").before(`<div class="alert alert-danger">${result.mensaje}</div>`)
+			Swal.fire({
+
+		      type: "error",
+		      title: result.mensaje,
+		      showConfirmButton: true,
+		      confirmButtonText: "Cerrar"
+            
+			}).then(function(result){
+				if(result.value){
+					window.location.href = "/inicio_planes_estrella";
+				}
+			})
 
 		}
 
 		if(result.status === 200){
 
-			$(".modal-footer").before(`<div class="alert alert-success">${result.mensaje}</div>`)
+			Swal.fire({
 
-			$('button[type="submit"]').remove();
-
-			setTimeout(()=>{window.location.href= "/inicio_planes_estrella";},500)
-
+		      type: "success",
+		      title: result.mensaje,
+		      showConfirmButton: true,
+		      confirmButtonText: "Cerrar"
+            
+			}).then(function(result){
+				if(result.value){
+					window.location.href = "/inicio_planes_estrella";
+				}
+			})
 		}
 
 	}
@@ -86,6 +106,7 @@ export default function EditarBorrarAdministradores(){
 		e.preventDefault();
 
 		let data = $(this).attr("data").split('_,');
+		
 
 		$("#editarID").val(data[0]);
 		$("#editaridd").val(data[1]);
@@ -178,7 +199,7 @@ const putData = data => {
 
 	const url = `${rutaAPI}/edit-secondary-plan/${data._id}`;
 	const token = localStorage.getItem("ACCESS_TOKEN");
-
+	
 	const params = {
 		method: "PUT",
 		body: JSON.stringify(data),
