@@ -8,7 +8,6 @@ import EditarPlan from './EditarPlan';
 import CrearPlan from './CrearPlan';
 export default function Planes(){
 
-
 	const dataPlanes = async() => {
 		/*=============================================
 		=            CREAMOS EL DATASET               =
@@ -39,7 +38,6 @@ export default function Planes(){
                             planes.nivel+ "_",
                             planes.pdf,
                 ]];
-            
 		})
 
 		// =============================================
@@ -186,6 +184,7 @@ const getData = () => {
 	return fetch(url, params).then(response => {
 		return response.json();
 	}).then(result => {
+		console.log("result", result);
 		return  result;
 	}).then(err => {
 		return err;

@@ -1,15 +1,20 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import $ from 'jquery';
 import notie from 'notie';
 import Swal from 'sweetalert2'
 import {rutaAPI} from '../../../../config/Config';
+import IconButton from '@material-ui/core/IconButton';
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
+import Pros from './Pros';
+
+import axios from 'axios';
 
 export default function EditarPlan()
 {
     /*=============================================
 	Hook para capturar datos
 	=============================================*/
-
 	const [plan, editarPlan ] = useState({
 
 		id: "",
@@ -23,6 +28,10 @@ export default function EditarPlan()
 		pdf: null
 
 	})
+
+	const [pros, setPro] = useState([
+        {pro: ''}
+    ])
     /*=============================================
 	OnChange
 	=============================================*/
@@ -30,13 +39,12 @@ export default function EditarPlan()
 	const cambiaFormPut = e =>
     {
 		let type, nivel;
-		let arrDi = $("#editarPros").val().split(',');
-		let arrPros = arrDi.map((x) =>
-        {
-    
-			return x.trim().replace("\n", "");
-			
-		})
+		let arrPros = [];
+        let prosObject = [...pros]
+			prosObject.map(x => {
+            arrPros.push(Object.values(x));
+        })
+
 
 	
         //    TIPO
@@ -328,21 +336,15 @@ export default function EditarPlan()
 	CAPTURAMOS DATOS PARA EDITAR
 	=============================================*/
 
+	let planId = "5ffbeb74ba17e84374ee8ac5";
+
 	$(document).on("click", ".editarInputs", function(e){
 
 		e.preventDefault();
 
 		let data = $(this).attr("data").split('_,');
-       
-		let arrDi = data[2].trim().split(',');
-		let arrPros = arrDi.map((x) =>
-		{
-			return x.replace("\n", "");
-			
-		})
-		$("#editarID").val(data[0]);
+    	$("#editarID").val(data[0]);
         $(".previsualizarImg").attr("src", `${rutaAPI}/show-plan/${ data[1] }`);
-		$("#editarPros").val(arrPros);
 		$("#editarNombre").val(data[4]);
 		$("#editarDescripcion").val(data[5]);
         $("#editarPrecio").val(data[6]);
@@ -376,12 +378,10 @@ export default function EditarPlan()
 				$("#b").prop('checked', true);
         }
        
-		
-
 		editarPlan({
 
 			'id' : data[0],
-            'pros': arrPros,
+            'pros': null,
             'type': data[3],
 			'nombre' : data[4],
 			'descripcion' :  data[5],
@@ -390,9 +390,8 @@ export default function EditarPlan()
 			'pdf' : null,
 			'imagen' : null,
 		})
-
-
     })
+
     // CAPTURAR DATOS PARA BORRAR
 	$(document).on("click", ".borrarInput", function(e){
 
@@ -461,6 +460,24 @@ export default function EditarPlan()
 
 
 	})
+
+	const handleChangePro = (index, event) => {
+        const values = [...pros];
+        values[index][event.target.name] = event.target.value;
+        setPro(values);
+    }
+
+    const handleAddPro = () => {
+        setPro([...pros, {pro: ''}])
+    }
+
+    const handleRemovePro = () => {
+        const values = [...pros];
+        let index = values.length-1;
+        values.splice(index, 1);
+        setPro(values);
+    }
+
 	/*=============================================
 	=       Retornamos vista del componente       =
 	=============================================*/
@@ -635,23 +652,7 @@ export default function EditarPlan()
 
                 {/* ENTRADA PROS */}
 
-                <div className="form-group">
-                        <label className="small text-secondary" htmlFor="editarPros">* Pros, cada pro deben separarse por ","
-                                Ejemplo:
-                                pro1,
-                                pro2,
-                                pro3.</label>
-
-                    <div className="input-group mb-3">
-                        <div className="input-group-append input-group-text">
-                            <i className="fas fa-file-alt"></i>
-                        </div>
-
-                        <textarea className="form-control" rows="5" id="editarPros" name="pros" placeholder="Ingrese los pros" pattern="([0-9a-zA-Z]).{1,30}"></textarea>
-
-                        <div className="invalid-feedback invalid-pros"></div>
-                    </div>
-                </div>
+                <Pros planid={planId}/>
 
                 {/* ENTRADA PDF*/}
 

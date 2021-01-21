@@ -4,6 +4,11 @@ import notie from 'notie';
 import Swal from 'sweetalert2'
 import {rutaAPI} from '../../../../config/Config';
 
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
+
 export default function CrearPlan()
 { 
     /*=============================================
@@ -23,6 +28,10 @@ export default function CrearPlan()
 		pdf: null
 
     })
+
+    const [pros, setPro] = useState([
+        {pro: ''}
+    ])
     /*=============================================
 	OnChange
 	=============================================*/
@@ -32,13 +41,12 @@ export default function CrearPlan()
      
         
         let type, nivel;
+        let arrDes = [];
+        let prosObject = [...pros]
+		prosObject.map(x => {
+            arrDes.push(Object.values(x));
+        })
 
-		let arrDi = $("#crearPros").val().split(',');
-		let arrDes = arrDi.map((x) =>
-        {
-			return x.trim().replace("\n", "");
-			
-		})
 
         //    TIPO
             if ($('#crearvol').prop('checked'))
@@ -191,7 +199,7 @@ export default function CrearPlan()
 	=============================================*/
 
 	const submitPut = async e => {
-        
+       
       
 		$('.alert').remove();
 
@@ -231,7 +239,8 @@ export default function CrearPlan()
 
 	
 
-
+        // console.log("plansillo", plan);
+        // return;
 
 		/*=============================================
 		EJECTUAMOS SERVICIO PUT
@@ -273,6 +282,23 @@ export default function CrearPlan()
 		}
 
 	}
+
+    const handleChangePro = (index, event) => {
+        const values = [...pros];
+        values[index][event.target.name] = event.target.value;
+        setPro(values);
+    }
+
+    const handleAddPro = () => {
+        setPro([...pros, {pro: ''}])
+    }
+
+    const handleRemovePro = () => {
+        const values = [...pros];
+        let index = values.length-1;
+        values.splice(index, 1);
+        setPro(values);
+    }
     /*=============================================
 	=       Retornamos vista del componente       =
 	=============================================*/
@@ -449,21 +475,32 @@ export default function CrearPlan()
                 {/* ENTRADA PROS */}
 
                 <div className="form-group">
-                                <label className="small text-secondary" htmlFor="crearPros">* Pros, cada pro deben separarse por ","
-                                Ejemplo:
-                                pro1,
-                                pro2,
-                                pro3
-                        </label>
 
-                    <div className="input-group mb-3">
-                        <div className="input-group-append input-group-text">
-                            <i className="fas fa-file-alt"></i>
-                        </div>
+                        {
+                            pros.map((pro,index) => (
 
-                        <textarea className="form-control" rows="5" id="crearPros" name="pros" placeholder="Ingrese los pros" required></textarea>
+                                <div key={index} className="mb-3 input-group"> 
+                                    <div className="input-group-append input-group-text">
+                                        <i class="fas fa-list"></i>
+                                    </div>
+                                    <input onChange={event => handleChangePro(index, event)} value={pros.descripcion} id="crearPro" type="text" className="form-control" name="pro" placeholder="Ingrese pro"/>
+
+                                </div>
+                            ))
+                        }
 
                         <div className="invalid-feedback invalid-pros"></div>
+ 
+
+                    <div className="row">
+                        <div className="col-12 justify-content-center d-flex" >
+                            <IconButton className="mb-1 justify-content-center" onClick={() => handleRemovePro()}> 
+                                <RemoveIcon/>
+                            </IconButton>
+                            <IconButton onClick={() => handleAddPro()}>
+                                <AddIcon/>
+                            </IconButton>
+                        </div>
                     </div>
                 </div>
 
