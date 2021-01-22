@@ -6,8 +6,6 @@ import {rutaAPI} from '../../../../config/Config';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
-import Pros from './Pros';
-
 import axios from 'axios';
 
 export default function EditarPlan()
@@ -18,7 +16,7 @@ export default function EditarPlan()
 	const [plan, editarPlan ] = useState({
 
 		id: "",
-		pros: [],
+		pross: [],
         imagen: null,
         type: "",
 		nombre: "",
@@ -29,9 +27,7 @@ export default function EditarPlan()
 
 	})
 
-	const [pros, setPro] = useState([
-        {pro: ''}
-    ])
+	const [pros, setPro] = useState([])
     /*=============================================
 	OnChange
 	=============================================*/
@@ -117,7 +113,7 @@ export default function EditarPlan()
                         'nombre' : $("#editarNombre").val(),
                         'descripcion' :  $("#editarDescripcion").val(),
                         'precio' :   $("#editarPrecio").val(),
-                        'pros' : arrPros,
+                        'pross' : arrPros,
                         'pdf' : pdf,
                         'imagen': imagen,
                         'type':type,
@@ -135,7 +131,7 @@ export default function EditarPlan()
                 'nombre' : $("#editarNombre").val(),
                 'descripcion' :  $("#editarDescripcion").val(),
                 'precio' :   $("#editarPrecio").val(),
-                'pros' : arrPros,
+                'pross' : arrPros,
                 'pdf' : pdf,
                 'imagen': imagen,
                 'type':type,
@@ -178,7 +174,7 @@ export default function EditarPlan()
                 'nombre' : $("#editarNombre").val(),
                 'descripcion' :  $("#editarDescripcion").val(),
                 'precio' :   $("#editarPrecio").val(),
-                'pros' : arrPros,
+                'pross' : arrPros,
                 'pdf' : pdf,
                 'imagen': imagen,
                 'type':type,
@@ -193,7 +189,7 @@ export default function EditarPlan()
                 'nombre' : $("#editarNombre").val(),
                 'descripcion' :  $("#editarDescripcion").val(),
                 'precio' :   $("#editarPrecio").val(),
-                'pros' : arrPros,
+                'pross' : arrPros,
                 'pdf' : null,
                 'imagen': imagen,
                 'type':type,
@@ -209,7 +205,7 @@ export default function EditarPlan()
 			'nombre' : $("#editarNombre").val(),
 			'descripcion' :  $("#editarDescripcion").val(),
 			'precio' :   $("#editarPrecio").val(),
-			'pros' : arrPros,
+			'pross' : arrPros,
 			'pdf' : pdf,
             'imagen': imagen,
             'type':type,
@@ -229,7 +225,9 @@ export default function EditarPlan()
 
 		e.preventDefault();		
 
-		const {nombre, descripcion, precio, pros} = plan;
+		const {nombre, descripcion, precio, pross} = plan;
+
+		console.log(pross);
         // validaciones imagen
             // VALIDANDO TIPO
         if (!$('#vol').prop('checked') && !$('#def').prop('checked'))
@@ -336,8 +334,6 @@ export default function EditarPlan()
 	CAPTURAMOS DATOS PARA EDITAR
 	=============================================*/
 
-	let planId = "5ffbeb74ba17e84374ee8ac5";
-
 	$(document).on("click", ".editarInputs", function(e){
 
 		e.preventDefault();
@@ -348,6 +344,19 @@ export default function EditarPlan()
 		$("#editarNombre").val(data[4]);
 		$("#editarDescripcion").val(data[5]);
         $("#editarPrecio").val(data[6]);
+        localStorage.setItem("planid", data[0]);
+        
+        fetch(`${rutaAPI}/show-individual-plan/${localStorage.getItem(["planid"])}`)
+    	.then(response => response.json())
+    	.then(json => {
+    		console.log("json", json.data.pros);
+    		let proArray = json.data.pros;
+    		setPro(proArray);
+    	})
+    	.catch(err => {
+    		console.log(err);
+    	}) 
+
         // TIPO
         let type = data[3];
         switch (type)
@@ -462,13 +471,16 @@ export default function EditarPlan()
 	})
 
 	const handleChangePro = (index, event) => {
-        const values = [...pros];
-        values[index][event.target.name] = event.target.value;
-        setPro(values);
+
+		let arrPros = [...pros];
+		arrPros[index] = event.target.value;
+		console.log("arrPros", arrPros);
+		setPro(arrPros);
+
     }
 
     const handleAddPro = () => {
-        setPro([...pros, {pro: ''}])
+        setPro([...pros, []])
     }
 
     const handleRemovePro = () => {
@@ -478,6 +490,7 @@ export default function EditarPlan()
         setPro(values);
     }
 
+  
 	/*=============================================
 	=       Retornamos vista del componente       =
 	=============================================*/
@@ -652,7 +665,34 @@ export default function EditarPlan()
 
                 {/* ENTRADA PROS */}
 
-                <Pros planid={planId}/>
+                   <div className="form-group">
+
+                {
+                    pros.map((pro,index) => (
+                        <div key={index} className="mb-3 input-group"> 
+                            <div className="input-group-append input-group-text">
+                                <i class="fas fa-list"></i>
+                            </div>
+                            <input value={pro} id="createPro" onChange={event => handleChangePro(index, event, pro)} type="text" className="form-control" name="pro" placeholder="set pro"/>
+
+                        </div>
+                    ))
+                }
+
+                <div className="invalid-feedback invalid-pros"></div>
+
+
+	            <div className="row">
+		                <div className="col-12 justify-content-center d-flex" >
+		                    <IconButton className="mb-1 justify-content-center" onClick={() => handleRemovePro()}> 
+		                        <RemoveIcon/>
+		                    </IconButton>
+		                    <IconButton onClick={() => handleAddPro()}>
+		                        <AddIcon/>
+		                    </IconButton>
+		                </div>
+		            </div>
+		        </div>
 
                 {/* ENTRADA PDF*/}
 

@@ -15,9 +15,9 @@ export default function Planes(){
 		
 		const getPlanes = await getData();
 		const dataSet = [];
-		
 
 		getPlanes.data.forEach((planes, index) => {
+
 			dataSet[index] = [(index+1),
                             planes.imagen,
                             planes.pros, 
@@ -74,7 +74,7 @@ export default function Planes(){
 			{ title: "pdf" },
 			{title: "ID"},
 			{title: "Acciones",
-              render: function(data){
+              render: function(data, arr){
 
               	return `
 					
@@ -184,7 +184,6 @@ const getData = () => {
 	return fetch(url, params).then(response => {
 		return response.json();
 	}).then(result => {
-		console.log("result", result);
 		return  result;
 	}).then(err => {
 		return err;

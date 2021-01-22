@@ -7,7 +7,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 import axios from 'axios';
 
-export default function Pros(planid){
+export default function Pros(){
 
 	/*=============================================
 	=                    useStates                =
@@ -66,25 +66,19 @@ export default function Pros(planid){
     /*=============================================
 	=             INITIALIZATION VALUES           =
 	=============================================*/
-	let id = planid;
-	useEffect( () => {
 
-    	axios.get(`${rutaAPI}/show-individual-plan/5ffbeb74ba17e84374ee8ac5`)
-		.then(function (response) {
-			console.log(response["data"]["data"].pros);
-			let proArr = response["data"]["data"].pros;
-			setPro(proArr);
-			return;
-
-		})
-		.catch(function (error) {
-
-		console.log(error);
-		})
-    })
-
-
-
+	   useEffect(() => {
+    	fetch(`${rutaAPI}/show-individual-plan/${localStorage.getItem["planid"]}`)
+    	.then(response => response.json())
+    	.then(json => {
+    		console.log("json", json.data.pros);
+    		let proArray = json.data.pros;
+    		setPro(proArray);
+    	})
+    	.catch(err => {
+    		console.log(err);
+    	}) 
+    }, [])
 
 	return(
         <div className="form-group">
@@ -118,3 +112,4 @@ export default function Pros(planid){
 	);
 
 }
+
