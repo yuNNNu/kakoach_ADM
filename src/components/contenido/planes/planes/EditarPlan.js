@@ -486,7 +486,6 @@ export default function EditarPlan()
         setPro(values);
     }
 
-  
 	/*=============================================
 	=       Retornamos vista del componente       =
 	=============================================*/
@@ -501,7 +500,7 @@ export default function EditarPlan()
 		        <button type="button" className="close" data-dismiss="modal">&times;</button>
 		      </div>
 
-		      <form  onChange={cambiaFormPut}  onSubmit={submitPut}> 
+		      <form  onChange={cambiaFormPut} onSubmit={submitPut}> 
 
                 <div className="modal-body">
 
@@ -699,11 +698,11 @@ export default function EditarPlan()
                 </div>
 
 
-                <div className="modal-footer d-flex justify-content-between">
+                <div className="modal-footer d-flex justify-content-between">  
 
                     <div><button type="button" className="btn btn-danger" data-dismiss="modal">Cerrar</button></div>
 
-                    <div><button type="submit" className="btn btn-primary">Enviar</button></div>        
+                    <div><button type="submit" className="btn btn-primary" onClick={cambiaFormPut}>Enviar</button></div>        
                 </div>
 
             </div>
