@@ -36,10 +36,7 @@ export default function EditarPlan()
     {
 		let type, nivel;
 		let arrPros = [];
-        let prosObject = [...pros]
-			prosObject.map(x => {
-            arrPros.push(Object.values(x));
-        })
+		arrPros = [...pros];
 
 
 	
@@ -197,7 +194,7 @@ export default function EditarPlan()
 
 			})
 		}
-		
+		console.log("arrPros", arrPros);
 		
 		editarPlan({
 
@@ -211,6 +208,8 @@ export default function EditarPlan()
             'type':type,
             'nivel':nivel
 		})
+
+
 		
 
     }
@@ -281,7 +280,7 @@ export default function EditarPlan()
 
 		}
 
-		if(pros === ""){
+		if(pross === ""){
 
 			$(".invalid-pros").show();
 			$(".invalid-pros").html("Completa este campo");
@@ -344,9 +343,8 @@ export default function EditarPlan()
 		$("#editarNombre").val(data[4]);
 		$("#editarDescripcion").val(data[5]);
         $("#editarPrecio").val(data[6]);
-        localStorage.setItem("planid", data[0]);
         
-        fetch(`${rutaAPI}/show-individual-plan/${localStorage.getItem(["planid"])}`)
+        fetch(`${rutaAPI}/show-individual-plan/${data[0]}`)
     	.then(response => response.json())
     	.then(json => {
     		console.log("json", json.data.pros);
@@ -471,10 +469,8 @@ export default function EditarPlan()
 	})
 
 	const handleChangePro = (index, event) => {
-
 		let arrPros = [...pros];
 		arrPros[index] = event.target.value;
-		console.log("arrPros", arrPros);
 		setPro(arrPros);
 
     }
@@ -673,7 +669,7 @@ export default function EditarPlan()
                             <div className="input-group-append input-group-text">
                                 <i class="fas fa-list"></i>
                             </div>
-                            <input value={pro} id="createPro" onChange={event => handleChangePro(index, event, pro)} type="text" className="form-control" name="pro" placeholder="set pro"/>
+                            <input value={pro} id="createPro" onChange={event => handleChangePro(index, event)} type="text" className="form-control" name="pro" placeholder="set pro"/>
 
                         </div>
                     ))
@@ -734,7 +730,7 @@ const putData = data => {
 	formData.append("nombre", data.nombre);
 	formData.append("descripcion", data.descripcion);
 	formData.append("precio", data.precio);
-	formData.append("pros", data.pros);
+	formData.append("pros", data.pross);
 	formData.append("pdf", data.pdf);
     formData.append("imagen", data.imagen);
     formData.append("type", data.type);
