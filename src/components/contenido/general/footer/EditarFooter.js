@@ -2,38 +2,33 @@ import React, {useState} from 'react'
 import $ from 'jquery';
 import {rutaAPI} from '../../../../config/Config';
 
+import IconButton from '@material-ui/core/IconButton';
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
+
 import Swal from 'sweetalert2'
 
 export default function EditarFooter(){
 
 	// HOOK
 
-	const [footer, editarFooter] = useState({
+	const [Footer, crearFooter ] = useState({
 
-		id: "",
 		titulo: "",
-		descripcion: []
+		descripciones: ""
+    })
 
-	})
+    const [descInputs, createDesc] = useState([
+    	{descripcion: '', link: ''}
+    ])
 
 	// ONCHANGE
 
 	const cambiarFormPut = e =>
 	{
-		let arrDes;
-		if ($("#editarDescripcion").val())
-		{
-			let arrDi = $("#editarDescripcion").val().split(',');
-			 arrDes = arrDi.map((x) =>
-			{
-				return x.replace("\n", "");
-			
-			})
-		} else
-		{
-			arrDes = "";
-		}
-		editarFooter({
+		let arrDes = [...descInputs]
+		console.log("arrDes", arrDes);
+		crearFooter({
 			'id' : $("#editarID").val(),
 			'titulo': $("#editarTitulo").val(),
 			'descripcion': arrDes
@@ -46,7 +41,7 @@ export default function EditarFooter(){
 
 		$('.alert').remove();
 		e.preventDefault();
-		const { titulo, descripcion} = footer;
+		const { titulo, descripcion} = Footer;
 		if (!titulo || !descripcion)
         {
             if(titulo === ""){
@@ -63,7 +58,7 @@ export default function EditarFooter(){
 	
 		// SE EJECUTA SERVICIO PUT
 
-		const result = await putData(footer); 
+		const result = await putData(Footer); 
 
 		
 
@@ -107,22 +102,37 @@ export default function EditarFooter(){
 	$(document).on("click", ".editarInputs", function(e){
 		e.preventDefault();
 		
-	
 		let data = $(this).attr("data").split('_,');
-			
-		let arrDi = data[2].trim().split(',');
-		let arrDes = arrDi.map((x) =>
-		{
-			return x.replace("\n", "");
-			
-		})
-	
+		let id = data[0];
+		let arrDes;
 		$("#editarID").val(data[0]);
-		
 		$("#editarTitulo").val(data[1]);
 		$("#editarDescripcion").val(data[2]);
 		
-		editarFooter({
+		fetch(`${rutaAPI}/show-individual-footer/${id}`)
+    	.then(response => response.json())
+    	.then(json => {
+
+    		let descArr = json.data.descripcion;
+    		let descArrofObjs = [];
+    		descArr.map(x => {
+    		
+    			let descObj = {
+    				descripcion: x.descripcion,
+    				link: x.link
+    			}
+
+    			descArrofObjs.push(descObj)
+    		})
+
+    		createDesc(descArrofObjs);
+    		
+    	})
+    	.catch(err => {
+    		console.log(err);
+    	}) 
+
+		crearFooter({
 
 			'titulo' : $('#editarTitulo').val(),
 			'descripcion': arrDes,
@@ -198,6 +208,23 @@ export default function EditarFooter(){
 
 
 	})
+
+	const handleChangeDesc = (index, event) => {
+		const values = [...descInputs];
+		values[index][event.target.name] = event.target.value;
+		createDesc(values);
+	}
+
+	const handleAddFields = () => {
+		createDesc([...descInputs, {descripcion: '', link: ''}])
+	}
+
+	const handleRemoveFields = () => {
+		const values = [...descInputs];
+		let index = values.length-1;
+		values.splice(index, 1);
+		createDesc(values);
+	}
 	
 
 	// RETORNO DE LA VISTA
@@ -235,15 +262,30 @@ export default function EditarFooter(){
 
 							{/* ENTRADA DESCRIPCION*/}
 
+							{/* ENTRADA DESCRIPCION Y LINK*/}
+
 							<div className="form-group">
-								<div className="input-group mb-3">
-									<div className="input-group-append input-group-text">
-										<i className="fas fa-file-alt"></i>
-									</div>
 
-									<textarea className="form-control" rows="5" id="editarDescripcion" name="descripcion" placeholder="Ingrese la descripción" pattern="([0-9a-zA-Z]).{1,30}"></textarea>
+								<div className="input-group mb-3 ml-2">
 
-									<div className="invalid-feedback invalid-descripcion"></div>
+									{
+										descInputs.map((descInput,index) => (
+
+											<div key={index} className="row mb-3"> 
+												<div className="input-group-append input-group-text col-1">
+													<i class="fas fa-list"></i>
+												</div>
+												<input value={descInput.descripcion} onChange={event => handleChangeDesc(index, event)} id="crearDesc" type="text" className="form-control col-5" name="descripcion" placeholder="Ingrese la descripción"/>
+
+												<div className="input-group-append input-group-text col-1">
+													<i class="fas fa-link"></i>
+												</div>
+
+												<input value={descInput.link} onChange={event => handleChangeDesc(index, event)} id="crearLink" type="text" className="form-control col-5" name="link" placeholder="Ingrese el link"/>
+											</div>
+										))
+									}
+
 								</div>
 							</div>
 
@@ -256,7 +298,17 @@ export default function EditarFooter(){
 							</div>
 
 							<div>
-								<button type="submit" className="btn btn-primary">Guardar</button>
+								<IconButton className="mb-1" style={{margin: 0}}  onClick={() => handleRemoveFields()}> 
+									<RemoveIcon/>
+								</IconButton>
+								<IconButton onClick={() => handleAddFields()}>
+									<AddIcon/>
+								</IconButton>
+							</div>
+
+
+							<div>
+								<button type="submit" className="btn btn-primary" onClick={cambiarFormPut}>Guardar</button>
 							</div>
 
 						</div>

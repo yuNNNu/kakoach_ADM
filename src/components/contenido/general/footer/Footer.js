@@ -20,7 +20,6 @@ export default function FooterClient(){
 
         getFooter.data.forEach((footer, index) =>
         {
-           
 			dataSet[index] = [(index+1),
 							footer.titulo, 
                             footer.descripcion
