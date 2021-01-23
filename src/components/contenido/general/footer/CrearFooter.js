@@ -27,17 +27,25 @@ export default function CrearFooter()
 	=============================================*/
     const cambiarFormPut = () =>
     {
+        let objDes = {};
         let arrDes = [];
-		let arrDesfill = [descInputs];
+		let arrDesfill = [...descInputs];
 
 		arrDesfill.map(x => {
-			let value = x + "_";
-			arrDes.push(value);
+			console.log("x", x);
+			let descripcionVal = x.descripcion + "_";
+			let linkVal = x.link + "_";
+
+			objDes = {
+				descripcion: descripcionVal,
+				link: linkVal
+			}
+
+			arrDes.push(objDes);
 		})
 
-		console.log(arrDes);
+		console.log("objDes", objDes);
 
-		
 		crearFooter({
 			'titulo': $("#crearTitulo").val(),
 			'descripciones': arrDes
@@ -56,17 +64,12 @@ export default function CrearFooter()
 
 		e.preventDefault();		
 
-		const { titulo, descripciones} = Footer;
-        if (!titulo || !descripciones)
+		const { titulo } = Footer;
+        if (!titulo)
         {
             if(!titulo){
 			$(".invalid-titulo").show();
 			$(".invalid-titulo").html("Completa este campo");
-            }
-
-            if(descripciones === ""){
-                $(".invalid-descripcion").show();
-                $(".invalid-descripcion").html("Completa este campo");
             }
             return
         }
@@ -233,21 +236,17 @@ export default function CrearFooter()
     =============================================*/
 
     const postData = data => {
-
-		let descripcion = new Array(data.descripciones);
+    	console.log("data", data);
 	
         const url = `${rutaAPI}/create-footer`;
         const token = localStorage.getItem("ACCESS_TOKEN");
 
-        let formData = new FormData();
-       	formData.append("titulo", data.titulo);
-        formData.append("descripcion", JSON.stringify(descripcion));
-
         const params = {
             method: "POST",
-            body: formData,
+            body: JSON.stringify(data),
             headers: {
-                "Authorization": token
+                "Authorization": token,
+                "Content-type": "application/json"
             }
         }
 
