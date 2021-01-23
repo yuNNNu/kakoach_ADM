@@ -29,9 +29,7 @@ export default function CrearPlan()
 
     })
 
-    const [pros, setPro] = useState([
-        {pro: ''}
-    ])
+    const [pros, setPro] = useState([])
     /*=============================================
 	OnChange
 	=============================================*/
@@ -42,9 +40,12 @@ export default function CrearPlan()
         
         let type, nivel;
         let arrDes = [];
-        let prosObject = [...pros]
-		prosObject.map(x => {
-            arrDes.push(Object.values(x));
+        let arrProsfill = [...pros];
+
+        arrProsfill.map(x => {
+            let value = x + "_"
+            arrDes.push(value)
+
         })
 
 
@@ -284,17 +285,17 @@ export default function CrearPlan()
 	}
 
     const handleChangePro = (index, event) => {
-        const values = [...pros];
-        values[index][event.target.name] = event.target.value;
-        setPro(values);
+        let arrPros = [...pros];
+        arrPros[index] = event.target.value;
+        setPro(arrPros);
     }
 
     const handleAddPro = () => {
-        setPro([...pros, {pro: ''}])
+        setPro([...pros, []])
     }
 
     const handleRemovePro = () => {
-        const values = [...pros];
+       const values = [...pros];
         let index = values.length-1;
         values.splice(index, 1);
         setPro(values);

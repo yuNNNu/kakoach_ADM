@@ -27,8 +27,16 @@ export default function CrearFooter()
 	=============================================*/
     const cambiarFormPut = () =>
     {
-        let arrDes = [...descInputs];
-		
+        let arrDes = [];
+		let arrDesfill = [descInputs];
+
+		arrDesfill.map(x => {
+			let value = x + "_";
+			arrDes.push(value);
+		})
+
+		console.log(arrDes);
+
 		
 		crearFooter({
 			'titulo': $("#crearTitulo").val(),
