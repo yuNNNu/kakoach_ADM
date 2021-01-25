@@ -224,6 +224,16 @@ export default function CrearPlan()
             return;
         } 
         
+        if ($('#crearPro').val() === undefined  )
+        {
+            $(".invalid-pros").show();
+            $(".invalid-pros").html("Debe ingresar al menos un pro al plan");
+            return;
+        } else
+        {
+             $(".invalid-pros").hide();
+        } 
+        
 		/*=============================================
 		Validamos que el campo user no venga vacío
 		=============================================*/

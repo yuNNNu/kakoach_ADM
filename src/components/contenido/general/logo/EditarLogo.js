@@ -166,7 +166,7 @@ export default function EditarLogo(){
 
 							{/* ENTRADA IMAGEN*/}
 
-							<label className="small text-secondary" htmlFor="editarImagen">*Peso Max. 2MB | Formato: JPG o PNG</label>
+							<label className="small text-secondary" htmlFor="editarImagen">*Peso Max. 2MB | Formato: PNG</label>
 							<input id="editarImagen" type="file" className="form-control-file border" name="imagen" required/>
 							<div className="invalidad-feedback invalid-imagen"></div>
 							<img className="previsualizarImg img-fluid" alt="img-carga"/>
