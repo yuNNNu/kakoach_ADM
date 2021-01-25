@@ -3,6 +3,10 @@ import $ from 'jquery';
 import notie from 'notie';
 import Swal from 'sweetalert2'
 import {rutaAPI} from '../../../../config/Config';
+import IconButton from '@material-ui/core/IconButton';
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
+
 
 export default function EditarBorrarAdministradores(){
 
@@ -17,11 +21,13 @@ export default function EditarBorrarAdministradores(){
 		nombre: "",
 		descripcion: "",
 		precio: 0,
-		pros: [],
+		pross: [],
 		pdf: null,
 		imagen: null
 
 	})
+
+	const [pros, setPro] = useState([])
 
 	/*=============================================
 	OnChange
@@ -29,8 +35,18 @@ export default function EditarBorrarAdministradores(){
 
 	const cambiaFormPut = e =>
 	{
+		let arrPros = [];
+		let arrProsfill = [...pros];
+
+		arrProsfill.map(x => {
+			let value = x + "_"
+			arrPros.push(value)
+
+		})
+
 		
-		
+				console.log("arrPros", arrPros);
+
 		let pdf = "";
 		let imagen = "";
 		// si carga img
@@ -78,7 +94,7 @@ export default function EditarBorrarAdministradores(){
 						'nombre': $("#editarNombre").val(),
 						'descripcion': $("#editarDescripcion").val(),
 						'precio': $("#editarPrecio").val(),
-						'pros' : $("#editarPros").val(),
+						'pross' : arrPros,
 						'pdf': pdf,
 						'imagen': imagen
 					
@@ -94,7 +110,7 @@ export default function EditarBorrarAdministradores(){
 				'nombre' : $("#editarNombre").val(),
 				'descripcion' :  $("#editarDescripcion").val(),
 				'precio' :   $("#editarPrecio").val(),
-				'pros' : $("#editarPros").val(),
+				'pross' : arrPros,
 				'pdf' : pdf,
 				'imagen' : null
 
@@ -135,7 +151,7 @@ export default function EditarBorrarAdministradores(){
 				'nombre' : $("#editarNombre").val(),
 				'descripcion' :  $("#editarDescripcion").val(),
 				'precio' :   $("#editarPrecio").val(),
-				'pros' : $("#editarPros").val(),
+				'pross' : arrPros,
 				'pdf' : pdf,
 				'imagen' : imagen
 
@@ -148,7 +164,7 @@ export default function EditarBorrarAdministradores(){
 				'nombre' : $("#editarNombre").val(),
 				'descripcion' :  $("#editarDescripcion").val(),
 				'precio' :   $("#editarPrecio").val(),
-				'pros' : $("#editarPros").val(),
+				'pross' : arrPros,
 				'pdf' : null,
 				'imagen' : imagen
 
@@ -162,7 +178,7 @@ export default function EditarBorrarAdministradores(){
 			'nombre' : $("#editarNombre").val(),
 			'descripcion' :  $("#editarDescripcion").val(),
 			'precio' :   $("#editarPrecio").val(),
-			'pros' : $("#editarPros").val(),
+			'pross' : arrPros,
 			'pdf' : pdf,
 			'imagen' : imagen
 		})
@@ -180,7 +196,8 @@ export default function EditarBorrarAdministradores(){
 
 		e.preventDefault();		
 
-		const { nombre, descripcion, precio, pros} = planpersonal;
+		const { nombre, descripcion, precio, pross} = planpersonal;
+		console.log("pross", pross);
 		if(!Number(precio)){
 
 			$(".invalid-precio").show();
@@ -279,7 +296,17 @@ export default function EditarBorrarAdministradores(){
 
 		let data = $(this).attr("data").split('_,');
 	
-		
+		fetch(`${rutaAPI}/show-personal-plan`)
+    	.then(response => response.json())
+    	.then(json => {
+    		console.log("json", json.data[0].pros);
+    		let proArray = json.data[0].pros;
+    		setPro(proArray);
+    	})
+    	.catch(err => {
+    		console.log(err);
+    	}) 
+
 		$("#editarID").val(data[0]);
 		$("#editarNombre").val(data[2]);
 		$("#editarDescripcion").val(data[3]);
@@ -294,7 +321,7 @@ export default function EditarBorrarAdministradores(){
 			'nombre' : data[2],
 			'descripcion' :  data[3],
 			'precio' :   data[4],
-			'pros' : data[5],
+			'pros' : null,
 			'pdf' : null,
 			'imagen' : null,
 		})
@@ -302,7 +329,23 @@ export default function EditarBorrarAdministradores(){
 
 	})		
 
+	const handleChangePro = (index, event) => {
+		let arrPros = [...pros];
+		arrPros[index] = event.target.value;
+		setPro(arrPros);
 
+    }
+
+    const handleAddPro = () => {
+        setPro([...pros, []])
+    }
+
+    const handleRemovePro = () => {
+        const values = [...pros];
+        let index = values.length-1;
+        values.splice(index, 1);
+        setPro(values);
+    }
 
 	/*=============================================
 	=       Retornamos vista del componente       =
@@ -318,7 +361,7 @@ export default function EditarBorrarAdministradores(){
 		        <button type="button" className="close" data-dismiss="modal">&times;</button>
 		      </div>
 
-		      <form onChange={cambiaFormPut} onSubmit={submitPut}> 
+		      <form onSubmit={submitPut} onChange={cambiaFormPut}> 
 
 			      <div className="modal-body">
 
@@ -340,7 +383,7 @@ export default function EditarBorrarAdministradores(){
 			      		<div className="input-group mb-3 mt-3">
 
 			      			<div className="input-group-append input-group-text">
-			      				<i className="fas fa-user"></i>
+			      				<i className="fas fa-heading"></i>
 			      			</div>
 
 			      			<input 
@@ -367,7 +410,7 @@ export default function EditarBorrarAdministradores(){
 			      		<div className="input-group mb-3">
 
 			      			<div className="input-group-append input-group-text">
-			      				<i className="fas fa-key"></i>
+			      				<i className="fas fa-file-alt"></i>
 			      			</div>
 
 			      			<input 
@@ -393,7 +436,7 @@ export default function EditarBorrarAdministradores(){
 			      		<div className="input-group mb-3">
 
 			      			<div className="input-group-append input-group-text">
-			      				<i className="fas fa-key"></i>
+			      				<i class="fas fa-money-bill"></i>
 			      			</div>
 
 			      			<input 
@@ -411,21 +454,36 @@ export default function EditarBorrarAdministradores(){
 
 			      	</div>
 
-			      	 {/* ENTRADA PROS */}
+			      	   {/* ENTRADA PROS */}
 
-		     		<div className="form-group">
+                   <div className="form-group">
 
-						<div className="input-group mb-3">
-							<div className="input-group-append input-group-text">
-								<i className="fas fa-file-alt"></i>
-							</div>
+	                {
+	                    pros.map((pro,index) => (
+	                        <div key={index} className="mb-3 input-group"> 
+	                            <div className="input-group-append input-group-text">
+	                                <i class="fas fa-list"></i>
+	                            </div>
+	                            <input value={pro} id="createPro" onChange={event => handleChangePro(index, event)} type="text" className="form-control" name="pro" placeholder="Ingresar pro*"/>
 
-							<textarea className="form-control" rows="5" id="editarPros" name="pros" placeholder="Ingrese los pros"
-							required></textarea>
+	                        </div>
+	                    ))
+	                }
 
-							<div className="invalid-feedback invalid-pros"></div>
-						</div>
-					</div>
+	                <div className="invalid-feedback invalid-pros"></div>
+
+
+		            <div className="row">
+			                <div className="col-12 justify-content-center d-flex" >
+			                    <IconButton className="mb-1 justify-content-center" onClick={() => handleRemovePro()}> 
+			                        <RemoveIcon/>
+			                    </IconButton>
+			                    <IconButton onClick={() => handleAddPro()}>
+			                        <AddIcon/>
+			                    </IconButton>
+			                </div>
+			            </div>
+			        </div>
 
 					{/* ENTRADA PDF*/}
 
@@ -440,7 +498,7 @@ export default function EditarBorrarAdministradores(){
 
 				      <div><button type="button" className="btn btn-danger" data-dismiss="modal">Cerrar</button></div>
 
-				      <div><button type="submit" className="btn btn-primary">Enviar</button></div>        
+				      <div><button type="submit" className="btn btn-primary" onClick={cambiaFormPut}>Enviar</button></div>        
 					</div>
 
 				</div>
@@ -469,7 +527,7 @@ const putData = data => {
 	formData.append("nombre", data.nombre);
 	formData.append("descripcion", data.descripcion);
 	formData.append("precio", data.precio);
-	formData.append("pros", data.pros);
+	formData.append("pros", data.pross);
 	formData.append("pdf", data.pdf);
 	formData.append("imagen", data.imagen);
 

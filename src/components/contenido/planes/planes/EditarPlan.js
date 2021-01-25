@@ -6,7 +6,6 @@ import {rutaAPI} from '../../../../config/Config';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
-import axios from 'axios';
 
 export default function EditarPlan()
 {
@@ -231,8 +230,6 @@ export default function EditarPlan()
 		e.preventDefault();		
 
 		const {nombre, descripcion, precio, pross} = plan;
-
-		console.log("pros de submit", pross);
         // validaciones imagen
             // VALIDANDO TIPO
         if (!$('#vol').prop('checked') && !$('#def').prop('checked'))
@@ -594,7 +591,7 @@ export default function EditarPlan()
                     <div className="input-group mb-3 mt-3">
 
                         <div className="input-group-append input-group-text">
-                            <i className="fas fa-user"></i>
+                            <i className="fas fa-heading"></i>
                         </div>
 
                         <input 
@@ -621,7 +618,7 @@ export default function EditarPlan()
                     <div className="input-group mb-3">
 
                         <div className="input-group-append input-group-text">
-                            <i className="fas fa-key"></i>
+                           <i className="fas fa-file-alt"></i>
                         </div>
 
                         <input 
@@ -646,7 +643,7 @@ export default function EditarPlan()
                     <div className="input-group mb-3">
 
                         <div className="input-group-append input-group-text">
-                            <i className="fas fa-key"></i>
+                            <i class="fas fa-money-bill"></i>
                         </div>
 
                         <input 
@@ -674,7 +671,7 @@ export default function EditarPlan()
                             <div className="input-group-append input-group-text">
                                 <i class="fas fa-list"></i>
                             </div>
-                            <input value={pro} id="createPro" onChange={event => handleChangePro(index, event)} type="text" className="form-control" name="pro" placeholder="set pro"/>
+                            <input value={pro} id="createPro" onChange={event => handleChangePro(index, event)} type="text" className="form-control" name="pro" placeholder="Ingresar pro*"/>
 
                         </div>
                     ))

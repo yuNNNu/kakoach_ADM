@@ -32,13 +32,10 @@ export default function CrearFooter()
 		let arrDesfill = [...descInputs];
 
 		arrDesfill.map(x => {
-			console.log("x", x);
-			let descripcionVal = x.descripcion + "_";
-			let linkVal = x.link + "_";
 
 			objDes = {
-				descripcion: descripcionVal,
-				link: linkVal
+				descripcion: x.descripcion,
+				link: x.link
 			}
 
 			arrDes.push(objDes);
@@ -147,11 +144,19 @@ export default function CrearFooter()
 					<div className="modal-header">
 						<h4 className="modal-title">Nuevo Footer</h4>
 						<button type="button" className="close" data-dismiss="modal">x</button>
-					</div>
 
+
+					</div>
+					<div className="modal-header">
+						<ul>
+							<li><p className="small mt-3">En caso de no necesitar un link, completar el campo con "/"</p></li>
+							<li><p className="small mb-0">No olvidar escribir el link con la sigla "https://"</p></li>
+						</ul>
+					</div>
+			
 					<form onChange={cambiarFormPut} onSubmit={submitPut} encType="multipart/form-data">
 
-						<div className="modal-body">
+						<div className="modal-body mt-3">
 						
 							{/* ENTRADA TITULO */}
 

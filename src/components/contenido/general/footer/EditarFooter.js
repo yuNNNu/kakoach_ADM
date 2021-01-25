@@ -241,9 +241,16 @@ export default function EditarFooter(){
 						<button type="button" className="close" data-dismiss="modal">x</button>
 					</div>
 
+						<div className="modal-header">
+						<ul>
+							<li><p className="small mt-3">En caso de no necesitar un link, completar el campo con "/"</p></li>
+							<li><p className="small mb-0">No olvidar escribir el link con la sigla "https://"</p></li>
+						</ul>
+					</div>
+
 					<form onChange={cambiarFormPut} onSubmit={submitPut} encType="multipart/form-data">
 
-						<div className="modal-body">
+						<div className="modal-body mt-3">
 							<input type="hidden" id="editarID"/>
 							{/* ENTRADA TITULO */}
 

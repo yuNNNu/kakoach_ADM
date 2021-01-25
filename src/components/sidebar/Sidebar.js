@@ -93,7 +93,7 @@ export default function Sidebar()
 									<a href="/logo" className="nav-link">
 
 										<p>
-										Gestor Logo
+										Logo
 										</p>
 
 									</a>
@@ -105,7 +105,7 @@ export default function Sidebar()
 									<a href="/footer" className="nav-link">
 
 										<p>
-										Gestor Footer
+										Footer
 										</p>
 
 									</a>
@@ -118,7 +118,7 @@ export default function Sidebar()
 
 
 										<p>
-										Gestor Social Media
+										Social Media
 										</p>
 
 									</a>
@@ -131,7 +131,7 @@ export default function Sidebar()
 									<a href="/inicio_slide" className="nav-link">
 										
 										<p>
-										Gestor Imagen Principal
+										Imagen Principal
 										</p>
 
 									</a>
@@ -142,7 +142,7 @@ export default function Sidebar()
 									<a href="/descripcion_planes" className="nav-link">
 										
 										<p>
-										Gestor Descripción Planes
+										Descripción Planes
 										</p>
 
 									</a>
@@ -154,7 +154,7 @@ export default function Sidebar()
 									<a href="/inicio_plan_personal" className="nav-link">
 
 										<p>
-										Gestor Plan Primario
+										Plan Primario
 										</p>
 
 									</a>
@@ -166,7 +166,7 @@ export default function Sidebar()
 									<a href="/inicio_planes_estrella" className="nav-link">
 
 										<p>
-										Gestor Planes Secundarios
+										Planes Secundarios
 										</p>
 
 									</a>
@@ -178,7 +178,7 @@ export default function Sidebar()
 									<a href="/inicio_benefits" className="nav-link">
 
 										<p>
-										Gestor Beneficios
+										Beneficios
 										</p>
 
 									</a>
@@ -192,7 +192,7 @@ export default function Sidebar()
 									<a href="/planes_slide" className="nav-link">
 
 										<p>
-										Gestor Imagen Principal
+										Imagen Principal
 										</p>
 
 									</a>
@@ -205,7 +205,7 @@ export default function Sidebar()
 									<a href="/planes_categoria" className="nav-link">
 
 										<p>
-										Gestor Categorías
+										Categorías
 										</p>
 
 									</a>
@@ -218,7 +218,7 @@ export default function Sidebar()
 									<a href="/planes" className="nav-link">
 
 										<p>
-										Gestor Planes
+										Planes
 										</p>
 
 									</a>
@@ -230,7 +230,7 @@ export default function Sidebar()
 									<a href="/planes_benefits" className="nav-link">
 
 										<p>
-										Gestor Beneficios
+										Beneficios
 										</p>
 
 									</a>
@@ -243,7 +243,7 @@ export default function Sidebar()
 									<a href="/sobre_mi_slide" className="nav-link">
 
 										<p>
-										Gestor Imagen Principal
+										Imagen Principal
 										</p>
 
 									</a>
@@ -255,7 +255,7 @@ export default function Sidebar()
 									<a href="/tarjetas" className="nav-link">
 
 										<p>
-										Gestor Tarjetas
+										Tarjetas
 										</p>
 
 									</a>

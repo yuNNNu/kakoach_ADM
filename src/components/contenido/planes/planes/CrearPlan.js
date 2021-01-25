@@ -172,8 +172,8 @@ export default function CrearPlan()
         }
         
         } else {
-        $(".invalid-pdf").show();
-        $(".invalid-pdf").html("Completa este campo");
+        // $(".invalid-pdf").show();
+        // $(".invalid-pdf").html("Completa este campo");
         return;
         }
 
@@ -206,7 +206,7 @@ export default function CrearPlan()
 
 		e.preventDefault();		
 
-		const { precio} = plan;
+		const { precio } = plan;
     
         // VALIDANDO TIPO
         if (!$('#crearvol').prop('checked') && !$('#creardef').prop('checked'))
@@ -239,10 +239,6 @@ export default function CrearPlan()
 		}
 
 	
-
-        // console.log("plansillo", plan);
-        // return;
-
 		/*=============================================
 		EJECTUAMOS SERVICIO PUT
 		=============================================*/
@@ -403,7 +399,7 @@ export default function CrearPlan()
                     <div className="input-group mb-3">
 
                         <div className="input-group-append input-group-text">
-                            <i className="fas fa-user"></i>
+                             <i className="fas fa-heading"></i>
                         </div>
 
                         <input 
@@ -430,7 +426,7 @@ export default function CrearPlan()
                     <div className="input-group mb-3">
 
                         <div className="input-group-append input-group-text">
-                            <i className="fas fa-key"></i>
+                            <i className="fas fa-file-alt"></i>
                         </div>
 
                         <input 
@@ -455,7 +451,7 @@ export default function CrearPlan()
                     <div className="input-group mb-3">
 
                         <div className="input-group-append input-group-text">
-                            <i className="fas fa-key"></i>
+                            <i class="fas fa-money-bill"></i>
                         </div>
 
                         <input 
