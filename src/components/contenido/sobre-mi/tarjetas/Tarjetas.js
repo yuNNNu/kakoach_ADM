@@ -103,7 +103,10 @@ export default function Tarjeta(){
 	 })
 
 	}
-
+	function cleanPrev()
+	{
+		$(".previsualizarImg").attr("src", "");
+	}
 	dataTarjetas();
 
 	return(
@@ -127,7 +130,7 @@ export default function Tarjeta(){
 							<div className="card card-primary card-outline">
 								<div className="card-header">
 									<h5 className="m-0">
-										<button className="btn btn-primary limpiarForm" data-toggle="modal" data-target="#crearTarjeta">Nueva Tarjeta</button>
+										<button className="btn btn-primary limpiarForm" data-toggle="modal" onClick={cleanPrev} data-target="#crearTarjeta">Nueva Tarjeta</button>
 									</h5>
 								</div>
 

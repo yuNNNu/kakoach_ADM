@@ -51,6 +51,9 @@ export default function EditarSocialMedia()
 			$(".invalid-url").html("URL no puede ir vacia");
 
 			return;
+		} else
+		{
+			$(".invalid-url").hide();
 		}
 		const result = await putData(red); 
 		

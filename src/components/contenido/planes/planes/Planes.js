@@ -116,7 +116,10 @@ export default function Planes(){
 	 })
 
 	}
-
+	function cleanPrev()
+	{
+		$(".previsualizarImg").attr("src", "");
+	}
 	dataPlanes();
 
 	return(
@@ -140,7 +143,7 @@ export default function Planes(){
 							<div className="card card-primary card-outline">
 								<div className="card-header">
 									<h5 className="m-0">
-										<button className="btn btn-primary limpiarForm" data-toggle="modal" data-target="#crearPlan">Nuevo Plan</button>
+										<button className="btn btn-primary limpiarForm" onClick={cleanPrev} data-toggle="modal" data-target="#crearPlan">Nuevo Plan</button>
 									</h5>
 								</div>
 
