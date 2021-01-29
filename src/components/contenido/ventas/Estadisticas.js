@@ -7,6 +7,21 @@ import 'datatables.net-responsive';
 import Swal from 'sweetalert2'
 export default function Estadisticas()
 {
+    function loadTable(dataSet)
+    {
+        $(document).ready(function ()
+    {
+       $('.table').DataTable({
+            retrieve: true,
+            data: dataSet,
+            columns: [
+            {title: "#"},
+            {title: "Nombre"},
+            {title: "Cantidad"},
+            {title: "id"}]
+        }).destroy()
+    })
+    }
     /*=============================================
 	Hook para capturar datos
 	=============================================*/
@@ -96,7 +111,7 @@ export default function Estadisticas()
 			})
             return
 		    }
-    const dataSet = [];
+        const dataSet = [];
      
     
         getVentas["planes_y_cantidad"].forEach((e, i) =>
@@ -128,21 +143,12 @@ export default function Estadisticas()
         // saldo general
         $('#cantidadVentasGeneral').html("N° de Ventas: "+getVentas["cantidad_ventas"])
         $('#saldoGeneral').html("Total de ventas: $"+getVentas["total_ventas"])
-    
+        
     // /*=============================================
     // =            EJECUTAMOS DATATABLE          =
     // =============================================*/
-    $(document).ready(function () {
-        $('.table').DataTable({
-            retrieve: true,
-            data: dataSet,
-            columns: [
-            {title: "#"},
-            {title: "Nombre"},
-            {title: "Cantidad"},
-                {title: "id"}]
-        })
-    })
+    loadTable(dataSet)
+    
 
     }
 
@@ -235,17 +241,18 @@ export default function Estadisticas()
     // /*=============================================
     // =            EJECUTAMOS DATATABLE          =
     // =============================================*/
-    $(document).ready(function () {
-        $('.table').DataTable({
-            retrieve: true,
-            data: dataSet,
-            columns: [
-            {title: "#"},
-            {title: "Nombre"},
-            {title: "Cantidad"},
-                {title: "id"}]
-        })
-    })
+    loadTable(dataSet)
+    // $(document).ready(function () {
+    //     $('.table').DataTable({
+    //         retrieve: true,
+    //         data: dataSet,
+    //         columns: [
+    //         {title: "#"},
+    //         {title: "Nombre"},
+    //         {title: "Cantidad"},
+    //             {title: "id"}]
+    //     })
+    // })
 
     }
 
