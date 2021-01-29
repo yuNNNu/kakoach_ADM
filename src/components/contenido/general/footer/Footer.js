@@ -21,8 +21,7 @@ export default function FooterClient(){
         getFooter.data.forEach((footer, index) =>
         {
 			dataSet[index] = [(index+1),
-							footer.titulo, 
-                            footer.descripcion
+							footer.titulo
                             , [footer._id + "_",
 							footer.titulo + "_", 
                             footer.descripcion, 
@@ -49,8 +48,7 @@ export default function FooterClient(){
 				"order":[[0, "desc"]],
 			columns: [
             { title: "#" },
-			{title: "Título"},
-            {title: "Descripción"},   
+			{title: "Título"},  
 			{title: "Acciones",
               render: function(data){
 

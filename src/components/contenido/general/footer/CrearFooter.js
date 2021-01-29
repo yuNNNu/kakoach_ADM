@@ -31,7 +31,7 @@ export default function CrearFooter()
         let arrDes = [];
 		let arrDesfill = [...descInputs];
 
-		arrDesfill.map(x => {
+		arrDesfill.forEach(x => {
 
 			objDes = {
 				descripcion: x.descripcion,
@@ -41,7 +41,6 @@ export default function CrearFooter()
 			arrDes.push(objDes);
 		})
 
-		console.log("objDes", objDes);
 
 		crearFooter({
 			'titulo': $("#crearTitulo").val(),
@@ -61,15 +60,46 @@ export default function CrearFooter()
 
 		e.preventDefault();		
 
-		const { titulo } = Footer;
-        if (!titulo)
+		const { titulo, descripciones } = Footer;
+		console.log("🚀 ~ file: CrearFooter.js ~ line 64 ~ descripciones", descripciones)
+		if (descripciones.length === 0 )
+		{
+			$(".invalid-descripcion").show();
+			$(".invalid-descripcion").html("Completa este campo, mínimo una descripción");
+			return
+		} else
+		{
+			$(".invalid-descripcion").hide();
+		}
+		if (!titulo)
         {
-            if(!titulo){
+            
 			$(".invalid-titulo").show();
 			$(".invalid-titulo").html("Completa este campo");
-            }
+           
             return
-        }
+		} else
+		{
+			$(".invalid-titulo").hide();
+		}
+     
+		var descEmpty=false;
+		descripciones.forEach((desc) =>
+		{
+			let val = desc.descripcion
+			if (val === "")
+			{
+				descEmpty = true
+			}	
+		})
+		if (descEmpty)
+		{
+			$(".invalid-descripcion").show();
+			$(".invalid-descripcion").html("Completa este campo, descripción no puede ir vacío");
+			return
+		} 
+		
+   
 		
       
 		
