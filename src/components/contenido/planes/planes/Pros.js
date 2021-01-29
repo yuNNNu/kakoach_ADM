@@ -71,7 +71,6 @@ export default function Pros(){
     	fetch(`${rutaAPI}/show-individual-plan/${localStorage.getItem["planid"]}`)
     	.then(response => response.json())
     	.then(json => {
-    		console.log("json", json.data.pros);
     		let proArray = json.data.pros;
     		setPro(proArray);
     	})

@@ -59,7 +59,6 @@ export default function EditarBorrarAdministradores(){
 		=============================================*/
 
 		const result = await putData(planesestrellas);
-        console.log("🚀 ~ file: EditarPlanesEstrellas.js ~ line 61 ~ EditarBorrarAdministradores ~ result", result)
 
 	
 		if(result.status === 400){

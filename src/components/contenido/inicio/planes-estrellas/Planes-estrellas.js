@@ -21,7 +21,6 @@ export default function PlanesEstrellas(){
 		getPlanesEstrellas.data.forEach((planesEstrellas, index) =>
 			
 		{
-     	console.log("planesEstrellas", planesEstrellas.id);
 			
 			dataSet[index] = [(index+1),
 							planesEstrellas.id,

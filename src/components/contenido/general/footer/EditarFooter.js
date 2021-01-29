@@ -27,7 +27,6 @@ export default function EditarFooter(){
 	const cambiarFormPut = e =>
 	{
 		let arrDes = [...descInputs]
-		console.log("arrDes", arrDes);
 		crearFooter({
 			'id' : $("#editarID").val(),
 			'titulo': $("#editarTitulo").val(),
@@ -115,7 +114,7 @@ export default function EditarFooter(){
 
     		let descArr = json.data.descripcion;
     		let descArrofObjs = [];
-    		descArr.map(x => {
+    		descArr.forEach(x => {
     		
     			let descObj = {
     				descripcion: x.descripcion,

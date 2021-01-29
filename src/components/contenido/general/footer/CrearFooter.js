@@ -61,7 +61,6 @@ export default function CrearFooter()
 		e.preventDefault();		
 
 		const { titulo, descripciones } = Footer;
-		console.log("🚀 ~ file: CrearFooter.js ~ line 64 ~ descripciones", descripciones)
 		if (descripciones.length === 0 )
 		{
 			$(".invalid-descripcion").show();
@@ -271,7 +270,6 @@ export default function CrearFooter()
     =============================================*/
 
     const postData = data => {
-    	console.log("data", data);
 	
         const url = `${rutaAPI}/create-footer`;
         const token = localStorage.getItem("ACCESS_TOKEN");

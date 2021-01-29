@@ -45,7 +45,6 @@ export default function EditarBorrarAdministradores(){
 		})
 
 		
-		console.log("arrPros", arrPros);
 
 		let pdf = "";
 		let imagen = "";
@@ -54,7 +53,6 @@ export default function EditarBorrarAdministradores(){
 		if ($("#editarImagen").val())
 		{
 			 imagen = $("#editarImagen").get(0).files[0];
-            console.log("🚀 ~ file: EditarPlanPersonal.js ~ line 56 ~ EditarBorrarAdministradores ~ imagen", imagen)
 			// validaciones imagen
 			if(imagen["type"] !== "image/jpeg" && imagen["type"] !== "image/png"){
 				
@@ -87,7 +85,6 @@ export default function EditarBorrarAdministradores(){
 				$(datosArchivo).on("load", function (event)
 				{
 					let rutaArchivo = event.target.result;
-                    console.log("🚀 ~ file: EditarPlanPersonal.js ~ line 89 ~ EditarBorrarAdministradores ~ rutaArchivo", rutaArchivo)
 					
 					$(".previsualizarImg").attr("src", rutaArchivo);
 
@@ -122,7 +119,6 @@ export default function EditarBorrarAdministradores(){
 		// si carga pdf
 		if ($("#editarPdf").val())
 		{
-			  console.log("🚀 ~ imagen", imagen)
 			 pdf = $("#editarPdf").get(0).files[0];
 			// validaciones imagen
 			if(pdf["type"] !== "application/pdf" ){
@@ -162,7 +158,6 @@ export default function EditarBorrarAdministradores(){
 			})
 		} else
 		{
-			console.log("🚀 ~ imagen", imagen)
 			editarPlanPersonal({
 
 				'id' : $("#editarID").val(),
@@ -229,7 +224,6 @@ export default function EditarBorrarAdministradores(){
             $(".invalid-pros").html("Completa este campo, pro no puede ir vacío");
             return
         } 
-		console.log("pross", pross);
 
 
 
@@ -334,7 +328,6 @@ export default function EditarBorrarAdministradores(){
 		fetch(`${rutaAPI}/show-personal-plan`)
     	.then(response => response.json())
     	.then(json => {
-    		console.log("json", json.data[0].pros);
     		let proArray = json.data[0].pros;
     		setPro(proArray);
     	})
@@ -557,7 +550,6 @@ const putData = data => {
 
 	const url = `${rutaAPI}/edit-personal-plan/${data.id}`;
 	const token = localStorage.getItem("ACCESS_TOKEN");
-    console.log("🚀 ~ file: EditarPlanPersonal.js ~ line 535 ~ data.imagen", data.imagen)
 	
 	let formData = new FormData();
 	formData.append("nombre", data.nombre);

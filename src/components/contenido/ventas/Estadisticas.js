@@ -94,7 +94,6 @@ export default function Estadisticas()
     =            SE CREA EL DATASET       =
     =============================================*/
         const getVentas = await getData(rango);
-        console.log("🚀 ~ file: Estadisticas.js ~ line 81 ~ getVentas", getVentas)
             if(getVentas.status === 404){
 
 			Swal.fire({
@@ -116,7 +115,6 @@ export default function Estadisticas()
     
         getVentas["planes_y_cantidad"].forEach((e, i) =>
         {
-        console.log("🚀 ~ file: Estadisticas.js ~ line 104 ~ e", e)
         
                 dataSet[i] = [(i+1),
                     e.nombre, 

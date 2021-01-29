@@ -172,7 +172,6 @@ export default function EditarTarjetas()
 		e.preventDefault();
        
         let data = $(this).attr("data").split('_,');
-        console.log("🚀 ~ file: EditarTarjetas.js ~ line 175 ~ $ ~ data", data)
       
 
         // recuperamos os datos

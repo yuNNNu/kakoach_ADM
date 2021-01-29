@@ -85,7 +85,6 @@ export default function CrearTarjeta()
 		e.preventDefault();
 		const { titulo, imagen} = tarjeta;
         const html = $('#crearDescripcion').summernote('code');
-        console.log("🚀 ~ file: CrearTarjeta.js ~ line 88 ~ html", html)
        
         if (titulo === "")
         {
@@ -93,7 +92,6 @@ export default function CrearTarjeta()
             $(".invalid-titulo").html("El titulo no puede ir vacio");
             return
         } 
-        console.log("🚀 ~ file: CrearTarjeta.js ~ line 97 ~ html", html)
         if (html === "<p><br></p>" || html === "")
         {
             $(".invalid-descripcion").show();

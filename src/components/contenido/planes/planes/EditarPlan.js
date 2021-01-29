@@ -44,7 +44,6 @@ export default function EditarPlan()
 
 		})
 
-		console.log("arrPros", arrPros);
 	
         //    TIPO
             if ($('#vol').prop('checked'))
@@ -200,7 +199,6 @@ export default function EditarPlan()
 
 			})
 		}
-		console.log("arrPros", arrPros);
 		
 		editarPlan({
 
@@ -351,7 +349,6 @@ export default function EditarPlan()
         fetch(`${rutaAPI}/show-individual-plan/${data[0]}`)
     	.then(response => response.json())
     	.then(json => {
-    		console.log("json", json.data.pros);
     		let proArray = json.data.pros;
     		setPro(proArray);
     	})
@@ -737,7 +734,6 @@ const putData = data => {
 	formData.append("descripcion", data.descripcion);
 	formData.append("precio", data.precio);
 	formData.append("pros", data.pross);
-	console.log("input de putdata",data.pross)
 	formData.append("pdf", data.pdf);
     formData.append("imagen", data.imagen);
     formData.append("type", data.type);
