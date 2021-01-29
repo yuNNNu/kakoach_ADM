@@ -206,8 +206,35 @@ export default function CrearPlan()
 
 		e.preventDefault();		
 
-		const { precio } = plan;
+		const {precio, pros} = plan;
+
+        if (pros.length === 0 )
+        {
+            $(".invalid-pros").show();
+            $(".invalid-pros").html("Completa este campo, mínimo un pro");
+            return
+        } else
+        {
+            $(".invalid-pros").hide();
+        }
     
+        var prosEmpty=false;
+        pros.forEach((pro) =>
+            
+        {
+            let val = pro;
+            if (val === "_")
+            {
+                prosEmpty = true
+            }    
+        })
+
+        if (prosEmpty)
+        {
+            $(".invalid-pros").show();
+            $(".invalid-pros").html("Completa este campo, pro no puede ir vacío");
+            return
+        } 
         // VALIDANDO TIPO
         if (!$('#crearvol').prop('checked') && !$('#creardef').prop('checked'))
         {
