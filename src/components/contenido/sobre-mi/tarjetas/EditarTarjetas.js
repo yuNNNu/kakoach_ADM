@@ -182,7 +182,8 @@ export default function EditarTarjetas()
         $("#editarTitulo").val(data[2]);
 		$("#editarDescripcion").val(data[3]);
 		$("#editarDescripcion").summernote({
-            height:350
+            height:350,
+			width:460
         });
 		editarTarjetas({
 
@@ -266,7 +267,8 @@ export default function EditarTarjetas()
 	// summernote
 	$(document).ready(function(valorSummer){
 		$("#descripcion").summernote({
-			height:350
+			height:350,
+			width:460
 		});
 	})
     // RETORNO DE LA VISTA

@@ -151,7 +151,8 @@ export default function CrearTarjeta()
   	// summernote
 	$(document).ready(function(valorSummer){
 		$("#crearDescripcion").summernote({
-			height:350
+			height:350,
+			width:460
 		});
 	})
     // RETORNO DE LA VISTA

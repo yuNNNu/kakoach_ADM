@@ -83,7 +83,8 @@ export default function EditarTerminos(){
 		$("#editarID").val(data[0]);
 		$("#editarContenido").val(data[1])
 		$("#editarContenido").summernote({
-            height:350
+			height: 350,
+			width:460
         });
 	
 		
@@ -92,7 +93,8 @@ export default function EditarTerminos(){
 	// summernote
 	$(document).ready(function(valorSummer){
 		$("#contenido").summernote({
-			height:350
+			height: 350,
+			width:460
 		});
 	})
 
@@ -119,7 +121,7 @@ export default function EditarTerminos(){
 					
 							{/* ENTRADA contenido*/}
 
-							<div className="form-group">
+							<div className="form-group"  >
 									<label className="small text-secondary" htmlFor="editarContenido">Ingresar los términos y condiciones</label>
 
 								<div className="input-group mb-3">
