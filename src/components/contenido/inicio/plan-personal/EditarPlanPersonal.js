@@ -201,8 +201,38 @@ export default function EditarBorrarAdministradores(){
 
 		e.preventDefault();		
 
-		const { nombre, descripcion, precio, pross} = planpersonal;
+		const { nombre, descripcion, precio, pross } = planpersonal;
+		if (pross.length === 0 )
+        {
+            $(".invalid-pros").show();
+            $(".invalid-pros").html("Completa este campo, mínimo un pro");
+            return
+        } else
+        {
+            $(".invalid-pros").hide();
+		}
+		
+		var prosEmpty=false;
+        pross.forEach((pro) =>
+            
+        {
+            let val = pro;
+            if (val === "_")
+            {
+                prosEmpty = true
+            }    
+        })
+
+        if (prosEmpty)
+        {
+            $(".invalid-pros").show();
+            $(".invalid-pros").html("Completa este campo, pro no puede ir vacío");
+            return
+        } 
 		console.log("pross", pross);
+
+
+
 		if(!Number(precio)){
 
 			$(".invalid-precio").show();
