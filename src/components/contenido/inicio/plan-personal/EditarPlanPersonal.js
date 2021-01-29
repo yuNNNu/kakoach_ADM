@@ -38,24 +38,26 @@ export default function EditarBorrarAdministradores(){
 		let arrPros = [];
 		let arrProsfill = [...pros];
 
-		arrProsfill.map(x => {
+		arrProsfill.forEach(x => {
 			let value = x + "_"
 			arrPros.push(value)
 
 		})
 
 		
-				console.log("arrPros", arrPros);
+		console.log("arrPros", arrPros);
 
 		let pdf = "";
 		let imagen = "";
+      
 		// si carga img
 		if ($("#editarImagen").val())
 		{
-			let imagen = $("#editarImagen").get(0).files[0];
+			 imagen = $("#editarImagen").get(0).files[0];
+            console.log("🚀 ~ file: EditarPlanPersonal.js ~ line 56 ~ EditarBorrarAdministradores ~ imagen", imagen)
 			// validaciones imagen
 			if(imagen["type"] !== "image/jpeg" && imagen["type"] !== "image/png"){
-				$("#imagen").val("");
+				
 
 				notie.alert({
 					type: 3,
@@ -69,7 +71,7 @@ export default function EditarBorrarAdministradores(){
 				return;
 			}else if (imagen["size"] > 2000000)
 			{
-				$("#imagen").val("");
+				
 				notie.alert({
 					type: 3,
 					text: 'ERROR: La imagen debe pesar como maximo 2mb',
@@ -81,10 +83,11 @@ export default function EditarBorrarAdministradores(){
 			} else
 			{
 				let datosArchivo = new FileReader();
-				datosArchivo.readAsDataURL(imagen);
+                 datosArchivo.readAsDataURL(imagen);
 				$(datosArchivo).on("load", function (event)
 				{
 					let rutaArchivo = event.target.result;
+                    console.log("🚀 ~ file: EditarPlanPersonal.js ~ line 89 ~ EditarBorrarAdministradores ~ rutaArchivo", rutaArchivo)
 					
 					$(".previsualizarImg").attr("src", rutaArchivo);
 
@@ -119,6 +122,7 @@ export default function EditarBorrarAdministradores(){
 		// si carga pdf
 		if ($("#editarPdf").val())
 		{
+			  console.log("🚀 ~ imagen", imagen)
 			 pdf = $("#editarPdf").get(0).files[0];
 			// validaciones imagen
 			if(pdf["type"] !== "application/pdf" ){
@@ -158,6 +162,7 @@ export default function EditarBorrarAdministradores(){
 			})
 		} else
 		{
+			console.log("🚀 ~ imagen", imagen)
 			editarPlanPersonal({
 
 				'id' : $("#editarID").val(),
@@ -196,8 +201,38 @@ export default function EditarBorrarAdministradores(){
 
 		e.preventDefault();		
 
-		const { nombre, descripcion, precio, pross} = planpersonal;
+		const { nombre, descripcion, precio, pross } = planpersonal;
+		if (pross.length === 0 )
+        {
+            $(".invalid-pros").show();
+            $(".invalid-pros").html("Completa este campo, mínimo un pro");
+            return
+        } else
+        {
+            $(".invalid-pros").hide();
+		}
+		
+		var prosEmpty=false;
+        pross.forEach((pro) =>
+            
+        {
+            let val = pro;
+            if (val === "_")
+            {
+                prosEmpty = true
+            }    
+        })
+
+        if (prosEmpty)
+        {
+            $(".invalid-pros").show();
+            $(".invalid-pros").html("Completa este campo, pro no puede ir vacío");
+            return
+        } 
 		console.log("pross", pross);
+
+
+
 		if(!Number(precio)){
 
 			$(".invalid-precio").show();
@@ -522,7 +557,8 @@ const putData = data => {
 
 	const url = `${rutaAPI}/edit-personal-plan/${data.id}`;
 	const token = localStorage.getItem("ACCESS_TOKEN");
-
+    console.log("🚀 ~ file: EditarPlanPersonal.js ~ line 535 ~ data.imagen", data.imagen)
+	
 	let formData = new FormData();
 	formData.append("nombre", data.nombre);
 	formData.append("descripcion", data.descripcion);

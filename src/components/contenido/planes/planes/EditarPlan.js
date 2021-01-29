@@ -1,4 +1,5 @@
- import React, {useState, useEffect} from 'react';
+
+import React, {useState, useEffect} from 'react';
 import $ from 'jquery';
 import notie from 'notie';
 import Swal from 'sweetalert2'
@@ -37,7 +38,7 @@ export default function EditarPlan()
 		let arrPros = [];
 		let arrProsfill = [...pros];
 
-		arrProsfill.map(x => {
+		arrProsfill.forEach(x => {
 			let value = x + "_"
 			arrPros.push(value)
 
@@ -74,6 +75,7 @@ export default function EditarPlan()
 		// si carga img
 		if ($("#editarImagen").val())
 		{
+			 imagen = $("#editarImagen").get(0).files[0];
 			// validaciones imagen
 			if(imagen["type"] !== "image/jpeg" && imagen["type"] !== "image/png"){
 				$("#imagen").val("");
