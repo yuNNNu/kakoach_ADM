@@ -106,7 +106,7 @@ export default function EditarBorrarAdministradores(){
 		e.preventDefault();
 
 		let data = $(this).attr("data").split('_,');
-		
+
 
 		$("#editarID").val(data[0]);
 		$("#editaridd").val(data[1]);

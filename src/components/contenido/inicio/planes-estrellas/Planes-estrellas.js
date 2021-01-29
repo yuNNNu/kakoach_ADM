@@ -19,12 +19,12 @@ export default function PlanesEstrellas(){
 		
 
 		getPlanesEstrellas.data.forEach((planesEstrellas, index) =>
+			
 		{
-     
+     	console.log("planesEstrellas", planesEstrellas.id);
 			
 			dataSet[index] = [(index+1),
 							planesEstrellas.id,
-                            planesEstrellas._id,
                             [planesEstrellas._id + "_",
                             planesEstrellas.id
 							]];
