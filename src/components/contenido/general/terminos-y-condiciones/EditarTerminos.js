@@ -15,7 +15,7 @@ export default function EditarTerminos(){
 		e.preventDefault();
 		const html = $('#editarContenido').summernote('code');
 			
-		if (html === "")
+		if (html === "" || html === "<p><br></p>")
 		{
 			$(".invalid-editarContenido").show();
             $(".invalid-editarContenido").html("Debe ingresar contenido");

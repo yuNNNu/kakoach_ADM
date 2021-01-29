@@ -94,11 +94,13 @@ export default function CrearTarjeta()
             return
         } 
         console.log("🚀 ~ file: CrearTarjeta.js ~ line 97 ~ html", html)
-        if (html === "")
+        if (html === "<p><br></p>" || html === "")
         {
             $(".invalid-descripcion").show();
             $(".invalid-descripcion").html("La descripcion no puede ir vacia");
             return
+        }else{
+             $(".invalid-descripcion").hide();
         } 
         
         let datos = {
