@@ -49,7 +49,7 @@ export default function Sidebar()
 						>
 							<div className="sidenav-menu-heading">Negocio</div>
 							<li className="nav-item">
-								<a href="/ventas" className="nav-link">
+								<a href={`${process.env.PUBLIC_URL}/ventas`} className="nav-link">
 									<i className="nav-icon fas fa-poll"></i>
 									<p>Ventas</p>
 									
@@ -57,7 +57,7 @@ export default function Sidebar()
 								</a>
 							</li>	
 							<li className="nav-item">
-								<a href="/" className="nav-link">
+								<a href={`${process.env.PUBLIC_URL}/`} className="nav-link">
 									<i className="nav-icon fas fa-poll"></i>
 									<p>Estadísticas</p>
 									
@@ -67,7 +67,7 @@ export default function Sidebar()
 						
 								<li className="nav-item">
 
-									<a href="/usuarios" className="nav-link">
+									<a href={`${process.env.PUBLIC_URL}/usuarios`}   className="nav-link">
 										<i className="nav-icon fas fa-users"></i>
 										<p>
 										Usuarios

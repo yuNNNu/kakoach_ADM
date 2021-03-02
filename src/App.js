@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import './App.css';
 // Componente Login
@@ -62,30 +62,31 @@ export default function App() {
       <div className="wrapper">
         <Header/>
         <Sidebar/>
-        <BrowserRouter >
+        <BrowserRouter basename={'/admin'}>
 
         	<Switch>
         	
         	
-            <Route exact path="/" component={Estadisticas} />
-            <Route  path="/ventas" component={Ventas} />
-            <Route  path="/usuarios" component={Usuarios} />
-            <Route  path="/inicio_benefits" component={Benefits} />
-            <Route  path="/inicio_slide" component={ImgPrincipal} />
-            <Route  path="/inicio_plan_personal" component={PlanPersonal} />
-            <Route  path="/inicio_planes_estrella" component={PlanesEstrellas} />
-            <Route  path="/logo" component={Logo} />
-            <Route  path="/footer" component={FooterClient} />
-            <Route  path="/redes_sociales" component={SocialMedia} />
-            <Route  path="/planes_slide" component={SlidePlanes} />
-            <Route  path="/planes_categoria" component={Category} />
-            <Route  path="/planes" component={Planes} />
-            <Route  path="/planes_benefits" component={BenefitsPlan} />
-            <Route  path="/sobre_mi_slide" component={SlideSobreMi} />
-            <Route  path="/tarjetas" component={Tarjetas} />
-            <Route  path="/descripcion_planes" component={DescripcionPlanes} />
-            <Route  path="/terminos_y_condiciones" component={Terminos} />
-        		<Route component={Error404}/>
+            <Link to={`${ process.env.PUBLIC_URL }/`} component={Estadisticas} />
+            <Link  to={`${process.env.PUBLIC_URL}/ventas`} component={Ventas} />
+            <Link  to={`${process.env.PUBLIC_URL}/usuarios`} component={Usuarios} />
+            <Link  to={`${process.env.PUBLIC_URL}/inicio_benefits`}  component={Benefits} />
+            <Link  to={`${process.env.PUBLIC_URL}/inicio_slide`}  component={ImgPrincipal} />
+            <Link to={`${ process.env.PUBLIC_URL }/inicio_plan_personal`} component={PlanPersonal} />
+            
+            <Link  to={`${process.env.PUBLIC_URL}/inicio_planes_estrella`}  component={PlanesEstrellas} />
+            <Link  to={`${process.env.PUBLIC_URL}/logo`}  component={Logo} />
+            <Link  to={`${process.env.PUBLIC_URL}/footer`}  component={FooterClient} />
+            <Link  to={`${process.env.PUBLIC_URL}/redes_sociales`}  component={SocialMedia} />
+            <Link  to={`${process.env.PUBLIC_URL}/planes_slide`}  component={SlidePlanes} />
+            <Link  to={`${process.env.PUBLIC_URL}/planes_categoria`}  component={Category} />
+            <Link  to={`${process.env.PUBLIC_URL}/planes`} component={Planes} />
+            <Link  to={`${process.env.PUBLIC_URL}/planes_benefits`}  component={BenefitsPlan} />
+            <Link  to={`${process.env.PUBLIC_URL}/sobre_mi_slide`}  component={SlideSobreMi} />
+            <Link  to={`${process.env.PUBLIC_URL}/tarjetas`}  component={Tarjetas} />
+            <Link  to={`${process.env.PUBLIC_URL}/descripcion_planes`}  component={DescripcionPlanes} />
+            <Link  to={`${process.env.PUBLIC_URL}/terminos_y_condiciones`}  component={Terminos} />
+        		<Link component={Error404}/>
         	</Switch>
 
         </BrowserRouter>
