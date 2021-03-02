@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import $ from 'jquery';
-import notie from 'notie';
+
 import Swal from 'sweetalert2'
 import {rutaAPI} from '../../../../config/Config';
 import IconButton from '@material-ui/core/IconButton';
@@ -57,24 +57,33 @@ export default function EditarBorrarAdministradores(){
 			if(imagen["type"] !== "image/jpeg" && imagen["type"] !== "image/png"){
 				
 
-				notie.alert({
-					type: 3,
-					text: 'ERROR: La imagen debe estar en formato JPG o PNG!',
-					time: 7
+				
+
+				Swal.fire({
+
+				type: "error",
+				title: "La imagen debe estar en formato JPG o PNG!",
+				showConfirmButton: true,
+				confirmButtonText: "Cerrar"
+				
 				})
 
 				$(".previsualizarImg").attr("src", "");
 				$("#editarImagen").get(0).value= "";
 				
 				return;
-			}else if (imagen["size"] > 2000000)
+			}else if (imagen["size"] > 10000000)
 			{
 				
-				notie.alert({
-					type: 3,
-					text: 'ERROR: La imagen debe pesar como maximo 2mb',
-					time: 7
+				Swal.fire({
+
+				type: "error",
+				title: "La imagen debe pesar como maximo 10mb",
+				showConfirmButton: true,
+				confirmButtonText: "Cerrar"
+				
 				})
+
 				$(".previsualizarImg").attr("src", "");
 				$("#editarImagen").get(0).value= "";
 				return;
@@ -124,24 +133,33 @@ export default function EditarBorrarAdministradores(){
 			if(pdf["type"] !== "application/pdf" ){
 			
 
-				notie.alert({
-					type: 3,
-					text: 'ERROR: La archivo debe ser pdf',
-					time: 7
+				
+				Swal.fire({
+
+				type: "error",
+				title: "El archivo debe ser pdf",
+				showConfirmButton: true,
+				confirmButtonText: "Cerrar"
+				
 				})
 				
 				
 				$("#editarPdf").get(0).value= "";
 				return;
 			}
-			if (pdf["size"] > 2000000)
+			if (pdf["size"] > 10000000)
 			{
 				
-				notie.alert({
-					type: 3,
-					text: 'ERROR: La pdf debe pesar como maximo 2mb',
-					time: 7
+				
+				Swal.fire({
+
+				type: "error",
+				title: "El pdf debe pesar como maximo 10mb",
+				showConfirmButton: true,
+				confirmButtonText: "Cerrar"
+				
 				})
+				
 				$("#editarPdf").get(0).value= "";
 				return;
 			}
@@ -399,7 +417,7 @@ export default function EditarBorrarAdministradores(){
 
 					<label className="small text-secondary" htmlFor="editarImagen">
 					Imagen de Plan personal |
-					*Peso Max. 2MB | Formato: JPG o PNG</label>
+					*Peso Max. 10MB | Formato: JPG o PNG</label>
 					<input id="editarImagen" type="file" className="form-control-file border" name="imagen" />
 					<div className="invalidad-feedback invalid-imagen"></div>
 					<img className="previsualizarImg img-fluid" alt="img-carga"/>
@@ -516,7 +534,7 @@ export default function EditarBorrarAdministradores(){
 					{/* ENTRADA PDF*/}
 
 					<div className="form-group">
-						<label className="small text-secondary" htmlFor="editarPdf">Plan personal | *Peso Max. 2MB | Formato: PDF</label>
+						<label className="small text-secondary" htmlFor="editarPdf">Plan personal | *Peso Max. 10MB | Formato: PDF</label>
 						<input id="editarPdf" type="file" className="form-control-file border" name="pdf" />
 						<div className="invalidad-feedback invalid-pdf"></div>
 			   		</div>

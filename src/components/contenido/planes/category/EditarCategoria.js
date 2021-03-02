@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import $ from 'jquery';
 import {rutaAPI} from '../../../../config/Config';
-import notie from 'notie';
 import Swal from 'sweetalert2'
 
 export default function EditarCategoria()
@@ -31,22 +30,28 @@ export default function EditarCategoria()
 			if(imagen["type"] !== "image/jpeg" && imagen["type"] !== "image/png"){
 				$("#imagen").val("");
 
-				notie.alert({
-					type: 3,
-					text: 'ERROR: La imagen debe estar en formato JPG o PNG!',
-					time: 7
+				Swal.fire({
+
+				type: "error",
+				title: "La imagen debe estar en formato JPG o PNG!",
+				showConfirmButton: true,
+				confirmButtonText: "Cerrar"
+				
 				})
 
                 $(".previsualizarImg").attr("src", "");
                 $("#editarImagen").val("");
 				return;
-			}else if(imagen["size"] > 3000000){
+			}else if(imagen["size"] > 10000000){
 				$("#imagen").val("");
-				notie.alert({
-					type: 3,
-					text: 'ERROR: La imagen debe pesar como maximo 3mb',
-					time: 7
-				})
+				 Swal.fire({
+
+                type: "error",
+                title: "El pdf debe pesar como maximo 10mb",
+                showConfirmButton: true,
+                confirmButtonText: "Cerrar"
+                
+                })
                 $(".previsualizarImg").attr("src", "");
                   $("#editarImagen").val("");
 				return;
@@ -189,7 +194,7 @@ export default function EditarCategoria()
 
 						{/* ENTRADA IMAGEN*/}
 
-						<label className="small text-secondary" htmlFor="editarImagen">*Peso Max. 2MB | Formato: JPG o PNG</label>
+						<label className="small text-secondary" htmlFor="editarImagen">*Peso Max. 10MB | Formato: JPG o PNG</label>
 						<input id="editarImagen" type="file" className="form-control-file border" name="imagen" />
 						<div className="invalidad-feedback invalid-imagen"></div>
 						<img className="previsualizarImg img-fluid" alt="img-carga"/>

@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import $ from 'jquery';
 import {rutaAPI} from '../../../../config/Config';
-import notie from 'notie';
 import Swal from 'sweetalert2'
 
 export default function CrearTarjeta()
@@ -26,22 +25,28 @@ export default function CrearTarjeta()
 			if(imagen["type"] !== "image/jpeg" && imagen["type"] !== "image/png"){
 				$("#imagen").val("");
 
-				notie.alert({
-					type: 3,
-					text: 'ERROR: La imagen debe estar en formato JPG o PNG!',
-					time: 7
-				})
+				Swal.fire({
+
+                type: "error",
+                title: "La imagen debe estar en formato JPG o PNG!",
+                showConfirmButton: true,
+                confirmButtonText: "Cerrar"
+                
+                })
 
                 $(".previsualizarImg").attr("src", "");
                 $("#crearImagen").val("");
 				return;
-			}else if(imagen["size"] > 3000000){
+			}else if(imagen["size"] > 10000000){
 				$("#imagen").val("");
-				notie.alert({
-					type: 3,
-					text: 'ERROR: La imagen debe pesar como maximo 3mb',
-					time: 7
-				})
+				 Swal.fire({
+
+                type: "error",
+                title: "La imagen debe pesar como maximo 10mb",
+                showConfirmButton: true,
+                confirmButtonText: "Cerrar"
+                
+                })
                 $(".previsualizarImg").attr("src", "");
                   $("#crearImagen").val("");
 				return;
@@ -172,7 +177,7 @@ export default function CrearTarjeta()
 
                         {/* ENTRADA IMAGEN*/}
 
-                        <label className="small text-secondary" htmlFor="crearImagen">*Peso Max. 2MB | Formato: JPG o PNG</label>
+                        <label className="small text-secondary" htmlFor="crearImagen">*Peso Max. 10MB | Formato: JPG o PNG</label>
                         <input id="crearImagen" type="file" className="form-control-file border" name="imagen" required/>
                         <div className="invalidad-feedback invalid-imagen"></div>
                         <img className="previsualizarImg img-fluid" alt=""/>
@@ -180,7 +185,7 @@ export default function CrearTarjeta()
                         {/* ENTRADA TITULO*/}
 
                         <div className="form-group">
-                            <label className="small text-secondary" htmlFor="crearTitulo">* No ingresar caracteres especiales, solo letras y números</label>
+                            <label className="small text-secondary" htmlFor="crearTitulo">* Titulo</label>
 
                             <div className="input-group mb-3">
                                 <div className="input-group-append input-group-text">
@@ -196,7 +201,7 @@ export default function CrearTarjeta()
                         {/* ENTRADA DESCRIPCION*/}
 
                         <div className="form-group">
-                            <label className="small text-secondary" htmlFor="crearDescripcion">* No ingresar caracteres especiales, solo letras y números</label>
+                            <label className="small text-secondary" htmlFor="crearDescripcion">* Descripción</label>
 
                             <div className="input-group mb-3">
                                 <div className="input-group-append input-group-text">

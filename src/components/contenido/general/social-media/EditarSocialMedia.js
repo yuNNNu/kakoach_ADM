@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import $ from 'jquery';
 import {rutaAPI} from '../../../../config/Config';
-import notie from 'notie';
+
 import Swal from 'sweetalert2'
 
 export default function EditarSocialMedia()
@@ -20,14 +20,7 @@ export default function EditarSocialMedia()
 
 	const cambiarFormPut = e => {
 
-		if ($("#editarUrl").val() === "" || $("#editarUrl").val() === undefined)
-		{
-			notie.alert({
-				type: 3,
-				text: 'ERROR: La url no puede ir vacia',
-				time: 7
-			})
-		}
+		
 		editarRed({
 
 	

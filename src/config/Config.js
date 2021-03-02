@@ -1,1 +1,1 @@
-export const rutaAPI = "http://localhost:4000";
+export const rutaAPI = "http://ec2-3-128-172-20.us-east-2.compute.amazonaws.com";

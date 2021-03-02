@@ -8,7 +8,7 @@ import Login from './components/contenido/login/Login';
 // Componentes fijos
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
-import Footer from './components/footer/Footer';
+
 
 
 // Componentes Dinamicos
@@ -89,7 +89,7 @@ export default function App() {
         	</Switch>
 
         </BrowserRouter>
-        <Footer/>
+    
       </div>
     </div>  
   );

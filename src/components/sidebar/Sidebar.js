@@ -23,13 +23,13 @@ export default function Sidebar()
 		<aside className="main-sidebar sidebar-dark-primary elevation-4 ">
 
 			<a href="#/" className="brand-link">
-				<img alt="Ka Koach Logo"
+				<img alt="KAKOACH Logo"
 						className="brand-image img-circle elevation-3"
 						style={{opacity: 0.8}}
 						src= {rutaAPI+"/mostrar-logo/"+localStorage.getItem("logo")}
 				/>
 
-				<span className="brand-text font-weight-light">Ka Koach</span>
+				<span className="brand-text font-weight-light">KAKOACH</span>
 			</a>
 
 			<div className="sidebar">

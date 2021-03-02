@@ -40,7 +40,7 @@ export default function EditarBorrarAdministradores(){
 
 		e.preventDefault();		
 
-		const {_id, id} = planesestrellas;
+		const { id} = planesestrellas;
 
 		/*=============================================
 		Validamos que el campo user no venga vacío
