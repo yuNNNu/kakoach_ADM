@@ -62,29 +62,29 @@ export default function App() {
       <div className="wrapper">
         <Header/>
         <Sidebar/>
-        <BrowserRouter>
+        <BrowserRouter >
 
         	<Switch>
         	
         	
             <Route exact path="/" component={Estadisticas} />
-            <Route exact path="/ventas" component={Ventas} />
-            <Route exact path="/usuarios" component={Usuarios} />
-            <Route exact path="/inicio_benefits" component={Benefits} />
-            <Route exact path="/inicio_slide" component={ImgPrincipal} />
-            <Route exact path="/inicio_plan_personal" component={PlanPersonal} />
-            <Route exact path="/inicio_planes_estrella" component={PlanesEstrellas} />
-            <Route exact path="/logo" component={Logo} />
-            <Route exact path="/footer" component={FooterClient} />
-            <Route exact path="/redes_sociales" component={SocialMedia} />
-            <Route exact path="/planes_slide" component={SlidePlanes} />
-            <Route exact path="/planes_categoria" component={Category} />
-            <Route exact path="/planes" component={Planes} />
-            <Route exact path="/planes_benefits" component={BenefitsPlan} />
-            <Route exact path="/sobre_mi_slide" component={SlideSobreMi} />
-            <Route exact path="/tarjetas" component={Tarjetas} />
-            <Route exact path="/descripcion_planes" component={DescripcionPlanes} />
-            <Route exact path="/terminos_y_condiciones" component={Terminos} />
+            <Route  path="/ventas" component={Ventas} />
+            <Route  path="/usuarios" component={Usuarios} />
+            <Route  path="/inicio_benefits" component={Benefits} />
+            <Route  path="/inicio_slide" component={ImgPrincipal} />
+            <Route  path="/inicio_plan_personal" component={PlanPersonal} />
+            <Route  path="/inicio_planes_estrella" component={PlanesEstrellas} />
+            <Route  path="/logo" component={Logo} />
+            <Route  path="/footer" component={FooterClient} />
+            <Route  path="/redes_sociales" component={SocialMedia} />
+            <Route  path="/planes_slide" component={SlidePlanes} />
+            <Route  path="/planes_categoria" component={Category} />
+            <Route  path="/planes" component={Planes} />
+            <Route  path="/planes_benefits" component={BenefitsPlan} />
+            <Route  path="/sobre_mi_slide" component={SlideSobreMi} />
+            <Route  path="/tarjetas" component={Tarjetas} />
+            <Route  path="/descripcion_planes" component={DescripcionPlanes} />
+            <Route  path="/terminos_y_condiciones" component={Terminos} />
         		<Route component={Error404}/>
         	</Switch>
 
