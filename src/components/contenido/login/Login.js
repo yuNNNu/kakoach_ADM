@@ -38,7 +38,7 @@ export default function Login(){
 			localStorage.setItem("ACCESS_TOKEN", result.token)				
 			localStorage.setItem("ID", result.data._id)
 			localStorage.setItem("USUARIO", result.data.user)	
-			window.location.href = "/";	
+			window.location.href = `${process.env.PUBLIC_URL}/`;	
 		}
 	}
 

@@ -38,237 +38,237 @@ export default function Sidebar()
 
 
 					
-					<div>
+		<div>
 
-						<nav className="mt-2">
-							<ul
-								className="nav nav-pills nav-sidebar flex-column"
-								data-widget="treeview"
-								role="menu"
-								data-accordion="false"
-						>
-							<div className="sidenav-menu-heading">Negocio</div>
-							<li className="nav-item">
-								<a href={`${process.env.PUBLIC_URL}/ventas`} className="nav-link">
-									<i className="nav-icon fas fa-poll"></i>
-									<p>Ventas</p>
-									
-
-								</a>
-							</li>	
-							<li className="nav-item">
-								<a href={`${process.env.PUBLIC_URL}/`} className="nav-link">
-									<i className="nav-icon fas fa-poll"></i>
-									<p>Estadísticas</p>
-									
-
-								</a>
-							</li>	
+			<nav className="mt-2">
+				<ul
+					className="nav nav-pills nav-sidebar flex-column"
+					data-widget="treeview"
+					role="menu"
+					data-accordion="false"
+			>
+				<div className="sidenav-menu-heading">Negocio</div>
+				<li className="nav-item">
+					<a href={`${process.env.PUBLIC_URL}/ventas`} className="nav-link">
+						<i className="nav-icon fas fa-poll"></i>
+						<p>Ventas</p>
 						
-								<li className="nav-item">
 
-									<a href={`${process.env.PUBLIC_URL}/usuarios`}   className="nav-link">
-										<i className="nav-icon fas fa-users"></i>
-										<p>
-										Usuarios
-										</p>
+					</a>
+				</li>	
+				<li className="nav-item">
+					<a href={`${process.env.PUBLIC_URL}/`} className="nav-link">
+						<i className="nav-icon fas fa-poll"></i>
+						<p>Estadísticas</p>
+						
 
-									</a>
+					</a>
+				</li>	
+			
+					<li className="nav-item">
 
-								</li>
-							<div class="sidenav-menu-heading">General</div>
-								<li className="nav-item">
+						<a href={`${process.env.PUBLIC_URL}/usuarios`}   className="nav-link">
+							<i className="nav-icon fas fa-users"></i>
+							<p>
+							Usuarios
+							</p>
 
-									<a href="/terminos_y_condiciones" className="nav-link">
+						</a>
 
-										<p>
-										Términos y Condiciones
-										</p>
+					</li>
+				<div class="sidenav-menu-heading">General</div>
+					<li className="nav-item">
 
-									</a>
+						<a href={`${process.env.PUBLIC_URL}/terminos_y_condiciones`}  className="nav-link">
 
-								</li>
-								<li className="nav-item">
+							<p>
+							Términos y Condiciones
+							</p>
 
-									<a href="/logo" className="nav-link">
+						</a>
 
-										<p>
-										Logo
-										</p>
+					</li>
+					<li className="nav-item">
 
-									</a>
+						<a href={`${process.env.PUBLIC_URL}/logo`}  className="nav-link">
 
-								</li>
+							<p>
+							Logo
+							</p>
 
-								<li className="nav-item">
+						</a>
 
-									<a href="/footer" className="nav-link">
+					</li>
 
-										<p>
-										Footer
-										</p>
+					<li className="nav-item">
 
-									</a>
+						<a href={`${process.env.PUBLIC_URL}/footer`} className="nav-link">
 
-								</li>
+							<p>
+							Footer
+							</p>
 
-								<li className="nav-item">
+						</a>
 
-									<a href="/redes_sociales" className="nav-link">
+					</li>
 
+					<li className="nav-item">
 
-										<p>
-										Social Media
-										</p>
+						<a  href={`${process.env.PUBLIC_URL}/redes_sociales`} className="nav-link">
 
-									</a>
 
-								</li>
-									<div className="sidenav-menu-heading">Inicio</div>
+							<p>
+							Social Media
+							</p>
 
-								<li className="nav-item">
+						</a>
 
-									<a href="/inicio_slide" className="nav-link">
-										
-										<p>
-										Imagen Principal
-										</p>
+					</li>
+						<div className="sidenav-menu-heading">Inicio</div>
 
-									</a>
+					<li className="nav-item">
 
-							</li>
-							<li className="nav-item">
+						<a  href={`${process.env.PUBLIC_URL}/inicio_slide`} className="nav-link">
+							
+							<p>
+							Imagen Principal
+							</p>
 
-									<a href="/descripcion_planes" className="nav-link">
-										
-										<p>
-										Descripción Planes
-										</p>
+						</a>
 
-									</a>
+				</li>
+				<li className="nav-item">
 
-							</li>
+						<a  href={`${process.env.PUBLIC_URL}/descripcion_planes`} className="nav-link">
+							
+							<p>
+							Descripción Planes
+							</p>
 
-								<li className="nav-item">
+						</a>
 
-									<a href="/inicio_plan_personal" className="nav-link">
+				</li>
 
-										<p>
-										Plan Primario
-										</p>
+					<li className="nav-item">
 
-									</a>
+						<a href={`${process.env.PUBLIC_URL}/inicio_plan_personal`}    className="nav-link">
 
-							    </li>
+							<p>
+							Plan Primario
+							</p>
 
-							    <li className="nav-item">
+						</a>
 
-									<a href="/inicio_planes_estrella" className="nav-link">
+					</li>
 
-										<p>
-										Planes Secundarios
-										</p>
+					<li className="nav-item">
 
-									</a>
+						<a href={`${process.env.PUBLIC_URL}/inicio_planes_estrella`}   className="nav-link">
 
-							    </li>
+							<p>
+							Planes Secundarios
+							</p>
 
-							    <li className="nav-item">
+						</a>
 
-									<a href="/inicio_benefits" className="nav-link">
+					</li>
 
-										<p>
-										Beneficios
-										</p>
+					<li className="nav-item">
 
-									</a>
+						<a href={`${process.env.PUBLIC_URL}/inicio_benefits`} className="nav-link">
 
-							    </li>
+							<p>
+							Beneficios
+							</p>
 
-								<div className="sidenav-menu-heading">Planes</div>
+						</a>
 
-								<li className="nav-item">
+					</li>
 
-									<a href="/planes_slide" className="nav-link">
+					<div className="sidenav-menu-heading">Planes</div>
 
-										<p>
-										Imagen Principal
-										</p>
+					<li className="nav-item">
 
-									</a>
+						<a href={`${process.env.PUBLIC_URL}/planes_slide`}    className="nav-link">
 
-								</li>
+							<p>
+							Imagen Principal
+							</p>
 
+						</a>
 
-								<li className="nav-item">
+					</li>
 
-									<a href="/planes_categoria" className="nav-link">
 
-										<p>
-										Categorías
-										</p>
+					<li className="nav-item">
 
-									</a>
+						<a href={`${process.env.PUBLIC_URL}/planes_categoria`}     className="nav-link">
 
-								</li>
+							<p>
+							Categorías
+							</p>
 
+						</a>
 
-								<li className="nav-item">
+					</li>
 
-									<a href="/planes" className="nav-link">
 
-										<p>
-										Planes
-										</p>
+					<li className="nav-item">
 
-									</a>
+						<a href={`${process.env.PUBLIC_URL}/planes`}  className="nav-link">
 
-								</li>
+							<p>
+							Planes
+							</p>
 
-								<li className="nav-item">
+						</a>
 
-									<a href="/planes_benefits" className="nav-link">
+					</li>
 
-										<p>
-										Beneficios
-										</p>
+					<li className="nav-item">
 
-									</a>
+						<a href={`${process.env.PUBLIC_URL}/planes_benefits`} className="nav-link">
 
-								</li>
-								<div	div className="sidenav-menu-heading">Sobre mi</div>
+							<p>
+							Beneficios
+							</p>
 
-								<li className="nav-item">
+						</a>
 
-									<a href="/sobre_mi_slide" className="nav-link">
+					</li>
+					<div	div className="sidenav-menu-heading">Sobre mi</div>
 
-										<p>
-										Imagen Principal
-										</p>
+					<li className="nav-item">
 
-									</a>
+						<a href={`${process.env.PUBLIC_URL}/sobre_mi_slide`} className="nav-link">
 
-								</li>
+							<p>
+							Imagen Principal
+							</p>
 
-								<li className="nav-item">
+						</a>
 
-									<a href="/tarjetas" className="nav-link">
+					</li>
 
-										<p>
-										Tarjetas
-										</p>
+					<li className="nav-item">
 
-									</a>
+						<a href={`${process.env.PUBLIC_URL}/tarjetas`} className="nav-link">
 
-								</li>
+							<p>
+							Tarjetas
+							</p>
 
-							</ul>
-						</nav>
+						</a>
 
+					</li>
 
-					</div>
-					
-				
+				</ul>
+			</nav>
+
+
+		</div>
+		
+	
 
 			</div> 
 

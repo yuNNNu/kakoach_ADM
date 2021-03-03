@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import './App.css';
 // Componente Login
@@ -16,7 +16,7 @@ import Sidebar from './components/sidebar/Sidebar';
 
 
 import Usuarios from './components/contenido/usuarios/Usuarios';
-import Error404 from './components/contenido/error404/Error404';
+//import Error404 from './components/contenido/error404/Error404';
 
 // PAGINA GENERAL
 import Terminos from './components/contenido/general/terminos-y-condiciones/Terminos'
@@ -62,34 +62,32 @@ export default function App() {
       <div className="wrapper">
         <Header/>
         <Sidebar/>
-        <BrowserRouter basename={'/admin'}>
+        <Router >
 
         	<Switch>
-        	
-        	
-            <Link to={`${ process.env.PUBLIC_URL }/`} component={Estadisticas} />
-            <Link  to={`${process.env.PUBLIC_URL}/ventas`} component={Ventas} />
-            <Link  to={`${process.env.PUBLIC_URL}/usuarios`} component={Usuarios} />
-            <Link  to={`${process.env.PUBLIC_URL}/inicio_benefits`}  component={Benefits} />
-            <Link  to={`${process.env.PUBLIC_URL}/inicio_slide`}  component={ImgPrincipal} />
-            <Link to={`${ process.env.PUBLIC_URL }/inicio_plan_personal`} component={PlanPersonal} />
+            <Route exact path={`${process.env.PUBLIC_URL}/`} component={Estadisticas} />
+            <Route exact  path={`${process.env.PUBLIC_URL}/ventas`} component={Ventas} />
+            <Route  exact path={`${process.env.PUBLIC_URL}/usuarios`} component={Usuarios} />
+            <Route  exact path={`${process.env.PUBLIC_URL}/inicio_benefits`}  component={Benefits} />
+            <Route  exact path={`${process.env.PUBLIC_URL}/inicio_slide`}  component={ImgPrincipal} />
+            <Route exact path={`${ process.env.PUBLIC_URL }/inicio_plan_personal`} component={PlanPersonal} />
             
-            <Link  to={`${process.env.PUBLIC_URL}/inicio_planes_estrella`}  component={PlanesEstrellas} />
-            <Link  to={`${process.env.PUBLIC_URL}/logo`}  component={Logo} />
-            <Link  to={`${process.env.PUBLIC_URL}/footer`}  component={FooterClient} />
-            <Link  to={`${process.env.PUBLIC_URL}/redes_sociales`}  component={SocialMedia} />
-            <Link  to={`${process.env.PUBLIC_URL}/planes_slide`}  component={SlidePlanes} />
-            <Link  to={`${process.env.PUBLIC_URL}/planes_categoria`}  component={Category} />
-            <Link  to={`${process.env.PUBLIC_URL}/planes`} component={Planes} />
-            <Link  to={`${process.env.PUBLIC_URL}/planes_benefits`}  component={BenefitsPlan} />
-            <Link  to={`${process.env.PUBLIC_URL}/sobre_mi_slide`}  component={SlideSobreMi} />
-            <Link  to={`${process.env.PUBLIC_URL}/tarjetas`}  component={Tarjetas} />
-            <Link  to={`${process.env.PUBLIC_URL}/descripcion_planes`}  component={DescripcionPlanes} />
-            <Link  to={`${process.env.PUBLIC_URL}/terminos_y_condiciones`}  component={Terminos} />
-        		<Link component={Error404}/>
+            <Route  exact path={`${process.env.PUBLIC_URL}/inicio_planes_estrella`}  component={PlanesEstrellas} />
+            <Route  exact path={`${process.env.PUBLIC_URL}/logo`}  component={Logo} />
+            <Route  exact path={`${process.env.PUBLIC_URL}/footer`}  component={FooterClient} />
+            <Route  exact path={`${process.env.PUBLIC_URL}/redes_sociales`}  component={SocialMedia} />
+            <Route  exact path={`${process.env.PUBLIC_URL}/planes_slide`}  component={SlidePlanes} />
+            <Route  exact path={`${process.env.PUBLIC_URL}/planes_categoria`}  component={Category} />
+            <Route  exact path={`${process.env.PUBLIC_URL}/planes`} component={Planes} />
+            <Route  exact path={`${process.env.PUBLIC_URL}/planes_benefits`}  component={BenefitsPlan} />
+            <Route  exact path={`${process.env.PUBLIC_URL}/sobre_mi_slide`}  component={SlideSobreMi} />
+            <Route  exact path={`${process.env.PUBLIC_URL}/tarjetas`}  component={Tarjetas} />
+            <Route  exact path={`${process.env.PUBLIC_URL}/descripcion_planes`}  component={DescripcionPlanes} />
+            <Route  exact path={`${process.env.PUBLIC_URL}/terminos_y_condiciones`}  component={Terminos} />
+        		<Route component={Estadisticas}/>
         	</Switch>
 
-        </BrowserRouter>
+        </Router>
     
       </div>
     </div>  
