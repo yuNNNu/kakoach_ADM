@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {rutaAPI} from '../../../config/Config';
+import {rutaAPI, iva} from '../../../config/Config';
 import $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
@@ -128,6 +128,8 @@ export default function Estadisticas()
     
         
         });
+         const ivaAImponible = Math.round(getVentas["total_ventas"] * iva);
+        const saldoContable = getVentas["total_ventas"] - ivaAImponible;
         
         // pasando datos
         // mas vendido
@@ -141,6 +143,8 @@ export default function Estadisticas()
         // saldo general
         $('#cantidadVentasGeneral').html("N° de Ventas: "+getVentas["cantidad_ventas"])
         $('#saldoGeneral').html("Total de ventas: $"+getVentas["total_ventas"])
+        $('#ivaASaldoGeneral').html("Impuestos de ventas: $"+ivaAImponible)
+        $('#saldoMenosImpuestos').html("Saldo Contable: $"+saldoContable)
         
     // /*=============================================
     // =            EJECUTAMOS DATATABLE          =
@@ -222,6 +226,9 @@ export default function Estadisticas()
     
         
     });
+        const ivaAImponible = Math.round(getVentas["total_ventas"] * iva);
+        const saldoContable = getVentas["total_ventas"] - ivaAImponible;
+        
     
     // pasando datos
         // mas vendido
@@ -235,7 +242,8 @@ export default function Estadisticas()
         // saldo general
         $('#cantidadVentasGeneral').html("N° de Ventas: "+getVentas["cantidad_ventas"])
         $('#saldoGeneral').html("Total de ventas: $"+getVentas["total_ventas"])
-        
+        $('#ivaASaldoGeneral').html("Impuestos de ventas: $"+ivaAImponible)
+        $('#saldoMenosImpuestos').html("Saldo Contable: $"+saldoContable)
     // /*=============================================
     // =            EJECUTAMOS DATATABLE          =
     // =============================================*/
@@ -351,7 +359,9 @@ export default function Estadisticas()
                                     
                                     <div className="small text-white">
                                         <h5 id="cantidadVentasGeneral">N° de Ventas: 0</h5>        
+                                        <h5 id="saldoMenosImpuestos">Saldo Contable: $0</h5>           
                                         <h5 id="saldoGeneral">Total de ventas: $0</h5>           
+                                        <h5 id="ivaASaldoGeneral">Impuestos a ventas: $0</h5>           
                                     </div>
                                 </div>
                             </div>

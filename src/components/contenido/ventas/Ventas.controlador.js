@@ -4,6 +4,7 @@ import $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
 import 'datatables.net-responsive';
+const config = require('./../../../config/Config');
 export default function Ventas()
 {
     let totalVentas = 0;
@@ -57,9 +58,13 @@ export default function Ventas()
 				{title: "Precio"}]
 			})
         })
+            const ivaAImponible = Math.round(totalVentas * config.iva);
+            const saldoContable = totalVentas - ivaAImponible;
         //   Mostrando datos 
             $('#cantidadVentasGeneral').html("Cantidad de Ventas: " + cantVentas);
-            $('#saldoGeneral').html("Total de Ventas: $"+totalVentas);
+            $('#saldoMenosIva').html("Saldo Contable: " + saldoContable);
+            $('#saldoGeneralImponible').html("Total Ventas Imponible: $"+totalVentas);
+            $('#ivaASaldoGeneral').html("Pago en Impuestos: $"+ivaAImponible);
 
 	}
     dataVentas();
@@ -95,8 +100,10 @@ export default function Ventas()
                                 <div className="card-footer d-flex align-items-center justify-content-between">
                                     
                                     <div className="small text-white">
-                                        <h4 id="cantidadVentasGeneral">0</h4>        
-                                        <h4 id="saldoGeneral">$</h4>           
+                                        <h5 id="cantidadVentasGeneral">0</h5>        
+                                        <h5 id="saldoMenosIva">$</h5>        
+                                        <h5 id="saldoGeneralImponible">$</h5>           
+                                        <h5 id="ivaASaldoGeneral">$</h5>           
                                     </div>
                                 </div>
                             </div>
