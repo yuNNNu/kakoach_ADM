@@ -133,7 +133,7 @@ export default function EditarImgInicio(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_slide";
+					window.location.href = `${process.env.PUBLIC_URL}/inicio_slide`;
 				}
 			})
 
@@ -150,7 +150,7 @@ export default function EditarImgInicio(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_slide";
+					window.location.href = `${process.env.PUBLIC_URL}/inicio_slide`;
 				}
 			})
 		}

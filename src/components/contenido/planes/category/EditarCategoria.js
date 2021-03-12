@@ -124,7 +124,7 @@ export default function EditarCategoria()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/planes_categoria";
+					window.location.href = `${process.env.PUBLIC_URL}/planes_categoria`;
 				}
 			})
 
@@ -141,7 +141,7 @@ export default function EditarCategoria()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/planes_categoria";
+					window.location.href = `${process.env.PUBLIC_URL}/planes_categoria`;
 				}
 			})
 		}

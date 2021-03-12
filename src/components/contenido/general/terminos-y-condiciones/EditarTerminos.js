@@ -45,7 +45,7 @@ export default function EditarTerminos(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/terminos_y_condiciones";
+					window.location.href = `${process.env.PUBLIC_URL}/terminos_y_condiciones`;
 				}
 			})
 
@@ -62,7 +62,7 @@ export default function EditarTerminos(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/terminos_y_condiciones";
+					window.location.href = `${process.env.PUBLIC_URL}/terminos_y_condiciones`;
 				}
 			})
 		}

@@ -36,7 +36,7 @@ export default function EditarLogo(){
 				
 				}).then(function(result){
 					
-						window.location.href = "/logo";
+						window.location.href = `${process.env.PUBLIC_URL}/logo`;
 					
 				})
 
@@ -56,7 +56,7 @@ export default function EditarLogo(){
 				
 				}).then(function(result){
 					
-					window.location.href = "/logo";
+					window.location.href = `${process.env.PUBLIC_URL}/logo`;
 					
 				})
 
@@ -118,7 +118,7 @@ export default function EditarLogo(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/logo";
+					window.location.href = `${process.env.PUBLIC_URL}/logo`;
 				}
 			})
 
@@ -135,7 +135,7 @@ export default function EditarLogo(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/logo";
+					window.location.href = `${process.env.PUBLIC_URL}/logo`;
 				}
 			})
 		}

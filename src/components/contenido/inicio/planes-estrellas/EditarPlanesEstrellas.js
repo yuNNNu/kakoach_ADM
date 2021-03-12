@@ -72,7 +72,7 @@ export default function EditarBorrarAdministradores(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_planes_estrella";
+					window.location.href = `${process.env.PUBLIC_URL}/inicio_planes_estrella`;
 				}
 			})
 
@@ -89,7 +89,7 @@ export default function EditarBorrarAdministradores(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_planes_estrella";
+					window.location.href = `${process.env.PUBLIC_URL}/inicio_planes_estrella`;
 				}
 			})
 		}

@@ -308,7 +308,7 @@ export default function CrearPlan()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/planes";
+					window.location.href = `${process.env.PUBLIC_URL}/planes`;
 				}
 			})
 
@@ -325,7 +325,7 @@ export default function CrearPlan()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/planes";
+					window.location.href = `${process.env.PUBLIC_URL}/planes`;
 				}
 			})
 		}

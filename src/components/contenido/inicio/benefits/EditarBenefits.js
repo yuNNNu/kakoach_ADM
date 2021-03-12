@@ -55,7 +55,7 @@ export default function EditarBenefitInicio(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_benefits";
+					window.location.href = `${process.env.PUBLIC_URL}/inicio_benefits`;
 				}
 			})
 
@@ -72,7 +72,7 @@ export default function EditarBenefitInicio(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_benefits";
+					window.location.href = `${process.env.PUBLIC_URL}/inicio_benefits`;
 				}
 			})
 		}

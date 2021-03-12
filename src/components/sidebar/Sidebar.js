@@ -76,7 +76,7 @@ export default function Sidebar()
 						</a>
 
 					</li>
-				<div class="sidenav-menu-heading">General</div>
+				<div className="sidenav-menu-heading">General</div>
 					<li className="nav-item">
 
 						<a href={`${process.env.PUBLIC_URL}/terminos_y_condiciones`}  className="nav-link">

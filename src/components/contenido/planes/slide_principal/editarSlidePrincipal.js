@@ -126,7 +126,7 @@ export default function EditarImgSlide()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/planes_slide";
+					window.location.href = `${process.env.PUBLIC_URL}/planes_slide`;
 				}
 			})
 
@@ -143,7 +143,7 @@ export default function EditarImgSlide()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/planes_slide";
+					window.location.href = `${process.env.PUBLIC_URL}/planes_slide`;
 				}
 			})
 		}

@@ -27,7 +27,7 @@ import React from 'react'
 
  			<ul className="navbar ml-auto">
  				<li className="nav-item">
- 					<a href="/" onClick={() => {cerrarSesion()}}
+ 					<a href={`${process.env.PUBLIC_URL}/`} onClick={() => {cerrarSesion()}}
  						className="nav-link">
  						<i className="fas fa-sign-out-alt"></i>
  					</a>

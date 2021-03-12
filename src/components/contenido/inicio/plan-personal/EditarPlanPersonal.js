@@ -309,7 +309,7 @@ export default function EditarBorrarAdministradores(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_plan_personal";
+					window.location.href = `${process.env.PUBLIC_URL}/inicio_plan_personal`;
 				}
 			})
 
@@ -326,7 +326,7 @@ export default function EditarBorrarAdministradores(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/inicio_plan_personal";
+					window.location.href = `${process.env.PUBLIC_URL}/inicio_plan_personal`;
 				}
 			})
 		}

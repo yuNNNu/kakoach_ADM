@@ -72,7 +72,7 @@ export default function EditarFooter(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/footer";
+					window.location.href = `${process.env.PUBLIC_URL}/footer`;
 				}
 			})
 
@@ -89,7 +89,7 @@ export default function EditarFooter(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/footer";
+					window.location.href = `${process.env.PUBLIC_URL}/footer`;
 				}
 			})
 		}
@@ -175,7 +175,7 @@ export default function EditarFooter(){
 			            
 						}).then(function(result){
 							if(result.value){
-								window.location.href = "/footer";
+								window.location.href = `${process.env.PUBLIC_URL}/footer`;
 							}
 						})
 
@@ -192,7 +192,7 @@ export default function EditarFooter(){
 			            
 						}).then(function(result){
 							if(result.value){
-								window.location.href = "/footer";
+								window.location.href = `${process.env.PUBLIC_URL}/footer`;
 							}
 						})
 					}
@@ -279,12 +279,12 @@ export default function EditarFooter(){
 
 											<div key={index} className="row mb-3"> 
 												<div className="input-group-append input-group-text col-1">
-													<i class="fas fa-list"></i>
+													<i className="fas fa-list"></i>
 												</div>
 												<input value={descInput.descripcion} onChange={event => handleChangeDesc(index, event)} id="crearDesc" type="text" className="form-control col-5" name="descripcion" placeholder="Ingrese la descripción"/>
 
 												<div className="input-group-append input-group-text col-1">
-													<i class="fas fa-link"></i>
+													<i className="fas fa-link"></i>
 												</div>
 
 												<input value={descInput.link} onChange={event => handleChangeDesc(index, event)} id="crearLink" type="text" className="form-control col-5" name="link" placeholder="Ingrese el link"/>

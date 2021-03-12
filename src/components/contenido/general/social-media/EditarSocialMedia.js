@@ -62,7 +62,7 @@ export default function EditarSocialMedia()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/redes_sociales";
+					window.location.href = `${process.env.PUBLIC_URL}/redes_sociales`;
 				}
 			})
 
@@ -79,7 +79,7 @@ export default function EditarSocialMedia()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/redes_sociales";
+					window.location.href = `${process.env.PUBLIC_URL}/redes_sociales`;
 				}
 			})
 		}

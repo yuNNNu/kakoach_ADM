@@ -119,7 +119,7 @@ export default function CrearFooter()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/footer";
+					window.location.href = `${process.env.PUBLIC_URL}/footer`;
 				}
 			})
 
@@ -136,7 +136,7 @@ export default function CrearFooter()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/footer";
+					window.location.href = `${process.env.PUBLIC_URL}/footer`;
 				}
 			})
 		}

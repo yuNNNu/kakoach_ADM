@@ -124,7 +124,7 @@ export default function EditarSlide()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/sobre_mi_slide";
+					window.location.href = `${process.env.PUBLIC_URL}/sobre_mi_slide`;
 				}
 			})
 
@@ -141,7 +141,7 @@ export default function EditarSlide()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/sobre_mi_slide";
+					window.location.href = `${process.env.PUBLIC_URL}/sobre_mi_slide`;
 				}
 			})
 		}

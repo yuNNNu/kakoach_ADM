@@ -16,7 +16,7 @@ export default function Error404(){
 
 						<h3>
 
-							<i class="fas fa-exclamation-triangle text-warning"></i>
+							<i className="fas fa-exclamation-triangle text-warning"></i>
 							{" "}
 							Oops!, Página no encontrada...
 						</h3>

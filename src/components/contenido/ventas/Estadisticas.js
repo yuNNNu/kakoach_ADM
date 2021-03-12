@@ -105,7 +105,7 @@ export default function Estadisticas()
             
 			}).then(function(getVentas){
 				if(getVentas.value){
-					window.location.href = "/";
+					window.location.href = `${process.env.PUBLIC_URL}/`;
 				}
 			})
             return
@@ -201,7 +201,7 @@ export default function Estadisticas()
             
 			}).then(function(getVentas){
 				if(getVentas.value){
-					window.location.href = "/";
+					window.location.href = `${process.env.PUBLIC_URL}/`;
 				}
 			})
             return

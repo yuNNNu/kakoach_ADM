@@ -127,7 +127,7 @@ export default function CrearTarjeta()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/tarjetas";
+					window.location.href = `${process.env.PUBLIC_URL}/tarjetas`;
 				}
 			})
 
@@ -144,7 +144,7 @@ export default function CrearTarjeta()
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/tarjetas";
+					window.location.href = `${process.env.PUBLIC_URL}/tarjetas`;
 				}
 			})
 		}

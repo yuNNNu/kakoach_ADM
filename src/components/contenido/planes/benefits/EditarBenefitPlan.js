@@ -72,7 +72,7 @@ export default function EditarBenefitPlan(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/planes_benefits";
+					window.location.href = `${process.env.PUBLIC_URL}/planes_benefits`;
 				}
 			})
 
@@ -89,7 +89,7 @@ export default function EditarBenefitPlan(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/planes_benefits";
+					window.location.href = `${process.env.PUBLIC_URL}/planes_benefits`;
 				}
 			})
 		}

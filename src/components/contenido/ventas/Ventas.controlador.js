@@ -13,6 +13,7 @@ export default function Ventas()
 		=            SE CREA EL DATASET       =
 		=============================================*/
 		const getUser = await getData();
+        
 		const dataSet = [];
 		
        
@@ -20,6 +21,7 @@ export default function Ventas()
             
 		getUser.data.forEach((venta, index) =>
         {
+       
             totalVentas += venta.precio;
         
            

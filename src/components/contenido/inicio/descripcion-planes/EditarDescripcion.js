@@ -54,7 +54,7 @@ export default function EditarDescripcion(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/descripcion_planes";
+					window.location.href = `${process.env.PUBLIC_URL}/descripcion_planes`;
 				}
 			})
 
@@ -71,7 +71,7 @@ export default function EditarDescripcion(){
             
 			}).then(function(result){
 				if(result.value){
-					window.location.href = "/descripcion_planes";
+					window.location.href = `${process.env.PUBLIC_URL}/descripcion_planes`;
 				}
 			})
 		}
